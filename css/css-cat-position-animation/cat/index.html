@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>网易云猫</title>
+    <style>
+        .body{
+            background: url("./cat/maoshenti.png");
+            width: 117px;
+            height: 201px;
+            /* 绝对定位absolute：相对于父级第一个设置了定位属性的元素，如果没有父级设置了定位，那就相对于body定位  */
+            /* 容器水平垂直居中 法1： */
+            position: absolute;
+            top: 50%;
+            left: 50%;
+                                    /* x y z */
+                                    /* - 左边 */
+            transform: translate3d(-50%,-50%,0);
+        }
+        .weiba{
+            background: url("./cat/maowei.png");
+            width: 64px;
+            height: 194px;
+            position: absolute;
+            top: -182px;
+            /* 摇摆 rotate */
+                    /* 名字 时间 动画速度  无穷大    0->100%,100%->0,都有动画*/
+            animation: ani 5s ease-in-out infinite alternate;
+            /* 以尾巴根部旋转 */
+            transform-origin: 100% 100%;
+        }
+        .maozhua{
+            background: url("./cat/maozhua.png");
+            position: absolute;
+            /* right: 13px; */
+            top: 351px;
+            left: 609px;
+            width: 34px;
+            height: 81px;
+            animation: wei 3s ease-in-out infinite alternate;
+            /* 以尾巴根部旋转 */
+            transform-origin: 0% 0%;
+            z-index: -1;
+        }
+        .yan1{
+            position: absolute;
+            background: url("./cat/maoyan1.png") no-repeat;
+            top: 165px;
+            left: 74px;
+            width: 2px;
+            height: 2px;
+        }
+        .yan2{
+            position: absolute;
+            background: url("./cat/maoyan2.png") no-repeat;
+            top: 173px;
+            left: 88px;
+            width: 2px;
+            height: 2px;
+        }
+        .zui{
+            position: absolute;
+            background: url("./cat/maozui.png") no-repeat;
+            top: 178px;
+            left: 75px;
+            width: 3px;
+            height: 3px;
+        }
+        /* 定义关键帧 动画里几个关键点 */
+        @keyframes ani{
+            100%{
+                /* 逆时针 -5度 */
+                transform: rotate(-5deg);
+            }
+        }
+        @keyframes wei{
+            100%{
+                /* 逆时针 -5度 */
+                transform: rotate(-8deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cat">
+            <div class="body">
+                <div class="weiba"></div>
+                <div class="yan1"></div>
+                <div class="yan2"></div>
+                <div class="zui"></div>
+            </div>
+            <div class="maozhua"></div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcss.com/weui/2.3.0/style/weui.css" rel="stylesheet">
+    <title>微信朋友圈</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('./font/iconfont.eot');
+            src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+                url('./font/iconfont.woff2') format('woff2'),
+                url('./font/iconfont.woff') format('woff'),
+                url('./font/iconfont.ttf') format('truetype'),
+                url('./font/iconfont.svg#iconfont') format('svg');
+            }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 18px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        *{
+            margin: 0;
+        }
+        .picture{
+            width: 100%;
+            height: 260px;
+            background-image: url(./images/beijing.jpg);
+            background-size: cover;
+            position: relative;
+        }
+        .picture .icon_return{
+            position: absolute;
+            top: 15px;
+            left: 9px;
+            color: #eee;
+        }
+        .picture .icon_pic{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #fff;
+        }
+        .wode{
+            width: 150px;
+            height: 90px;
+            /* border: 1px solid #000; */
+            position: absolute;
+            right: 20px;
+            top: 210px;
+        }
+        .wode .name{
+            display: inline-block;
+            position: absolute;
+            top: 18px;
+            color: #eee;
+        }
+        .wode .img{
+            width: 66px;
+            height: 66px;
+            position: absolute;
+            right: 5px;
+            /* border: 1px solid #000; */
+            border-radius: 5px;
+            background-image: url(./images/touxiang.jpg);
+            background-size: cover;
+        }
+        .weui-article .name{
+            font-size: 14px;
+            color: royalblue;
+        }
+    </style>
+</head>
+<body>
+    <div class="picture">
+        <span class="icon_return iconfont">&#xe6b2;</span>
+        <span class="icon_pic iconfont">&#xe643;</span>
+        <div class="wode">
+            <span class="name">二哈二哈</span>
+            <div class="img">
+            </div>
+        </div>
+    </div>
+    
+    <div class="weui-cells" style="margin-top: 20px;">
+        <div class="weui-cell weui-cell_active" >
+            <div class="weui-cell__hd" style="position: relative; margin-right: 10px;">
+                <img src="./images/touxiang.jpg" style="position:absolute;width: 50px; display: inline-block; margin-top: -270px;">
+            </div>
+            <div class="weui-cell__bd" style="max-height: 900px; margin-left: 40px;">
+                <article class="weui-article">
+                    <p class="name">巧纯</p>
+                    <section>
+                            <p>
+                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
+                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
+                                consequat.
+                            </p>
+                            <p>
+                                <img src="./images/beijing.jpg" alt="" style="width: 100%; height: 100%; display: block;">
+                            </p>
+                    </section>
+                </article>
+            </div>
+        </div>
+        <div class="weui-cells" style="margin-top: 20px;">
+            <div class="weui-cell weui-cell_active" >
+                <div class="weui-cell__hd" style="position: relative; margin-right: 10px;">
+                    <img src="./images/touxiang.jpg" style="position:absolute;width: 50px; display: inline-block; margin-top: -270px;">
+                </div>
+                <div class="weui-cell__bd" style="max-height: 900px; margin-left: 40px;">
+                    <article class="weui-article">
+                        <p class="name">巧纯</p>
+                        <section>
+                                <p>
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
+                                    temp.
+                                </p>
+                                <p>
+                                    <img src="./images/beijing.jpg" alt="" style="width: 100%; height: 100%; display: block;">
+                                </p>
+                        </section>
+                    </article>
+                </div>
+            </div>
+    </div>
+
+   
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>城市搜索</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        body{
+            background-color: rgba(252,196,68, 1);
+            justify-content: center;
+            display: flex;
+        }
+        input[type="text"] {
+            border: 10px solid #f7f7f7;
+            padding: 10px;
+            /* 去掉输入框外边框 */
+            outline: none;
+            border-radius: 4px;
+            text-align: center;
+            font-size: 18px;
+            /* 外边框阴影，内边框inset */
+            box-shadow: 0 0 5px 1px rgba(0, 0, 0, 0.1),0 0 5px 1px rgba(0, 0, 0, 0.1) inset;
+        }
+        ul{
+            list-style: none;
+        }
+        li{
+            padding: 10px;
+            background-color: #fff;
+            border: 1px solid #d8d8d8;
+            /* -逆时针 */
+            /* perspective z轴 */
+            /* transform: perspective(100px) rotateX(-3deg); */
+        }
+        li:nth-child(odd){
+            transform: perspective(100px) rotateX(-3deg);
+        }
+        li:nth-child(even){
+            transform: perspective(100px) rotateX(3deg);
+        }
+        .highlight{
+            background-color: yellow;
+        }
+    </style>
+</head>
+<body>
+    <div class="search-form">
+        <input type="text" id="suggest" placeholder="">
+        <ul>
+            <li>filter by a city</li>
+            <li>or a state</li>
+        </ul>
+    </div>
+    
+<script>
+    let cities = [];
+    //url:统一资源定位
+    //发出请求需要时间
+    fetch('https://gist.githubusercontent.com/Miserlou/c5cd8364bf9b2420bb29/raw/2bf258763cdddd704f8ffd3ea9a3e81d25e2c6f6/cities.json')
+    .then(function (res){
+        //拿到数据了 json->转换为json对象
+        //转换需要时间
+        //return 交给下一步
+        return res.json();
+    })
+    .then(function (data) {
+        // console.log(data)
+        cities = data;
+    })
+    
+    // cities.forEach(function(a,b) {})
+    const suggest = document.getElementById('suggest')
+    function findMatch(e){
+        let v = e.target.value;
+        // console.log(v)
+        if(!v) return;
+        let suggestCities = cities.filter(function (city){
+            if(city.city.includes(v) || city.state.includes(v)){
+                return true;
+            }
+            return false
+        })
+        const ul = document.querySelector('ul')
+        ul.innerHTML = suggestCities.map(function(city) {
+            let cityName = city.city
+            let stateName = city.state
+            //高亮:css 给ca加 replace
+            cityName = cityName.replace(v,`<span class="highlight">${v}</span>`)
+            stateName = stateName.replace(v,`<span class="highlight">${v}</span>`)
+            return`
+            <li>${cityName}-${stateName}</li>
+            `
+        })
+        .join('')
+    }
+    suggest.addEventListener('keyup',findMatch)
+</script>
+</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en" style="font-size:100px">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" 
+  content="initial-scale=0.5,maximum-scale=0.5, minimum-scale=0.5,width=device-width, height=device-height, user-scalable=no">
+  <title>Document</title>
+  <!-- sdk -->
+  <script type="text/javascript" 
+  src="https://api.map.baidu.com/api?v=2.0&ak=47FQtS6XkphGqmZ5nSEj6WTSTwE8SGaT"></script>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <!-- html  +   css -->
+  <!-- 附近的商家 info  -->
+  <div class="shop-list">
+    <!-- <div class="poi-item-wrapper">
+      <div class="poi-info-wrapper">
+        <div class="image-wrapper">
+          <div class="imgbox">
+            <img src="http://p0.meituan.net/deal/__45899142__3351739.jpg@320w_320h_1e_1c" alt="">
+          </div>
+        </div>
+
+        <div class="poi-info">
+          <div class="poi-name"></div>
+          <div class="price-wrapper">
+            <span class="stars">
+                <i class="iconfont">&#xe501;</i>
+                <i class="iconfont">&#xe501;</i>
+                <i class="iconfont">&#xe501;</i>
+                <i class="iconfont">&#xe501;</i>
+                <i class="iconfont">&#xe501;</i>
+              </span>
+              <span class="price"></span> 
+            <div class="location"></div>
+          </div>
+          <div class="cate-wrapper">
+            <span class="cateName"></span>
+            <span class="small-tag-0"></span>
+          </div>
+          <div class="service-tags">
+            <span class="service-tag-0"></span>
+          </div>
+        </div>
+      </div>
+    </div> -->
+  </div>
+  <!-- <div id="map"></div> -->
+  <script>
+  // 1. 距离
+  // 2. 点 经纬度
+  const myLatitude = '25.853262',
+    myLongitude = '114.914791';
+  
+  //坐标 店名 评分 {}json 对象字面量
+    const shop = [
+      {
+        name:'肯德基(赣州启德店）',
+        pos:[114.9468,25.863493],
+        logo:'https://p0.meituan.net/200.0/deal/607cffdccca7f4da09a2dddeedd31a8e49072.jpg@126_0_388_388a%7C267h_267w_2e_100Q',
+        price:'￥99/人',
+        cateName:'西式快餐/炸鸡',
+        smallTag:'大润发周边美食第一名',
+        serviceTag:'支持外卖',
+        evaluate:5
+      },
+      {
+        name:'大龍火锅（汇金广场）',
+        pos:[114.916585,25.851439],
+        logo:'https://p0.meituan.net/msmerchant/4866c6d6863b17f869d82353bf79b275240063.jpg@275w_156h_1e_1c',
+        price:'￥58/人',
+        cateName:'重庆火锅',
+        smallTag:'全城火锅第10名',
+        serviceTag:'',
+        evaluate:3
+      },
+      {
+        name:'巴蜀大将',
+        pos:[115.434497,25.974834],
+        logo:'https://p0.meituan.net/msmerchant/02749604d91cf960fb51231c282b5cb5248256.jpg@275w_156h_1e_1c',
+        price:'￥65/人',
+        cateName:'四川火锅',
+        smallTag:'全城火锅第五名',
+        serviceTag:'支持买单',
+        evaluate:4
+      },
+      {
+        name:'鸿记煌三汁焖锅',
+        pos:[114.947703,25.856517],
+        logo:'https://p1.meituan.net/mogu/a9d679514a8d1d12ce45ddf63e5fa7df111835.jpg@275w_156h_1e_1c',
+        price:'￥33/人',
+        cateName:'焖锅',
+        smallTag:'红旗大道美食第二名',
+        serviceTag:'支持外卖',
+        evaluate:5
+      },
+      {
+        name:'樱花蛋糕',
+        pos:[114.846249,25.842776],
+        logo:'https://p1.meituan.net/180.180/deal/1b51a9392d27216f1aa60adc632aad63310443.jpg@275w_156h_1e_1c',
+        price:' ',
+        cateName:'面包蛋糕',
+        smallTag:'全城美食第8名',
+        serviceTag:'',
+        evaluate:3
+      },
+      {
+        name:'老船长肉蟹煲',
+        pos:[114.934197,25.821428],
+        logo:'https://p1.meituan.net/bbia/4b95b242e261c071bdf69d13c9cbbcb7769591.jpg@275w_156h_1e_1c',
+        price:'￥49/人',
+        cateName:'肉蟹煲',
+        smallTag:'国光/宝林及周边美食第1名',
+        serviceTag:'支持预定',
+        evaluate:4
+      },
+      {
+        name:'根据地火锅（东阳山店）',
+        pos:[114.940967,25.848633],
+        logo:'https://img.meituan.net/msmerchant/ff65c424c720f540dea36997dc84a5481742704.png@600w_600h_1l',
+        price:'￥62/人',
+        cateName:'四川火锅',
+        smallTag:'章江南/章江北火锅第1名',
+        serviceTag:'支持预定',
+        evaluate:4
+      },
+      {
+        name:'好街坊（摊儿上路店）',
+        pos:[114.931631,25.860376],
+        logo:'https://p0.meituan.net/mogu/2b84b3f6099eeb04493653137cde7a8d61075.jpg@275w_156h_1e_1c',
+        price:'￥26/人',
+        cateName:'面包甜点',
+        smallTag:'',
+        serviceTag:'',
+        evaluate:5
+      },
+      {
+        name:'查理王子',
+        pos:[114.943556,25.841552],
+        logo:'https://p1.meituan.net/bbia/1165c103e9f00aaa767dc9b4a054487d39129.jpg@275w_156h_1e_1c',
+        price:'￥10/人',
+        cateName:'奶茶',
+        smallTag:'万盛及体育中心',
+        serviceTag:'支持外卖',
+        evaluate:5
+      },
+      {
+        name:'八方迷踪蟹（赣州店）',
+        pos:[114.956476,25.833178],
+        logo:'https://p0.meituan.net/deal/611408589fa4c14edf5e12edb07701c637971.jpg@275w_156h_1e_1c',
+        price:'￥88/人',
+        cateName:'肉蟹煲',
+        smallTag:'',
+        serviceTag:'',
+        evaluate:4
+      }
+    ];
+
+
+  // sdk 有点大， 他在远方
+  // js 事件机制
+  window.onload = function() {
+    const shopContainer = document.querySelector('.shop-list');
+    const map = new BMap.Map();
+    const myPoint = new BMap.Point(myLongitude,myLatitude);
+    
+    for(let i = 0;i< shop.length;i++){
+      let shopPoint = new BMap.Point(shop[i].pos[0],shop[i].pos[1]);
+      let distance = parseDistance(
+        map.getDistance(myPoint,shopPoint)
+      );
+      shopContainer.innerHTML +=`
+      <div class="poi-item-wrapper">
+        <div class="poi-info-wrapper">
+          <div class="image-wrapper">
+            <div class="imgbox">
+              <img src="${shop[i].logo}" alt="">
+            </div>
+          </div>
+          <div class="poi-info">
+          <div class="poi-name">${shop[i].name}</div>
+          <div class="price-wrapper">
+            <span class="stars">`+stars(shop[i].evaluate)+`</span>
+              <span class="price">${shop[i].price}</span> 
+            <div class="location">${distance}</div>
+          </div>
+          <div class="cate-wrapper">
+            <span class="cateName">${shop[i].cateName}</span>
+            <span class="small-tag-0">${shop[i].smallTag}</span>
+          </div>
+          <div class="service-tags">
+            <span class="service-tag-0">${shop[i].serviceTag}</span>
+          </div>
+        </div>
+        </div>
+      </div>
+      `
+    }
+    function parseDistance(distance) {
+      //  如果> 1000米 返回  4.1km
+      // 否则 整数  936m
+      if (distance < 1000) {
+        return parseInt(distance) + 'm'; 
+      } else {
+        return (distance/1000).toFixed(1) + 'km';
+      }
+    }
+
+    function stars(evaluate){
+      let ihtml = [];
+      for(let i = 0; i < evaluate; i++){
+        ihtml += `<i class="iconfont">&#xe501;</i>`
+      }
+      for(let i = 0; i < 5-evaluate; i++){
+        ihtml += `<i class="iconfont star-black">&#xe503;</i>`
+      }
+      return ihtml;
+    }
+
+
+    //  开始我们的js 编程
+    // const map = new BMap.Map(); //实例化地图
+    // map.centerAndZoom("南昌县仁兴家园", 17)
+
+    //两点距离
+    // const myPoint = new BMap.Point(myLongitude, myLatitude);
+    // const kfcPoint = new BMap.Point(kfcLongitude, kfcLatitude);
+    // const distance = parseDistance(
+      // 925.1111
+      // map.getDistance(myPoint, kfcPoint)
+    // ); // Number
+    // console.log(distance);
+    
+      
+  }
+  
+  </script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .box{
+            width: 100px;
+            height: 100px;
+            padding: 10px;
+            border: 1px solid red;
+        }
+        .box2{
+            box-sizing: border-box;
+        }
+    </style>
+</head>
+<body>
+    <div class="box1 box">content-box</div>
+    <div class="box2 box">border-box</div>
+    <script>
+        const box1 = document.querySelector('.box1')
+        const box2 = document.querySelector('.box2')
+        console.log(box1.offsetWidth,box1.offsetHeight)
+        console.log(box2.offsetWidth,box2.offsetHeight)
+    </script>
+</body>
+</html>

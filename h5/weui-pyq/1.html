@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.bootcss.com/weui/2.3.0/style/weui.css" rel="stylesheet">
+    <title>微信朋友圈</title>
+    <style>
+        @font-face {
+            font-family: 'iconfont';
+            src: url('./font/iconfont.eot');
+            src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+                url('./font/iconfont.woff2') format('woff2'),
+                url('./font/iconfont.woff') format('woff'),
+                url('./font/iconfont.ttf') format('truetype'),
+                url('./font/iconfont.svg#iconfont') format('svg');
+            }
+        .iconfont {
+            font-family: "iconfont" !important;
+            font-size: 18px;
+            font-style: normal;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+        html,body{
+            width: 100%;
+            height: 100%;
+        }
+        *{
+            margin: 0;
+        }
+        a{
+            text-decoration: none;
+            color: #eee;
+        }
+        .picture{
+            width: 100%;
+            height: 260px;
+            background-image: url(./images/beijing.jpg);
+            background-size: cover;
+            position: relative;
+        }
+        .picture .icon_return{
+            position: absolute;
+            top: 15px;
+            left: 9px;
+            color: #eee;
+        }
+        .picture .icon_pic{
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            color: #fff;
+        }
+        .wode{
+            width: 150px;
+            height: 90px;
+            position: absolute;
+            right: 20px;
+            top: 210px;
+        }
+        .wode .name{
+            display: inline-block;
+            position: absolute;
+            top: 18px;
+            color: #eee;
+        }
+        .wode .img{
+            width: 66px;
+            height: 66px;
+            position: absolute;
+            right: 5px;
+            border-radius: 5px;
+            background-image: url(./images/touxiang.jpg);
+            background-size: cover;
+        }
+        .onebox{
+            margin-top: 30px;
+            min-height: 100px;
+            max-width: 500px;
+            width: 100%;
+            border-bottom: 1px solid #eee;
+            display: flex;
+        }
+        .left{
+            flex: 1;
+            /* border: 1px solid #000; */
+        }
+        .right{
+            flex: 5;
+            display: flex;
+            flex-direction: column;
+            /* border: 1px solid #000; */
+        }
+        .left .picbox{
+            width: 50px;height: 50px;
+            border-radius: 3px;
+            background-image: url(./images/touxiang.jpg);
+            background-size: cover;
+            margin: 0 auto;
+        }
+        .right .name{
+            margin: 0 3px 0 3px;
+        }
+        .right .name a{
+            color: rgb(160,198,232);
+        }
+        .right .content{
+            margin: 3px;
+            width: 100%;
+            max-height: 150px;
+             overflow:hidden; 
+            text-overflow:ellipsis; 
+        }
+        .right .peitu{
+            margin: 3px;
+        }
+        .right .peitu img{
+            width: 200px;height: 170px;
+            background-size: cover;
+        }
+        .right .note .time{
+            color: rgb(110,110,110);
+            font-size: 12px;
+            left: 10px;
+        }
+        .right .note .conment{
+            position: relative;
+            right: -195px;
+            font-size: 16px;
+            width: 100%;
+        }
+        .right .note .conment a{
+            color: #000;
+        }
+        .conment::before{
+            width: 100px;
+            height: 20px;
+            background-color: #000;
+        }
+    </style>
+</head>
+<body>
+    <div class="picture">
+        <span class="icon_return iconfont"><a href="#">&#xe6b2;</a></span>
+        <span class="icon_pic iconfont"><a href="#">&#xe643;</a></span>
+        <div class="wode">
+            <span class="name"><a href="#">二哈二哈</a></span>
+            <a href="#"><div class="img"></div></a>
+        </div>
+    </div>
+    <div class="onebox">
+        <div class="left">
+            <a href="#"><div class="picbox"></div></a>
+        </div>
+        <div class="right">
+            <div class="name"><a href="#">康康</a></div>
+            <div class="content">
+                <article>
+                ppppppppppp
+                    vvvvvvvv
+                    vvvvvvvvvvvv
+                    vv
+                    v
+                    s 
+                    d 
+                    d 
+                    dd 
+                    dd 
+
+                </article>
+                </div>
+            <div class="peitu">
+                <img src="./images/beijing.jpg" alt="">
+            </div>
+            <div class="note">
+                <span class="time">35分钟前</span>
+                <span class="conment iconfont"><a href="#">&#xebbb;</a></span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="onebox">
+        <div class="left">
+            <a href="#"><div class="picbox"></div></a>
+        </div>
+        <div class="right">
+            <div class="name"><a href="#">康康</a></div>
+            <div class="content">
+                <p>pppppppppppvvvv
+                    vvvvvvvvvv
+                    vvvvvvvvvv
+                </p>
+                </div>
+            <!-- <div class="peitu">
+            </div> -->
+            <div class="note">
+                <span class="time">35分钟前</span>
+                <span class="conment iconfont"><a href="#">&#xebbb;</a></span>
+            </div>
+        </div>
+    </div>
+<script>
+    const conment = document.querySelector('.conment')
+    conment.addEventListener('click',function() {
+        console.log('aaa')
+
+    })
+</script>
+</body>
+</html>

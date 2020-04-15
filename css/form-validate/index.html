@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>表单提交</title>
+</head>
+<body>
+    <!-- 表单属性：action/class  
+    action 提交到哪里
+    -->
+    <form action="" class="form" name="myform">
+        <div>
+            <label for="username">用户名：</label>
+            <input type="text" id="username" placeholder="输入用户名" name="username">
+        </div>
+        <div>
+            <label for="pwd">密码</label>
+            <input type="text" placeholder="输入密码" id="pwd" name="pwd">
+        </div>
+        <div>
+            <label for="repwd">确认密码</label>
+            <input type="text" placeholder="再次输入密码" id="repwd" name="repwd">
+        </div>
+        <div>
+            <label for="sex">性别</label>
+            <!-- name都是sex的选项 -->
+            <input type="radio" value="man" id="man" name="sex" checked>
+            <label for="man">男</label>
+            <input type="radio" value="woman" id="woman" name="sex">
+            <label for="woman">女</label>
+        </div>
+        <div>
+            <label for="hobby">爱好</label>
+            <select name="hobby" id="hobby">
+                <option value="dog">dog</option>
+                <option value="cat" selected>cat</option>
+            </select>
+        </div>
+        <button type="submit">提交</button>
+    </form>
+   
+    <script>
+        // 1.拿到form
+        // document.forms 取到所有表单 根据表单name取得要的表单
+        const form = document.forms.myform
+        // console.log(form);
+        // const hobby = form.hobby.value
+        // console.log(hobby);
+        // 给表单绑定一个提交的监听事件
+        // event形参
+        // 回调函数
+        form.addEventListener('submit',function(event){
+            console.log('tijiale');
+            // 不想表单跳转
+            // 阻止html表单默认的特点、事件
+            event.preventDefault();
+            const username = form.username.value
+            const pwd = form.pwd.value
+            const repwd = form.repwd.value
+            const sex = form.sex.value
+            const hobby = form.hobby.value
+            // 去掉空格取长度
+            if (username.trim().length === 0){
+                alert('username can not be null');
+                return;
+            }
+            if(repwd.trim() !== pwd){
+                alert('密码不一致');
+                return;
+            }
+            // console.log(username,pwd,repwd,sex,hobby);
+            // 显示：js动态添加
+
+            const div = document.createElement('div');
+            div.innerHTML = ` <span>用户名：${username}</span>
+    <span>密码:${pwd}</span>
+    <span>性别:${sex}</span>
+    <span>爱好:${hobby}</span>`
+            document.body.appendChild(div)
+        })
+    </script>
+</body>
+</html>

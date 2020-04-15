@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <!-- 三秒之后 插入一个li -->
+    </ul>
+    <button onclick=""></button>
+<script>
+    //点击每一个li 输出li里面的内容
+
+    //1.常规 有几个li产生几个绑定，只能监听已有的元素
+    //querySelectorAll只能选中当前页面上已有的li节点
+    // const lis = document.querySelectorAll('li');
+    // lis.forEach((li) =>{
+    //     li.addEventListener('click',function () {
+    //         console.log(li.innerText);
+    //     })
+    // })
+
+    //2.监听父节点 只有一个事件绑定，能够监听未来的元素，
+    const ul = document.querySelector('ul')
+    //借助事件冒泡的特点，父节点也可以监听到子节点有没有发生点击事件
+    // （如果子节点点击了，父节点也能接受到点击事件）
+    ul.addEventListener('click',function (event) {
+        // console.log(event)
+        //点击了哪里 
+        // event.target 点了哪个元素 就指向哪个元素
+        const target = event.target;
+        console.log(target.innerText);
+    })
+
+    setTimeout(function () {
+        const ul = document.querySelector('ul');
+        //创建一个li节点 
+        const li = document.createElement('li');
+        ul.appendChild(li)
+        li.innerHTML = '44444'
+    },3000)
+
+    const btn = document.getElementById('btn')
+    //dom0
+    btn.onclick = function(){}
+    // dom2
+    btn.addEventListener('click')
+    //dom3 添加了一些鼠标或者键盘事件
+    btn.addEventListener('click')
+</script>
+</body>
+</html>

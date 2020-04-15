@@ -1,0 +1,120 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('iconfont.eot');
+  src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('./font/iconfont.woff2') format('woff2'),
+      url('font/iconfont.woff') format('woff'),
+      url('font/iconfont.ttf') format('truetype'),
+      url('font/iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 19px;
+  font-style: normal;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  /* css 继承 */
+  font-size: 0.28rem;
+  line-height: 1.5;
+}
+img {
+  max-width: 100%;
+}
+#map {
+  width: 100vw;
+  height: 100vh;
+}
+.poi-item-wrapper {
+  background-color: #fff;
+  padding: 0.24rem 0 0 0.3rem;
+  border-bottom: 1px solid #e5e5e5;
+}
+.poi-item-wrapper .poi-info-wrapper {
+  display: flex;
+}
+.poi-item-wrapper .image-wrapper {
+  position: relative;
+  margin-top: 0.05rem;
+  width: 1.6rem;
+  height: 1.61rem;
+}
+.poi-item-wrapper .image-wrapper img{
+  /* background-size: contain; */
+  width: 1.6rem;
+  height: 1.61rem;
+}
+.poi-item-wrapper .poi-info{
+  margin-left: 0.18rem;
+  /* display: flex; */
+  flex:1 ;
+  padding: 0 0.18rem 0.16rem 0;
+  /* 盒子大小由实际宽高决定 */
+  box-sizing: content-box;
+}
+.poi-item-wrapper .poi-info .price-wrapper {
+  position: relative;
+  font-size: 0.24rem;
+  line-height: 0.33rem;
+  margin-top: 0.06rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  /* height: 2rem; */
+}
+.stars{
+    display: inline-block;
+    color: #fa952f;
+}
+.star-black{
+  color: #bfbfbf;
+}
+.price-wrapper .price{
+  color: #666;
+  letter-spacing: 0.2px;
+}
+.poi-item-wrapper .poi-info .location {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 0.33rem;
+    line-height: 0.33rem;
+    font-size: 0.24rem;
+    font-family: PingFangSC-Regular;
+    color: #666666;
+    letter-spacing: 0.2px;
+}
+.poi-item-wrapper .poi-info .cate-wrapper{
+  margin-top: 0.08rem;
+  height: 0.33rem;
+  line-height: 0.33rem;
+}
+.poi-item-wrapper .poi-info .cate-wrapper .cateName{
+  color: #666;
+  letter-spacing: 0.2px;
+  margin-right: 0.09rem;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  font-size: 0.24rem;
+}
+.poi-item-wrapper .poi-info .cate-wrapper .small-tag-0{
+  margin-right: 0.1rem;
+  height: 0.28rem;
+  line-height: 0.28rem;
+  padding: 0 0.04rem;
+  font-size: 0.22rem;
+  border-radius: 0.05rem;
+  color: rgb(190, 158, 77);
+  background-color: rgb(251, 244, 228);
+}
+.poi-item-wrapper .poi-info .service-tags .service-tag-0{
+  height: 0.33rem;
+  line-height: 0.33rem;
+  font-size: 0.24rem;
+  color: rgb(108, 186, 178);
+}
