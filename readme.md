@@ -5,3 +5,5 @@ npm config set registry https://registry.npm.taobao.org
 stylus -w .\finance.styl -o .\finance.css
 ## 查看路径
 npm config ls
+## 全局安装typescript
+npm i -g typescript 
