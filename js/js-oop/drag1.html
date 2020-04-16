@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .drag{
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="drag1" class="drag">h2</h2>
+    <button id="drag2" class="drag">btn</button>
+
+<script>
+ //按下 mousedown
+ //拖 设置translate /left top == 元素值
+ //放
+
+function DragAble(selector) {
+    //选择要拖拽的元素
+    this.ele = document.querySelector(selector);
+    this.windowWidth = window.innerWidth;
+    this.windowHeight = window.innerHeight;
+    this.elesize = this.ele.getBoundingClientRect();
+    //要移动的元素绑定mousedown
+    this.ele.addEventListener('mousedown',this.onMouseDown)
+}
+//方法（公共的）写在prototype
+DragAble.prototype.onMouseDown = function() {
+    //普通函数 this指向 html 元素 this。onmousemove 取不到prototype上面的
+    //导致时间绑定失效
+    //换成箭头函数
+    document.addEventListener('mousemove',this.onMouseMove)
+    document.addEventListener('mouseup',this.onMouseUp)
+    console.log('makd')
+}
+DragAble.prototype.onMouseMove = function(event) {
+    let moveX = event.clientX, moveY = event.clientY;
+    let distanceX = this.windowWidth - this.elesize.width;
+    let distanceY = this.windowHeight - this.elesize.height;
+    if(moveX < 0) moveX = 0;
+    if(moveX > distanceX) moveX = distanceX;
+    if(moveY < 0) moveY = 0;
+    if(moveY > distanceY) moveY = distanceY;
+    //要移动的元素 ele
+    this.ele.style.tranform = `translate3d(${moveX}px,${moveY}px,0)`
+}
+DragAble.prototype.onMouseUp = function() {
+    document.removeEventListener('onmousemove',this.onMouseMove)
+}
+
+new DragAble('#drag1')
+</script>
+</body>
+</html>

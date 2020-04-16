@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;
+        }
+        .drag{
+            left: 0;
+            top: 0;
+            position: absolute;
+        }
+    </style>
+</head>
+<body>
+    <h2 id="drag1" class="drag">h2</h2>
+    <button id="drag2" class="drag">btn</button>
+
+<script>
+ //按下 mousedown
+ //拖 设置translate /left top == 元素值
+ //放
+
+ const drag1 = document.querySelector('#drag1');
+ const windowWidth = window.innerWidth;
+ const windowHeight = window.innerHeight;
+ const dragElesize = drag1.getBoundingClientRect();
+ function onmouseMove(event){
+    let moveX = event.clientX, moveY = event.clientY;
+    let distanceX = windowWidth - dragElesize.width;
+    let distanceY = windowHeight - dragElesize.height;
+    if (moveX >= distanceX) {
+        moveX = distanceX
+    }
+    if(moveY >= distanceY){
+        moveY = distanceY
+    }
+    if(moveX < 0){
+        moveX = 0
+    }
+    if(moveY < 0){
+        moveY = 0
+    }
+    drag1.style.transform = `translate3d(${moveX}px,${moveY}px,0)`
+ }
+
+
+ drag1.addEventListener('mousedown',function() {
+     document.addEventListener('mousemove',onmouseMove)
+     document.addEventListener('mouseup',function (){
+         //移除mousemove
+         document.removeEventListener('mousemove',onmouseMove)
+     })
+ })
+ //1.mousedown -> mousemove -> 移除mousemove
+ //2.重复
+</script>
+</body>
+</html>
