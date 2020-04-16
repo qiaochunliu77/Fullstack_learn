@@ -1,0 +1,44 @@
+*
+  margin 0
+  padding 0
+html, body 
+  height 100%
+
+html
+  font-size 10px
+  background url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3667317775,2758775608&fm=26&gp=0.jpg") bottom center
+  background-size cover
+
+.outline
+    // border 2px solid rgb(206,171,45)
+    // box-shadow 1px 1px
+    // border .4rem solid rgb(206,171,45)
+    // border none
+    // box-shadow 0 0 10px 5px rgba(206,171,45, 0.3)
+    // transition box-shadow 0.5s, transform 0.5s
+.keys
+    display -webkit-flex
+    display flex
+    min-height 100vh
+    align-items center
+    justify-content center
+    
+    .key 
+        margin 1rem
+        border .4rem solid #000
+        border-radius 0.5rem
+        font-size 1.5rem
+        width 10rem
+        text-align center
+        color white
+        background rgba(0,0,0,.4)
+        text-shadow 0 0 .5rem #000
+        transition all .07s ease 
+        div
+            display block
+            font-size 4rem
+        .sound 
+            font-size 1.2rem
+            text-transform uppercase
+            letter-spacing 0.1rem
+            color #ffc600
