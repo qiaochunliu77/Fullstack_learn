@@ -13,8 +13,7 @@ const ages = [32,15,19,12];
 const adultArr = ages.filter(age => age >=18);
 //some 是否有
 const adultPresent = ages.some(age => age>18)
-// console.log(adultPresent);
-
+//every 
 const allOldEnough = ages.every(age => age>18)
 console.log(allOldEnough)
 
