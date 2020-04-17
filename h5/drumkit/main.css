@@ -40,3 +40,8 @@ html {
   letter-spacing: 0.1rem;
   color: #ffc600;
 }
+.keys .outline {
+  border-color: #ffc600;
+  box-shadow: 0 0 10px 5px rgba(206,171,45,0.3);
+  transition: box-shadow 0.5s, transform 0.5s;
+}

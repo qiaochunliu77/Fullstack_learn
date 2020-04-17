@@ -9,13 +9,8 @@ html
   background url("https://ss1.bdstatic.com/70cFvXSh_Q1YnxGkpoWK1HF6hhy/it/u=3667317775,2758775608&fm=26&gp=0.jpg") bottom center
   background-size cover
 
-.outline
-    // border 2px solid rgb(206,171,45)
-    // box-shadow 1px 1px
-    // border .4rem solid rgb(206,171,45)
-    // border none
-    // box-shadow 0 0 10px 5px rgba(206,171,45, 0.3)
-    // transition box-shadow 0.5s, transform 0.5s
+
+    
 .keys
     display -webkit-flex
     display flex
@@ -34,11 +29,17 @@ html
         background rgba(0,0,0,.4)
         text-shadow 0 0 .5rem #000
         transition all .07s ease 
+        
         div
             display block
             font-size 4rem
         .sound 
             font-size 1.2rem
+            // 仅有大写字母
             text-transform uppercase
             letter-spacing 0.1rem
             color #ffc600
+.keys .outline
+          border-color #ffc600
+          box-shadow 0 0 10px 5px rgba(206,171,45, 0.3)
+          transition box-shadow 0.5s, transform 0.5s
