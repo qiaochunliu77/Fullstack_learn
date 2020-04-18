@@ -70,6 +70,7 @@
 <script>
     const ul = document.querySelector('ul')
     //JSON.parse JSON字符串转为一个对象
+    //localStorage.getItem(key)根据键值获取存储的对象
     let localData = JSON.parse(localStorage.getItem('todo')) || [];//如果前面的条件为真，那么后面的就不会运行了
     let todo = localData;
     render();

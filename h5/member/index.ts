@@ -56,29 +56,69 @@ const tbody = document.querySelector('#member tbody');
 }).join("")//数组拼接 join
 
 //获取表单内容
+// const  myform = document.forms[0];
+// myform.addEventListener('submit',function(event){
+//     event.preventDefault();
+//     const id = myform.idinput.value;
+//     const name = myform.nameinput.value;
+//     const avatar = myform.avatarinput.value;
+//     const tell = myform.tellinput.value;
+//     const hometown = myform.hometowninput.value;
+//     const tr = document.createElement('tr');
+//     tr.classList.add('table');
+//     tr.innerHTML = `
+//             <td>${id}</td>
+//             <td>${name}</td>
+//             <td>
+//               <img src="${avatar}">
+//             </td>
+//             <td>${tell}</td>
+//             <td>${hometown}</td>
+//     `
+//     tbody.appendChild(tr); 
+// })
+
+//存储到本地
 const  myform = document.forms[0];
-myform.addEventListener('submit',function(event){
+let localStorage = JSON.parse(localStorage.getItem('localmember')) || [];
+let localmember = localStorage;
+render()
+//获取数据并且 setitem到一个数组中
+function addItem(){
     event.preventDefault();
     const id = myform.idinput.value;
     const name = myform.nameinput.value;
     const avatar = myform.avatarinput.value;
     const tell = myform.tellinput.value;
     const hometown = myform.hometowninput.value;
+    // console.log(id,name)
+    let obj = {
+        id: id,
+        name:name,
+        avatar:avatar,
+        tell:tell,
+        hometown:hometown
+    }
+    members.push(obj);
+    console.log(members)
+    for(let i=0;i<members.length;i++){
+    localStorage.setItem('localmember',JSON.stringify(members[i]))
+    }
+    render();
+}
+function render(){
     const tr = document.createElement('tr');
     tr.classList.add('table');
-    tr.innerHTML = `
-            <td>${id}</td>
-            <td>${name}</td>
+    tr.innerHTML = 
+        ` 
+            <td>${localmember.id}</td>
+            <td>${localmember.name}</td>
             <td>
-              <img src="${avatar}">
+              <img src="${localmember.avatar}">
             </td>
-            <td>${tell}</td>
-            <td>${hometown}</td>
+            <td>${localmember.tell}</td>
+            <td>${localmember.hometown}</td>
     `
     tbody.appendChild(tr); 
-})
-
-
-
-
-//插入到html
+}
+myform.addEventListener('submit',addItem)
