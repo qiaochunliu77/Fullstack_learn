@@ -1,0 +1,300 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url("./font/iconfont.eot");
+  src: url("./font/iconfont.eot?#iefix") format('embedded-opentype'), url("./font/iconfont.woff2") format('woff2'), url("./font/iconfont.woff") format('woff'), url("./font/iconfont.ttf") format('truetype'), url("./font/iconfont.svg#iconfont") format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  color: #666;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html,
+body {
+  background-color: #f7f7f7;
+  width: 100%;
+  height: 100%;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+a {
+  text-decoration: none;
+  color: #060606;
+}
+.wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.footer {
+  position: absolute;
+  display: -webkit-flex;
+  display: flex;
+  width: 100%;
+  height: 6vh;
+  background-color: #fff;
+  justify-content: center;
+  align-content: center;
+  bottom: 0;
+}
+.footer .footer-item {
+  flex: 1;
+  text-align: center;
+}
+.footer .footer-item span.iconfont {
+  font-size: 30px;
+  padding: 9px 0;
+}
+.footer .footer-item p {
+  font-size: 14px;
+  line-height: 14px;
+  text-align: center;
+  bottom: 1px;
+}
+.search {
+  width: 100%;
+  height: 7vh;
+  background-color: #1678ff;
+  display: flex;
+  font-size: 0;
+}
+.search .search-city {
+  width: 120px;
+  padding: 3px;
+  font-size: 0;
+}
+.search .search-city .search-city-box {
+  margin: 12px 4px;
+}
+.search .search-city span {
+  display: inline-block;
+  color: #fff;
+  font-size: 16px;
+}
+.search .search-city .iconfont {
+  font-size: 20px;
+}
+.search .search-bar-form {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+  font-size: 0;
+}
+.search .search-bar-form .search-bar-box {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 4px;
+}
+.search .search-bar-form .search-bar-box .search-bar-input {
+  width: 100%;
+  height: 40px;
+  margin: 10px 0;
+  padding: 0 30px;
+}
+.search .search-bar-form span {
+  position: absolute;
+  font-size: 20px;
+  top: 35%;
+}
+.search .search-bar-form span.left {
+  left: 0;
+}
+.search .search-bar-form span.right {
+  right: 0;
+}
+.search .search-my {
+  width: 70px;
+  padding: 3px;
+  margin: 10px 10px;
+}
+.search .search-my .iconfont {
+  font-size: 30px;
+  color: #fff;
+}
+.container {
+  height: 87vh;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+.container .user {
+  height: 23vh;
+  width: 90vw;
+  padding: 1vh 5vw 0 5vw;
+}
+.container .user .user-items {
+  border-radius: 8px;
+  background-color: #fff;
+  position: relative;
+}
+.container .user .user-items .user-items-box {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+}
+.container .user .user-items .user-items-box .user-item {
+  width: 18vw;
+  height: 10vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.container .user .user-items .user-items-box .user-item .iconfont {
+  font-size: 28px;
+}
+.container .user .user-items .user-items-box .user-item .icon-tilte {
+  font-size: 12px;
+}
+.container .user .user-items .scroll {
+  position: relative;
+  height: 2vh;
+  left: 50%;
+  margin-left: -10vw;
+}
+.container .user .user-items .scroll .white {
+  height: 0.5vh;
+  width: 20vw;
+  border-radius: 5px;
+  position: relative;
+  background-color: #f7f7f7;
+}
+.container .user .user-items .scroll .blue {
+  position: absolute;
+  width: 8vw;
+  height: 100%;
+  border-radius: 5px;
+  background-color: #1b81d3;
+}
+.container .nav {
+  width: 90vw;
+  height: 8vh;
+  padding: 0 5vw;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.container .nav .nav-box {
+  flex: 1;
+  border-radius: 5px;
+  background-color: #fff;
+  margin: 0 3px;
+  padding: 6px 3px 0 3px;
+  height: 6.5vh;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
+.container .nav .nav-box .nav-title {
+  width: 16vw;
+  height: 100%;
+}
+.container .nav .nav-box .nav-title .title {
+  font-size: 14px;
+}
+.container .nav .nav-box .nav-title .sub-title {
+  font-size: 12px;
+  color: #bbb;
+}
+.container .nav .nav-box .nav-img-box {
+  width: 8vw;
+  height: 4vh;
+}
+.container .nav .nav-box .nav-img-box img {
+  width: 100%;
+  height: 100%;
+}
+.container .nav .nav-box .icon-title {
+  position: absolute;
+  top: 0;
+  right: 0;
+  border-radius: 0 5px 0 5px;
+  color: #fff;
+  font-size: 6px;
+  background-color: #f98202;
+}
+.container .banner {
+  width: 90vw;
+  height: 13vh;
+  padding: 1vh 5vw;
+}
+.container .banner .banner-box {
+  border-radius: 5px;
+  width: 100%;
+  height: 100%;
+  background: url("./images/banner.jpg");
+  background-size: cover;
+}
+.container .hot {
+  width: 90vw;
+  height: 30vh;
+  padding: 0.5vh 5vw 0 5vw;
+}
+.container .hot .hot-box {
+  width: 100%;
+  height: 100%;
+  border-radius: 5px;
+  overflow: hidden;
+  background-color: #fff;
+}
+.container .hot .hot-box .menu {
+  height: 20vh;
+  width: 100%;
+  display: flex;
+}
+.container .hot .hot-box .menu .menufs {
+  flex: 1;
+  border-bottom: 1px solid #eee;
+  padding: 0.5vh;
+  line-height: 18px;
+  margin: 4px;
+}
+.container .hot .hot-box .menu .menufs .menu-title {
+  color: #fe5800;
+  font-size: 16px;
+  font-weight: bold;
+}
+.container .hot .hot-box .menu .menufs .menu-msg {
+  font-size: 14px;
+  white-space: nowrap /*超出的空白区域不换行*/;
+  overflow: hidden /*超出隐藏*/;
+  text-overflow: ellipsis /*超出部分省略号*/;
+}
+.container .hot .hot-box .menu .menufs .menu-price .price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #f63d2b;
+}
+.container .hot .hot-box .menu .menufs .menu-price .price-before {
+  font-size: 14px;
+  color: #bbb;
+}
+.container .hot .hot-box .menu .menufs .menu-img-box {
+  width: 7vw;
+  height: 8vh;
+}
+.container .hot .hot-box .menu .menufs .menu-img-box img {
+  width: 100%;
+  height: 100%;
+  background-size: contain;
+}
+.container .hot .hot-box .menu .menu-first {
+  border-right: 1px solid #eee;
+}
+.container .hot .hot-box .sub-menu {
+  height: 10vh;
+  width: 100%;
+  display: flex;
+}
+.container .hot .hot-box .sub-menu .submenu {
+  flex: 1;
+}
+.container .hot .hot-box .sub-menu .submenu .sub-menu-first {
+  border-right: 1px solid #eee;
+}

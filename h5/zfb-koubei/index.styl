@@ -1,0 +1,267 @@
+@font-face {
+  font-family: 'iconfont';
+  src: url('./font/iconfont.eot');
+  src: url('./font/iconfont.eot?#iefix') format('embedded-opentype'),
+      url('./font/iconfont.woff2') format('woff2'),
+      url('./font/iconfont.woff') format('woff'),
+      url('./font/iconfont.ttf') format('truetype'),
+      url('./font/iconfont.svg#iconfont') format('svg');
+}
+.iconfont {
+  font-family: "iconfont" !important;
+  font-size: 16px;
+  font-style: normal;
+  color #666
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+html,body 
+    background-color #f7f7f7
+    width 100%
+    height 100%
+* 
+    margin 0
+    padding 0
+a 
+    text-decoration none
+    color rgb(6,6,6)
+.wrapper
+    position relative
+    width 100%
+    height 100%
+
+// 底部菜单
+.footer
+    position absolute 
+    display: -webkit-flex;
+    display flex
+    width 100%
+    height 6vh
+    background-color #fff
+    justify-content center
+    align-content center
+    bottom 0
+    .footer-item
+        flex 1
+        text-align center
+    .footer-item span.iconfont
+        font-size 30px
+        padding 9px 0
+    .footer-item p 
+        font-size 14px
+        line-height 14px
+        text-align center
+        bottom 1px
+
+
+//头部搜索
+.search 
+    width 100%
+    height 7vh
+    background-color rgb(22,120,255)
+    display flex
+    font-size 0
+    .search-city
+        width 120px
+        padding 3px
+        font-size 0
+        .search-city-box
+            margin 12px 4px
+        span 
+            display inline-block
+            color #fff
+            font-size 16px
+        .iconfont
+            font-size 20px
+    .search-bar-form 
+        position relative
+        width 100%
+        height 100%
+        // margin 5px 0
+        border-radius 4px
+        font-size 0
+        .search-bar-box
+            position relative
+            width 100%
+            height 100%
+            border-radius 4px
+            .search-bar-input
+                width 100%
+                height 40px
+                margin 10px 0
+                padding 0 30px
+        span
+            position absolute
+            font-size 20px
+            top 35%
+        span.left
+                left 0
+        span.right
+                right 0     
+.search .search-my
+        width 70px
+        padding 3px
+        margin 10px 10px
+        .iconfont
+            font-size 30px
+            color #fff
+//滑动内容
+.container 
+    height 87vh
+    overflow-y scroll
+    overflow-x hidden
+    // 用户菜单
+    .user 
+        height  23vh
+        width  90vw
+        padding 1vh 5vw 0 5vw
+        .user-items
+            border-radius 8px
+            background-color #fff
+            position relative
+            .user-items-box
+                display flex
+                flex-wrap wrap
+                align-items center
+                justify-content center
+                // height 25vh
+                .user-item
+                    width 18vw
+                    height 10vh
+                    display flex
+                    align-items center
+                    justify-content center
+                    flex-direction column   
+                    .iconfont
+                        font-size 28px   
+                    .icon-tilte
+                        font-size 12px   
+            .scroll 
+                position relative
+                height 2vh
+                left 50%
+                margin-left -10vw
+                .white
+                    height 0.5vh
+                    width 20vw
+                    border-radius 5px
+                    position relative
+                    background-color #f7f7f7
+                .blue
+                    position absolute
+                    width 8vw
+                    height 100%
+                    border-radius 5px
+                    background-color rgb(27,129,211)
+    // 分区
+    .nav 
+        width 90vw
+        height 8vh
+        padding 0 5vw
+        display flex
+        justify-content center
+        align-items center
+        .nav-box
+            flex 1
+            border-radius 5px
+            background-color #fff
+            margin 0 3px
+            padding 6px 3px 0 3px
+            height 6.5vh
+            display flex
+            justify-content center
+            position relative
+            .nav-title
+                width 16vw
+                height 100%
+                .title
+                    font-size 14px
+                .sub-title
+                    font-size 12px
+                    color #bbb
+            .nav-img-box
+                width 8vw
+                height 4vh
+                img 
+                    width 100%
+                    height 100%
+            .icon-title
+                position absolute
+                top 0
+                right 0
+                border-radius 0 5px 0 5px
+                color #fff
+                font-size 6px
+                background-color rgb(249,130,2)
+    // 广告
+    .banner 
+        width 90vw
+        height 13vh
+        padding 1vh 5vw
+        .banner-box
+            border-radius 5px
+            width 100%
+            height 100%
+            background url(./images/banner.jpg)
+            background-size cover
+    // 超值抢购-大牌甄选
+    .hot
+        width 90vw
+        height 30vh
+        padding 0.5vh 5vw 0 5vw
+        .hot-box
+            width 100%
+            height 100%
+            border-radius 5px
+            overflow hidden
+            background-color #fff
+            .menu
+                height 20vh
+                width 100%
+                display flex
+                .menufs
+                    flex 1
+                    border-bottom 1px solid #eee
+                    padding 0.5vh
+                    line-height 18px
+                    margin 4px
+                    .menu-title
+                        color #fe5800
+                        font-size 16px
+                        font-weight bold
+                    .menu-msg
+                        font-size 14px
+                        white-space nowrap      /*超出的空白区域不换行*/
+                        overflow hidden        /*超出隐藏*/
+                        text-overflow: ellipsis /*超出部分省略号*/
+                    .menu-price .price
+                        font-size 18px
+                        font-weight bold
+                        color #f63d2b
+                    .menu-price .price-before
+                        font-size 14px
+                        color #bbb
+                    .menu-img-box
+                        width 7vw
+                        height 8vh
+                        
+                        img 
+                            width 100%
+                            height 100%
+                            background-size contain
+                .menu-first
+                    border-right 1px solid #eee
+
+                // .menu-second
+                    
+            .sub-menu
+                height 10vh
+                width 100%
+                display flex
+                .submenu
+                    flex 1
+                    .sub-menu-first
+                        border-right 1px solid #eee
+
+            
+            
