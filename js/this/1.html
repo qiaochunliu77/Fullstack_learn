@@ -1,0 +1,25 @@
+<script>
+    var obj = {
+        name :'name',
+        a:'obj a',
+        b:"obj b"
+    }
+    var  a = "gloabal"
+    function foo(b,c){
+        console.log(this)
+        console.log(this.a + this.b,c)
+        
+    }
+    // foo()
+    // window 前端里面的 全局的一个变量 只要打开一个浏览器就有一个window的全局变量
+    // 运行的时候 this
+    // 1.不加任何修饰 用（）调用 默认this指向window
+    // foo（）
+    // 2.call  也是调用这个函数, call的第一个参数可以指定函数调用时 需要的 this
+    // 往后的参数 就是 foo 调用时需要的形参
+    // 3.apply 数组
+    // let const 有块级作用域 只在块里生效 
+    // es6开始 let const 声明的全局变量不是window下面的属性
+    // var 无块级作用域
+    foo.call(obj,'b',"c ij")
+</script>
