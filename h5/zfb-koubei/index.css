@@ -233,7 +233,7 @@ a {
 }
 .container .hot {
   width: 90vw;
-  height: 30vh;
+  height: 31vh;
   padding: 0.5vh 5vw 0 5vw;
 }
 .container .hot .hot-box {
@@ -244,7 +244,7 @@ a {
   background-color: #fff;
 }
 .container .hot .hot-box .menu {
-  height: 20vh;
+  height: 21vh;
   width: 100%;
   display: flex;
 }
@@ -252,16 +252,18 @@ a {
   flex: 1;
   border-bottom: 1px solid #eee;
   padding: 0.5vh;
-  line-height: 18px;
   margin: 4px;
 }
-.container .hot .hot-box .menu .menufs .menu-title {
-  color: #fe5800;
-  font-size: 16px;
-  font-weight: bold;
+.container .hot .hot-box .menu .menufs .menu-first-title,
+.container .hot .hot-box .menu .menufs .menu-second-title,
+.container .hot .hot-box .menu .menufs .menu-msg,
+.container .hot .hot-box .menu .menufs .menu-price {
+  height: 3vh;
+  line-height: 3vh;
 }
 .container .hot .hot-box .menu .menufs .menu-msg {
   font-size: 14px;
+  width: 38vw;
   white-space: nowrap /*超出的空白区域不换行*/;
   overflow: hidden /*超出隐藏*/;
   text-overflow: ellipsis /*超出部分省略号*/;
@@ -270,22 +272,39 @@ a {
   font-size: 18px;
   font-weight: bold;
   color: #f63d2b;
+  letter-spacing: -0.3vw;
 }
 .container .hot .hot-box .menu .menufs .menu-price .price-before {
   font-size: 14px;
   color: #bbb;
+  text-decoration: line-through;
 }
 .container .hot .hot-box .menu .menufs .menu-img-box {
-  width: 7vw;
-  height: 8vh;
+  width: 40vw;
+  height: 9vh;
+  border-radius: 5px;
+  overflow: hidden;
 }
 .container .hot .hot-box .menu .menufs .menu-img-box img {
   width: 100%;
   height: 100%;
-  background-size: contain;
 }
 .container .hot .hot-box .menu .menu-first {
   border-right: 1px solid #eee;
+}
+.container .hot .hot-box .menu .menu-first .menu-first-title .panic-buying {
+  color: #fe5800;
+  font-size: 16px;
+}
+.container .hot .hot-box .menu .menu-first .menu-first-title .time {
+  background-color: #fe6708;
+  width: 0.8vw;
+  height: 0.8vw;
+  color: #fff;
+  font-size: 10px;
+}
+.container .hot .hot-box .menu .menu-second .menu-second-title {
+  color: #d49a20;
 }
 .container .hot .hot-box .sub-menu {
   height: 10vh;
@@ -295,6 +314,181 @@ a {
 .container .hot .hot-box .sub-menu .submenu {
   flex: 1;
 }
-.container .hot .hot-box .sub-menu .submenu .sub-menu-first {
+.container .hot .hot-box .sub-menu .submenu .sub-menu-price,
+.container .hot .hot-box .sub-menu .submenu .msg-box,
+.container .hot .hot-box .sub-menu .submenu .sub-menu-title {
+  height: 3vh;
+  line-height: 3vh;
+}
+.container .hot .hot-box .sub-menu .submenu .msg {
+  display: flex;
+  height: 8vh;
+  width: 42vw;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .msg-box {
+  height: 8vh;
+  width: 27vw;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .msg-box .title {
+  display: inline-block;
+  font-size: 14px;
+  width: 27vw;
+  white-space: nowrap /*超出的空白区域不换行*/;
+  overflow: hidden /*超出隐藏*/;
+  text-overflow: ellipsis /*超出部分省略号*/;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .sub-menu-price {
+  letter-spacing: -0.3vw;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .sub-menu-price .price {
+  font-size: 18px;
+  color: #f63d2b;
+  font-weight: bold;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .sub-menu-price .price-before {
+  font-size: 14px;
+  color: #bbb;
+  text-decoration: line-through;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .sub-menu-img {
+  width: 12vw;
+  height: 12vw;
+  border-radius: 3px;
+  background-size: contain;
+}
+.container .hot .hot-box .sub-menu .submenu .msg .sub-menu-img img {
+  width: 100%;
+  height: 100%;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first {
   border-right: 1px solid #eee;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first .sub-menu-title {
+  font-size: 16px;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first .sub-menu-title .take-away {
+  color: #366be1;
+  font-weight: bold;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first .sub-menu-title .to-home-logo {
+  background-color: #366be1;
+  height: 1.2vw;
+  width: 15vw;
+  border-radius: 3px;
+  line-height: 3vw;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first .sub-menu-title .to-home-logo .iconfont {
+  color: #feee75;
+}
+.container .hot .hot-box .sub-menu .sub-menu-first .sub-menu-title .to-home-logo .tohome {
+  color: #fff;
+  font-size: 3vw;
+}
+.container .hot .hot-box .sub-menu .sub-menu-second .fresh {
+  color: #ea4857;
+  font-weight: bold;
+}
+.container .hot .hot-box .sub-menu .sub-menu-second .new-logo {
+  height: 1vw;
+  width: 10vw;
+  background-color: #f8f0f1;
+  border-radius: 4px;
+  line-height: 3vw;
+}
+.container .hot .hot-box .sub-menu .sub-menu-second .new-logo .new {
+  color: #f74d74;
+  font-size: 3vw;
+}
+.container .banner2 {
+  width: 90vw;
+  height: 10vh;
+  padding: 1vh 5vw;
+}
+.container .banner2 .banner2-box {
+  border-radius: 5px;
+  background-color: #fff;
+  width: 90vw;
+  height: 10vh;
+  overflow: hidden;
+}
+.container .banner2 .banner2-box ul {
+  width: 360vw;
+  height: 10vh;
+  animation: lunbo 6s ease-out infinite;
+}
+.container .banner2 .banner2-box li {
+  display: inline-block;
+}
+.container .banner2 .banner2-box img {
+  width: 90vw;
+  height: 10vh;
+  float: left;
+}
+@-moz-keyframes lunbo {
+  0%, 23% {
+    margin-left: 0;
+  }
+  25%, 48% {
+    margin-left: -90vw;
+  }
+  50%, 72% {
+    margin-left: -180vw;
+  }
+  75%, 98% {
+    margin-left: -270vw;
+  }
+  99%, 100% {
+    margin-left: 0;
+  }
+}
+@-webkit-keyframes lunbo {
+  0%, 23% {
+    margin-left: 0;
+  }
+  25%, 48% {
+    margin-left: -90vw;
+  }
+  50%, 72% {
+    margin-left: -180vw;
+  }
+  75%, 98% {
+    margin-left: -270vw;
+  }
+  99%, 100% {
+    margin-left: 0;
+  }
+}
+@-o-keyframes lunbo {
+  0%, 23% {
+    margin-left: 0;
+  }
+  25%, 48% {
+    margin-left: -90vw;
+  }
+  50%, 72% {
+    margin-left: -180vw;
+  }
+  75%, 98% {
+    margin-left: -270vw;
+  }
+  99%, 100% {
+    margin-left: 0;
+  }
+}
+@keyframes lunbo {
+  0%, 23% {
+    margin-left: 0;
+  }
+  25%, 48% {
+    margin-left: -90vw;
+  }
+  50%, 72% {
+    margin-left: -180vw;
+  }
+  75%, 98% {
+    margin-left: -270vw;
+  }
+  99%, 100% {
+    margin-left: 0;
+  }
 }
