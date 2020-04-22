@@ -93,7 +93,7 @@ a {
 }
 .search .search-bar-form .search-bar-box .search-bar-input {
   width: 100%;
-  height: 40px;
+  height: 5vh;
   margin: 10px 0;
   padding: 0 30px;
 }
@@ -123,20 +123,24 @@ a {
   overflow-x: hidden;
 }
 .container .user {
-  height: 23vh;
+  height: 20vh;
   width: 90vw;
-  padding: 1vh 5vw 0 5vw;
+  padding: 1vh 5vw 1vh 5vw;
 }
 .container .user .user-items {
+  height: 20vh;
+  width: 90vw;
+  overflow: hidden;
+  position: relative;
   border-radius: 8px;
   background-color: #fff;
-  position: relative;
 }
 .container .user .user-items .user-items-box {
+  height: 20vh;
+  width: 90vw;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
-  justify-content: center;
+  overflow-x: scroll;
 }
 .container .user .user-items .user-items-box .user-item {
   width: 18vw;
@@ -412,17 +416,20 @@ a {
   overflow: hidden;
 }
 .container .banner2 .banner2-box ul {
-  width: 360vw;
+  list-style: none;
+  width: 450vw;
   height: 10vh;
   animation: lunbo 6s ease-out infinite;
 }
 .container .banner2 .banner2-box li {
   display: inline-block;
-}
-.container .banner2 .banner2-box img {
   width: 90vw;
   height: 10vh;
   float: left;
+}
+.container .banner2 .banner2-box img {
+  width: 100%;
+  height: 100%;
 }
 @-moz-keyframes lunbo {
   0%, 23% {
@@ -434,11 +441,8 @@ a {
   50%, 72% {
     margin-left: -180vw;
   }
-  75%, 98% {
+  75%, 100% {
     margin-left: -270vw;
-  }
-  99%, 100% {
-    margin-left: 0;
   }
 }
 @-webkit-keyframes lunbo {
@@ -451,11 +455,8 @@ a {
   50%, 72% {
     margin-left: -180vw;
   }
-  75%, 98% {
+  75%, 100% {
     margin-left: -270vw;
-  }
-  99%, 100% {
-    margin-left: 0;
   }
 }
 @-o-keyframes lunbo {
@@ -468,11 +469,8 @@ a {
   50%, 72% {
     margin-left: -180vw;
   }
-  75%, 98% {
+  75%, 100% {
     margin-left: -270vw;
-  }
-  99%, 100% {
-    margin-left: 0;
   }
 }
 @keyframes lunbo {
@@ -485,10 +483,7 @@ a {
   50%, 72% {
     margin-left: -180vw;
   }
-  75%, 98% {
+  75%, 100% {
     margin-left: -270vw;
-  }
-  99%, 100% {
-    margin-left: 0;
   }
 }
