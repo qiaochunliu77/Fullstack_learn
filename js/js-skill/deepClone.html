@@ -1,0 +1,26 @@
+<script>
+    let obj1={
+        name:'name',
+        sex:'man',
+        a:{
+            b:{
+                c:"1"
+            }
+        }
+    }
+    // obj1 obj2互不影响
+    // 递 | 归
+    function deepClone(obj){
+        let res = {}
+        for(let key in obj){
+            if( typeof(obj[key]) === "object" ){
+                res[key]=deepClone(obj[key])
+            }else{
+                res[key] = obj[key];
+            }
+        }
+        return res
+    }
+    let obj2 = deepClone(obj1);
+    // obj2.name = "obj2"
+</script>

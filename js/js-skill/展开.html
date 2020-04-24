@@ -1,0 +1,21 @@
+<script>
+    function flat(arr){
+       let res =[]
+       for(let i = 0; i < arr.length; i++){
+           let ele = arr[i]
+            //   ele为数组
+            if(Array.isArray(ele)){
+                res=res.concat(flat(ele))
+            }else{
+            //    ele必须是基本数据类型
+                res = res.concat(ele);
+            }
+       }
+       return res;
+    }
+    console.log(flat([1,2,3,4,[4,[9,3],3]]))
+    // let arr = [1,2,3,4,[4,[9,3],3]]
+    // if array 
+    // 把数组每个值提出来，循环一下
+
+</script>
