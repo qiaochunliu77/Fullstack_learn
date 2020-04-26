@@ -1,0 +1,55 @@
+<script>
+
+/**
+ * @param {number[][]} matrix
+ * @param {number} target
+ * @return {boolean}
+ */
+// 1.
+var findNumberIn2DArray = function(matrix, target) {
+    let key = false
+    matrix.map((arrs) => {
+        for(let arr of arrs){
+            if(arr === target) key = true;
+        }
+    })
+    return key
+};
+
+// 2.
+// var findNumberIn2DArray = function(matrix, target) {
+//     for(let arr of matrix){
+//         if(arr.includes(target)) return true
+//     }
+//     return false
+// };
+
+// 3.
+// var findNumberIn2DArray = function(matrix, target) {
+//     let arr =[];
+//     for(let i = 0,len = matrix.length; i < len; i++){
+//         // 将数组全部展开 拍平
+//         arr = [...arr,...matrix[i]]
+//     }
+//     if(arr.includes(target)) return true
+//     return false
+// };
+
+// 4.
+var findNumberIn2DArray = function(matrix, target) {
+    let n = matrix.length;
+    if(n === 0) return target;
+    let m = matrix[0].length;
+    for(let i = 0; i < n; i++) {
+        if(target >= matrix[i][0] && target <= matrix[i][m-1]) {
+            if(matrix[i].indexOf(target) !== -1) {
+                return true;
+            } 
+        }
+    }
+    return false;
+};
+
+findNumberIn2DArray([[1,4,7,11,15],[2,5,8,12,19],[3,6,9,16,22],[10,13,14,17,24],[18,21,23,26,30]],5)
+
+</script>
