@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>append child DOM API </title>
+</head>
+<body>
+  <ul id="students">
+  </ul>
+  <script>
+  const students = [{
+    id: 1,
+    name: '刘策',
+    github:'https://huangyichao0916.github.io/lesson_bm/'
+  }, {
+    id: 2,
+    name: '张风挺',
+    github:'https://github.com/2941187216'
+  }, {
+    id: 3,
+    name: '刘巧纯',
+    github:'https://github.com/qiaochunliu77'
+  }]
+  // students  append #root
+  // arr -> map  ->  html arr -> join   -> url
+  // DOM 动态编程
+  // innerHTML  /   appendChild
+  // html标签还可以用js 来创建
+  // js  跟 html 联系起来 
+  const oUL = document.getElementById('students');
+  oUL.addEventListener('click',function(){
+      alert('fdfdfd');
+    //   如何 只在UL上点击 ，把A名字打印出来
+  })
+  oUL.style.fontSize = '20px'
+  // li 没选中  内存中是节点对象了， append html
+  // js 节点对象 -》 html 对象的转化
+
+  const temp = document.createDocumentFragment();  //文档碎片 
+
+  for(let student of students){
+    const oLi = document.createElement('li');
+    oLi.className = 'item';
+    const olink = document.createElement('a');
+    olink.setAttribute('href',student.github)
+    const oText = document.createTextNode(student.name);
+    olink.appendChild(oText);
+    // olink.addEventListener('click',function(event){
+    //     event.preventDefault();
+    //     alert(this.innerText);
+    // },false)
+    oLi.appendChild(olink);
+    temp.appendChild(oLi);  //页面重新绘制和刷新 
+  }
+  oUL.appendChild(temp)
+
+  const studentsList = document.querySelectorAll('.item');
+    // studentsList  伪数组 for foreach length 下标访问
+  studentsList.forEach(li => {
+      let oA = li.querySelector('a');
+      console.log(oA)
+      const oSpan = document.createElement('span');
+      oSpan.appendChild(document.createTextNode(students[index].id))
+      li.insertBefore(oSpan,oA)
+  })
+
+  </script>
+</body>
+</html>
