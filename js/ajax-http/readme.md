@@ -35,3 +35,8 @@ node
     - Content-Type
 - 实体 
     - 传输的具体数据
+
+
+## 爬虫
+    数据哪里来 ， 去html 获取
+    请求 url - > html（信息）  -> 解析html
