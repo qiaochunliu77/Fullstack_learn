@@ -9,41 +9,55 @@
 
 <body>
     <!-- 状态 语义化  挂载点-->
-    <div class="wrapper">
-        <!-- <button class="like-btn">
-            <span class="like-text">点赞</span>
-            <span></span>
-        </button> -->
-    </div>
+    <div class="wrapper" style="display: inline-block;"></div>
     <script>
-        // const button = document.querySelector('.like-btn')
-        // const buttonText = document.querySelector('.like-text');
-        // let isLiked = false;   
-        // button.addEventListener('click',() => {
-        //     isLiked = !isLiked;
-        //     isLiked ? buttonText.innerHTML = '取消' :buttonText.innerHTML = '点赞'
-        // },false)
         // 封装 
+        // 将html添加到页面上
+        // 还要在他上面添加事件
+
+        // 传入内部html 创建一个新的dom节点div
+        const createDomFromString = (domString) => {
+            const oDiv = document.createElement('div');
+            oDiv.innerHTML = domString;
+            return oDiv;
+        }
         class LikeButton {
             // 构造函数 每次调用 默认执行
             constructor(){
                 this.state = {isLiked:false}
-            }
+            }  
             render(){
-                return `
+                // console.log(this) this指向likebutton
+                this.el = createDomFromString(`
                 <button id='like-btn'>
-                    <span class = 'link-text'>${this.state.isLiked?'取消':'点赞'}</span>
+                    <span class = 'like-text'>${this.state.isLiked?'取消':'点赞'}</span>
                 </button>
-                `
+                `)
+                // 事件监听后 this就会指向被触发的对象div
+                // 故要改变
+                this.el.addEventListener('click',this.changeLikeText.bind(this),false);
+                return this.el;
             }
+            changeLikeText(){
+                // this 被改写了 
+                console.log(this)
+                this.state.isLiked = !this.state.isLiked;
+                this.el.querySelector('.like-text').innerHTML = this.state.isLiked?'取消':'点赞';
+            }
+            
         }
+
         const wrapper = document.querySelector('.wrapper');
         const likeButton = new LikeButton();
-        wrapper.innerHTML = likeButton.render();
-        const likeButton2 = new LikeButton();
-        wrapper.innerHTML += likeButton.render();
+        wrapper.appendChild(likeButton.render())
+        // const likeButton2 = new LikeButton();
+        // wrapper.appendChild(likeButton2.render())
 
-        // 流程性代码 点赞通用组件 不方便复用
+        // js this指向 
+        // 1.作为对象的方法调用，this指向对象本身
+        // 2.作为事件函数 this指向事件发生的元素
+        // bind可以强行去绑定函数内部的this
+
         
     </script>
 </body>
