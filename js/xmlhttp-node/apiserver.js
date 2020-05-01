@@ -26,11 +26,21 @@ const server = http.createServer(function(req,res) {
             {title:'js',star:1000},
             {title:'php',star:2000}
         ]
+
+        // 分段接受 前端传过来的数据 req
+        let str = '';
+        req.on('data',function(chunk) {
+            str += chunk;
+        })
+        //'Content-Type','application/json'
+        req.on('end',function(){
+            console.log(JSON.parse(str));
+        })
         res.end(JSON.stringify(posts));
     }
-    // console.log(req.url)
-    // res.end('hello,server')
+    // 前端提交的数据 解析
+    
 })
 server.listen(8080,function () {
     console.log('server is running 8080')
-})
+}) 
