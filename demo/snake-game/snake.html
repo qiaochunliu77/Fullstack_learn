@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>贪吃蛇</title>
+</head>
+<body>
+    <div id="score">0</div>
+    <canvas id="gameCanvas" height="300" height="300"></canvas>
+<script>
+    // 常量
+    const SNAKE_COLOR = 'lightgreen';
+    const SNAKE_BORDER_COLOR = 'darkgreen';
+
+    let snake = [
+        {x:150,y:150},
+        {x:140,y:150},
+        {x:130,y:150},
+        {x:120,y:150},
+        {x:110,y:150}
+    ]
+    let score = 0;
+    let dx = 10, dy = 0;
+    let foodX = 0, foodY = 0;
+    var gameCanvas = document.getElementById('gameCanvas');
+    var ctx = gameCanvas.getContext('2d');
+    // clearCanvas()
+    // advanceSnake();
+    // advanceSnake();
+    // advanceSnake();
+    // advanceSnake();
+    // advanceSnake();
+    // drawSnake();
+    main();
+    createFood()
+    document.addEventListener('keydown', changeDirection);
+    // 延时
+    function main(){
+        setTimeout(function onTick() {
+            clearCanvas();
+            drawfood();
+            advanceSnake();
+            drawSnake();
+            main();
+        },100)
+    }
+    // 初始化画布
+    function clearCanvas() {
+        ctx.fillStyle = 'white';
+        ctx.strokeStyle = 'black';
+        ctx.fillRect(0,0,gameCanvas.width,gameCanvas.height);
+        ctx.strokeRect(0,0,gameCanvas.width,gameCanvas.height);
+    }
+
+    // 生成min-max之间随机数
+    function randomTen(min,max) {
+        return Math.round((Math.random() * (max-min) +min) /10) *10;
+    }
+    // 生成一个食物的坐标 且不与蛇的位置重叠
+    function createFood() {
+        foodX = randomTen(0,gameCanvas.width - 10);
+        foodY = randomTen(0, gameCanvas.height - 10);
+        snake.forEach(function isFoodSnake(part){
+            const foodIsOnSnake = part.x == foodX && part.y == foodY;
+            if(foodIsOnSnake){
+                createFood();
+            }
+        })
+    }
+    // 在画布上绘制食物
+    function drawfood() {
+        ctx.fillStyle = 'red';
+        ctx.strokeStyle = 'darkred';
+        ctx.fillRect(foodX,foodY,10,10);
+        ctx,strokeRect(foodX,foodY,10,10);
+    }
+    
+    
+    // 根据蛇的水平移动速度改变蛇的x坐标
+    // 根据蛇的垂直移动速度改变蛇的y坐标 
+    function advanceSnake() {
+        const head = {x:snake[0].x + dx, y:snake[0].y + dy}
+        // 将已改变的蛇头插入 snake第一个
+        snake.unshift(head);
+        // 检查蛇头是否碰到食物
+        const didEatFood = snake[0].x == foodX && snake[0].y == foodY;
+        if(didEatFood) {
+            score+=10;
+            document.getElementById('score').innerHTML = score;
+            createFood();
+        }else{
+            snake.pop()
+        }
+    }
+
+    // 在画布上画出一条完整的蛇
+    function drawSnake () {
+        snake.forEach(drawSnakePart)
+    }
+
+    // 每次画一个 蛇的一部分
+    function drawSnakePart (snakepart){
+        ctx.fillStyle = SNAKE_COLOR;
+        ctx.strokeStyle = SNAKE_BORDER_COLOR;
+        ctx.fillRect(snakepart.x,snakepart.y,10,10);
+        ctx.strokeRect(snakepart.x,snakepart.y,10,10);
+    }
+    
+    // 改变蛇的方向
+    function changeDirection(event) {
+        const LEFT_KEY = 37;
+        const RIGHT_KEY = 39;
+        const UP_KEY = 38;
+        const DOWN_KEY = 40;
+        const keypressed = event.keycode;
+        const goingup = dy = -10;
+        const goingdown = dy = 10;
+        const goingleft = dx = -10;
+        const goingright = dx = 10;
+        if(keypressed === LEFT_KEY && !goingright ){
+            dx = -10;
+            dy = 0;
+        }
+        if(keypressed === RIGHT_KEY && !goingleft){
+            dx = 10;
+            dy = 0;
+        }
+        if(keypressed === UP_KEY && !goingdown){
+            dx = 0;
+            dy = -10;
+        }
+        if(keypressed === DOWN_KEY && !goingup){
+            dx = 0;
+            dy = 10;
+        }
+    }
+</script>
+</body>
+</html>

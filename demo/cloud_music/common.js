@@ -14,6 +14,7 @@ window.onload = function (){
     // 先拿到swiper 的数据 
     // bannerlist 数据
     
+    // 向地址发送请求
     fetch('http://localhost:3000/banner')
         .then(data => data.json())
         .then(data => {
