@@ -1,5 +1,19 @@
 <script>
     //给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。
-
+    /**
+    * @param {number[]} nums
+    * @return {number}
+    */
+    //  1. 动态规划
+    var maxSubArray = function(nums) {
+        let pre = 0;
+        let maxAns = nums[0];
+        nums.forEach((num) => {
+            // 得出第n项和前n项的最大值
+            pre = Math.max(num, num + pre);
+            maxAns = Math.max(pre, maxAns);
+        })
+        return maxAns
+    };
 
 </script>
