@@ -15,9 +15,14 @@ window.onload = function (){
     // bannerlist 数据
     
     // 向地址发送请求
-    fetch('http://localhost:3000/banner')
+        fetch('http://localhost:3000/banner')
         .then(data => data.json())
         .then(data => {
-            console.log(data)
-        })
+            console.log(JSON.stringify(data.banners[0].imageUrl))
+            const swiperSlide = document.querySelectorAll('.swiper-slide');
+        for(let k in swiperSlide){
+            swiperSlide[k].innerHTML = `<img src="${data.banners[k].imageUrl}" style="width:100%;height:100%;">`
+        }
+        }) 
+        
 }
