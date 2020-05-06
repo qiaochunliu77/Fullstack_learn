@@ -12,6 +12,7 @@
         }
         .box{
             /* width:calc() 空格！！*/
+            display: inline-block;
             width: calc(var(--base-size) * 10px);
             height: calc(var(--base-size) * 5px);
             background-color: var(--bg-color);
@@ -23,5 +24,20 @@
     <div class="box">
 
     </div>
+    <script>
+        // indexOf返回某个指定的字符串值在字符串中首次出现的位置。
+        // includes() 方法 在数组中：用来判断一个数组是否包含一个指定的值, 根据情况返回 true 或 false
+        let userAgentInfo = navigator.userAgent;
+        console.log(userAgentInfo)
+        const box = document.querySelector('.box');
+        console.log(box.offsetWidth)
+        if(userAgentInfo.includes('Android') || userAgentInfo.includes('iPhone')){
+            console.log('yidong')
+            
+            document.documentElement.style.setProperty('--base-size',8)
+            console.log(box.offsetWidth)
+        }
+    </script>
+    
 </body>
 </html>
