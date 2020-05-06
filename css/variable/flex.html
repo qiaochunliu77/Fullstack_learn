@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        .wrapper{
+            /* 想快速实现上中下布局 flex */
+            display: flex;
+            flex-direction: column;
+            /* 设置最小高度 就不用继承父元素的100%了 */
+            min-height: 100vh;
+        }
+        header{
+            line-height: 50px;
+            background-color: red;
+            color: #fff;
+            text-align: center;
+        }
+        footer{
+            line-height: 50px;
+            background-color: #eee;
+            color: #333;
+            text-align: center;
+            
+        }
+        .main{
+            /* flex-grow 相对于其他兄弟元素的增长 默认为0 */
+            /* flex-shrink  */
+            flex: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- 移动端的经典布局 flex html5 + css3 -->
+    <!-- HTML标签语义化 -->
+    <div class="wrapper">
+        <header>头部</header>
+        <main class="main">内容</main>
+        <footer>尾部</footer>
+    </div>
+    
+</body>
+</html>

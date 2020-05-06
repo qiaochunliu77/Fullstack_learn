@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        .wrap{
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header,footer{
+            /*  flex-grow(默认0) flex-shrink (默认1 有空间则缩小) flex-basis */
+            flex: 0 0 50px;
+        }
+        .content{
+            display: flex;   /* 在开辟新的空间 */
+            flex-grow: 1;
+        }
+        .main{
+            flex: 1;
+        }
+        .nav,.ads{
+            flex: 0 0 100px;
+        }
+        .nav{
+            /* 如何去到左侧 */
+            order: 1;
+        }
+        .main{
+            order: 2;
+        }
+        .ads{
+            order: 3;
+        }
+    </style>
+</head>
+<body class="wrap">
+    <!-- 圣杯布局 面试常考  -->
+    <header>头部</header>
+    <div class="content">
+        <!-- main写在第一个位置 内容优先加载 首先看到主要内容-->
+        <main class="main">内容区</main>
+        <nav class="nav">侧边导航</nav>
+        <aside class="ads">侧边栏</aside>
+    </div>
+    <footer>尾部</footer>
+</body>
+</html>
