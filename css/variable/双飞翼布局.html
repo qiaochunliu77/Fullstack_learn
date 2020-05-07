@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+       
+        body{
+            display: flex;
+            /* 弹性布局 给父容器在主轴方向设置最小长度 */
+            min-width: 100vw;
+            justify-content: center;
+            align-items: flex-start;
+            
+        }
+        .left{
+            /* 在分配多余空间之前 ，盒子占主轴的空间 */
+            flex-basis: 200px;
+            background-color: red;
+            height: 200px;
+        }
+        .center{
+            flex: 1;
+            background-color: #eee;
+            height: 200px;
+        }
+        .right{
+            flex-basis: 200px;
+            background-color: blue;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <!-- 双飞翼布局 两端固定宽高 中间自适应的三栏布局 -->
+    <!-- <div class="container"> -->
+        <div class="left"></div>
+        <div class="center"></div>
+        <div class="right"></div>
+    <!-- </div> -->
+</body>
+</html>
