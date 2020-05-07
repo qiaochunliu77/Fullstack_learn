@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="./box.css">
+    <style>
+        :root {
+            --bg-color: green;
+        }
+        /* CSS 选择器  @ 竖屏 480 手机  ipad 1024*768
+            pa 1000+
+            巨屏 1400+
+        
+        */
+        /* 大型屏幕 > 1200  */
+        @media only screen and (min-width: 1200px) {
+            :root {
+                --base-size: 20;
+            }
+        }
+        /*  */
+        /* 手机 最大宽度480 */
+        @media (max-width: 480px) {
+            /* 定义css条件 */
+            :root {
+                --base-size: 8;
+            }
+        }
+
+        .box {
+            /* 占据90% -10px 宽  中间有空格*/
+            /* width: calc(90% - 10px); */
+            /* height: 100px; */
+            /* background-color: var(--bg-color);  */
+            width: calc(var(--base-size) * 10px);
+            height: calc(var(--base-size) * 5px);
+            background-color: var(--bg-color);
+            padding: calc(var(--base-size) * 1px);
+        }
+
+
+        /* 当用手机浏览时, 请把 box 宽, 高, padding 大小等比例缩放80%, 在变量上做文章 */
+    </style>
+</head>
+
+<body>
+    <div class="box"></div>
+</body>
+
+</html>
