@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{margin: 0;padding: 0;}
+        li{
+            width: 100px;
+            height: 100px;
+            background-color: #666;
+            border-radius: 50%;
+            margin-top: 100px;
+        }
+        ul.stop li:nth-child(1){
+            background-color: red;
+        }
+        ul.warn li:nth-child(2){
+            background-color: yellow;
+        }
+        ul.pass li:nth-child(3){
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <ul>
+        <li></li>
+        <li></li>
+        <li></li>
+    </ul>
+    <script>
+        const ul = document.querySelector('ul');
+        // 1.
+        // 异步 可能成功 / 失败
+        //  promise是一个对象 可以保存三个状态 每一时刻必须有一个状态
+        // 成功 fulfilled
+        // 失败 rejected
+        // 处理中 pending
+        // 1.  默认 panding  如果调用 resolve fulfilled
+        // 2.  默认 pending  如果调用 reject  rejeced
+        // let p = new Promise(
+        //     function(resolve, reject) {
+        //         setTimeout(() => {
+        //             resolve();
+        //         },1000)
+        //     }
+        // )
+        // p.then(function() {
+        //     ul.className = 'stop';
+        //     // 第二个灯
+        //     // 返回了一个promise 还可以在后面 链式调用then 也会等待这个promise
+        //     // 看结果是成功还是失败
+        //     return p;
+        // })
+        // .then(function() {
+        //     ul.className = 'warn';
+        //     return p;
+        // })
+        // .then(function() {
+        //     ul.className = 'pass'
+        // })
+        // // .then 串行结构
+        // // callback 嵌套
+        // p.catch()
+
+            
+
+        // p 是一个函数 p每调用一次都会new一个全新的promise
+        let p = function() {
+            return new Promise(function (resolve, reject) {
+                setTimeout(() => {
+                    resolve();
+                },1000)
+            })
+        }
+        // 成功之后要干啥
+        // 先执行p
+        p().then(function() {
+            ul.className = 'stop';
+            // 第二个灯
+            // 返回了一个promise 还可以在后面 链式调用then 也会等待这个promise
+            // 看结果是成功还是失败
+            return p();
+        })
+        .then(function() {
+            ul.className = 'warn';
+            return p();
+        })
+        .then(function() {
+            ul.className = 'pass'
+        })
+        // .then 串行结构
+        // callback 嵌套
+        p().catch()
+
+        // promise 解决回调地狱
+         
+
+    </script>
+</body>
+</html>
