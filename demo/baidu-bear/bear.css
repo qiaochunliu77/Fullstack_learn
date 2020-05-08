@@ -1,0 +1,21 @@
+*{margin: 0;padding: 0;}
+html,body{
+    height: 100%;
+    background-color: #eee;
+}
+.bac{
+    width: 345px;
+    height: 500px;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    transform: translate(-50%,-50%);
+    /* background-color: #333; */
+}
+.bac .head{
+    width: 346px;
+    height: 288px;
+    border: 3px solid #a57662;
+    border-radius: ;
+
+}
