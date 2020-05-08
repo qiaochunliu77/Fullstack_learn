@@ -14,23 +14,29 @@
         /* CSS 选择器  @ 竖屏 480 手机  ipad 1024*768
             pa 1000+
             巨屏 1400+
-        
         */
         /* 大型屏幕 > 1200  */
-        @media only screen and (min-width: 1200px) {
+        /*@media 媒体查询(上网的媒介) only screen 带有屏幕的设备 
+                min-width 最小宽度 要大于1000生效 */
+        @media only screen and (min-width: 1000px) {
             :root {
                 --base-size: 20;
             }
         }
-        /*  */
-        /* 手机 最大宽度480 */
-        @media (max-width: 480px) {
+        
+        /* 手机 最大宽度480 小于480显示 */
+        @media only screen and (max-width: 480px) {
             /* 定义css条件 */
-            :root {
+            .box {
                 --base-size: 8;
             }
+        }  
+        /* 根据ipad 15倍大 */
+        @media only screen and (min-width:767px) and (max-width:1024px){
+            :root{
+                --base-size: 15;
+            }
         }
-
         .box {
             /* 占据90% -10px 宽  中间有空格*/
             /* width: calc(90% - 10px); */
