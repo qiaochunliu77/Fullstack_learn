@@ -1,0 +1,44 @@
+<script>
+    // 1. key value 编码  安全性 有一些特殊字符 威胁后端sql语句 
+    //  传输 每个设备 编码不一样
+    // 2.传递数组 传递不合法
+    function encode(str){
+        return encodeURIComponent(str)
+        .replace('%5B','[').replace('%5D',']')
+    }
+    function bulidUrl(url,params) {
+        let parts = []
+        // 对key value统一格式化 
+        Object.keys(params).forEach(function(key) {
+            let value = params[key]
+            // 判断是否为空
+            if(value == null || typeof value === 'undefined'){
+                return
+            }
+            // 无论是否是数组 都变成数组
+            if(Array.isArray(value)){
+                key += '[]'
+            }else{
+                value = [value]
+            }
+            // 一定是数组 
+            //  都可以循环
+            // 把value里面每一项 追加到key后面
+            value.forEach(val=>{
+                let part = `${encode(key)}=${encode(val)}`
+                parts.push(part)
+                console.log(parts)
+            })
+        })
+        url += '?' + parts.join('&')
+        return url
+    }
+    let url = bulidUrl('http://neteasecloudmusicapi.zhaoboy.com/search',{
+        keywords: '海阔天空',
+        type: 'all',
+        query: 'js',
+        a:null,
+        b:undefined,
+        c:[123,12,4]
+    })
+</script>

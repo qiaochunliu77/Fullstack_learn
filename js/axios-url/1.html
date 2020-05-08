@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+    <script>
+        // 1.原生 自己在手动拼接 
+        // 2。axios ？ 变成对象
+        // {} 灵活 
+        // axios 第三方 基于xmlhttprequest
+        // fetch 浏览器原生的 另一个发请求的 api
+        let obj  = {
+            keywords:'海阔天空'
+        }
+        axios({
+            methos:'get',
+            url:'http://neteasecloudmusicapi.zhaoboy.com/search',
+            params:obj
+        })
+        .then(function(res){
+            console.log(res)
+        })
+        // 有一个url
+        // 有一个 对象 
+        // 对象每一项 keyvalue 按照url的规则 拼接
+
+    </script>
+</body>
+</html>
