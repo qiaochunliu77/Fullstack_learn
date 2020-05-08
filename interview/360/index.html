@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 
+        1.伪元素
+        2.定位
+        3.变量 改变
+         */
+        :root{
+            --size: 0px;
+            --x:0px;
+            --y:0px;
+        }
+        .button{
+            margin-left: 100px;
+            background-color: #f72359;
+            padding: 1em 2em;
+            border: none;
+            color: white;
+            font-size: 1.2em;
+            cursor: pointer;
+            outline: none;
+            overflow: hidden;
+            border-radius: 100px;
+            position: relative;
+        }
+        .button::before{
+            
+            content: '';
+            position: absolute;
+            left:var(--x);
+            top:var(--y);
+            width: var(--size);
+            height: var(--size);
+            /* background-color: green; */
+            background: radial-gradient(circle closest-side,#4405f7,transparent);
+            /* css偏移 相对于自生的宽度 */
+            transform: translate(-50%,-50%);
+            /* 过度 */
+            /* transition: width .2s ease ,height .2s ease; */
+            transition: all .2s ease;
+        }
+        .button:hover::before{
+            --size: 400px
+        }
+    </style>
+</head>
+<body>
+    <button class="button">按钮</button>
+    <script>
+        document
+        .querySelector('.button')
+        .addEventListener('mousemove',function(e) {
+            // before中心点
+            // js 设置变量
+            // before 跟着坐标移动
+            // e.target 被触发的button元素
+            // offsetLeft 目标对象
+            const x = e.pageX - e.target.offsetLeft;
+            const y = e.pageY - e.target.offsetTop;
+            console.log(x,y)
+            console.log(e.target)
+            e.target.style.setProperty('--x', `${x}px`)
+            e.target.style.setProperty('--y', `${y}px`)
+        })
+        document.addEventListener('mousemove',function(e){
+            console.log('e.pageX'+e.pageX)
+            console.log('e.clientX'+e.clientX)
+            console.log('e.screenX'+e.screenX)
+        })
+    </script>
+</body>
+</html>

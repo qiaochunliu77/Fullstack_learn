@@ -60,3 +60,11 @@ tag: 为对象 object 为标签 为文本
 
       }
   }
+
+  ## js api
+  - 获取位置
+    - clientX : 相对于浏览器视口
+    - offsetX : 相对于事件的目标对象 被处罚元素  e.target
+    - pageX : 相对于html文档 页面长 滚动条
+    - screenX : 相对于用户显示屏
+    - pageXOffset : x滚动条滚动过的像素数
