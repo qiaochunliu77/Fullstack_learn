@@ -29,11 +29,15 @@
                 parts.push(part)
                 console.log(parts)
             })
+            const hashindex = url.indexOf('#');
+            if(hashindex !== -1){
+                url = url.slice(0,hashindex)
+            }
         })
         url += '?' + parts.join('&')
         return url
     }
-    let url = bulidUrl('http://neteasecloudmusicapi.zhaoboy.com/search',{
+    let url = bulidUrl('http://neteasecloudmusicapi.zhaoboy.com/search#header',{
         keywords: '海阔天空',
         type: 'all',
         query: 'js',
@@ -41,4 +45,5 @@
         b:undefined,
         c:[123,12,4]
     })
+    console.log(url)
 </script>
