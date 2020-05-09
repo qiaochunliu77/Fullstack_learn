@@ -29,15 +29,18 @@
                 parts.push(part)
                 console.log(parts)
             })
+            // 判断是否含有#
             const hashindex = url.indexOf('#');
             if(hashindex !== -1){
                 url = url.slice(0,hashindex)
             }
         })
-        url += '?' + parts.join('&')
+        // 判断url是否含有？ 有的话就拼接& 没有的话就拼接？
+        let setparams = parts.join('&');
+        url += (url.includes('?') ? '&' : '?') + setparams
         return url
     }
-    let url = bulidUrl('http://neteasecloudmusicapi.zhaoboy.com/search#header',{
+    let url = bulidUrl('http://neteasecloudmusicapi.zhaoboy.com/search#header？',{
         keywords: '海阔天空',
         type: 'all',
         query: 'js',
