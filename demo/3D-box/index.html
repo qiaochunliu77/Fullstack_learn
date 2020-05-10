@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            position: relative;
+            width: 200px;
+            height: 200px;
+            /* perspective: 5000px; */
+            transform-style: preserve-3d;
+            margin: 200px auto;
+            transform:  rotateX(-5deg) rotateY(60deg);
+            
+        }
+        .pic{
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            background-color: #666;
+            outline: #000 solid 1px;
+        }
+        .flap-inner{
+            position: absolute;
+            width: 200px;
+            height: 100px;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            background-color: #666;
+            outline: #000 solid 1px;
+        }
+        /* 后面 */
+        .pic:nth-child(1){
+            transform: translateZ(-100px);
+        }
+        /* 下面 */
+        .pic:nth-child(2){
+            transform: rotateX(90deg) translateZ(-100px);
+        }
+        /* 右面面 */
+        .pic:nth-child(3){
+            transform: rotateY(90deg) translateZ(100px);
+        }
+        /* 左面面 */
+        .pic:nth-child(4){
+            transform: rotateY(90deg) translateZ(-100px);
+        }
+        /* 前面 */
+        .pic:nth-child(5){
+            transform: translateZ(100px);
+        }
+        .flap-inner:nth-child(1){
+            transform-origin: bottom center;
+            transform: translateZ(100px) translateY(-100px) rotateX(-30deg) ;
+        }
+        .flap-inner:nth-child(2){
+            transform-origin: bottom center;
+            transform: translateZ(-100px) translateY(-100px) rotateX(30deg);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+            <div class="pic"></div>
+            <div class="pic"></div>
+            <div class="pic"></div>
+            <div class="pic"></div>
+            <div class="pic"></div>
+            <div class="flap">
+                <div class="flap-inner"></div>
+                <div class="flap-inner"></div>
+            </div>
+    </div>
+</body>
+</html>
