@@ -44,4 +44,15 @@ blog 网站
  数据链路层 
  物理层
 
+
+
+
+- http req + res 完成一次请求
+  http 协议 基于请求应答模型 传输的是最简单的html
+
+- req res 什么关系
+
+- writehead 在做什么事情？ 写请求头 包含请求网页的信息 
+  node 高并发
  
+http 网络通信协议 tcp 7层 
