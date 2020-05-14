@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <p>
+        <button type="button" onclick="clickCounter()">点我</button>
+        <div id="result"></div>
+    </p>
+    <script>
+        // 三者区别
+        // 刻意练习 
+        // let count = 0;
+        // let result =  document.getElementById('result')
+        // function clickCounter() {
+        //     count++;
+        //     localStorage.setItem('star',JSON.stringify(star))
+        //     result.innerHTML = count;
+        // }
+        // localhost 把一些关键的css js 本地化 下次打开页面会很快
+        function clickCounter() {
+            const result = document.getElementById('result')
+            if(typeof Storage!=='undefined'){ 
+                //浏览器支持本地Storage 浏览器嗅探 
+                if(sessionStorage.clickCounter){ //设置了吗
+                    sessionStorage.clickCounter = Number(sessionStorage.clickCounter) +1
+                }else{
+                    sessionStorage.clickCounter =1
+                }
+                result.innerHTML = `你在按钮是上已经点击了${sessionStorage.clickCounter}次`
+            }else{
+                result.innerHTML = 'sorry,浏览器不支持'
+            }
+        }
+        // sessionStorage 会话存储
+        // localStorage 永久存储 
+        // cookie 存在http头部  每次都带
+    </script>
+</body>
+</html>

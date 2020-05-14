@@ -40,7 +40,7 @@ const server = http.createServer(function(req,res) {
     }
     // 前端提交的数据 解析
     
-})
+}) 
 server.listen(8080,function () {
     console.log('server is running 8080')
 }) 

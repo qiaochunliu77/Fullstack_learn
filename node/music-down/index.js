@@ -6,8 +6,8 @@ const fs = require('fs')
 process.title = 'node music'
 
 let keywords = process.argv[2]
-// 异步 不会立马请求回来
 
+// 异步 不会立马请求回来
 function request() {
     return axios({
         method: 'GET',
