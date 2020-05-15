@@ -20,7 +20,8 @@
         //     localStorage.setItem('star',JSON.stringify(star))
         //     result.innerHTML = count;
         // }
-        // localhost 把一些关键的css js 本地化 下次打开页面会很快
+
+        
         function clickCounter() {
             const result = document.getElementById('result')
             if(typeof Storage!=='undefined'){ 
@@ -35,9 +36,12 @@
                 result.innerHTML = 'sorry,浏览器不支持'
             }
         }
-        // sessionStorage 会话存储
-        // localStorage 永久存储 
-        // cookie 存在http头部  每次都带
+        // webStorage 分为
+        // sessionStorage 会话存储 在当前要存储 关闭浏览器后就不要了的
+        // localStorage 永久存储  把一些关键的css js 本地化 下次打开页面会很快
+        
+        // cookie 存在http头部  每次都带 保存在客户端 浏览器
+        // session 存储每个用户的专有信息 存在服务器端
     </script>
 </body>
 </html>
