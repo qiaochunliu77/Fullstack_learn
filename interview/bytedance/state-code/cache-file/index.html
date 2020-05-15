@@ -20,20 +20,23 @@
             ${user.username} - ${user.hometown}
           </li>
         `).join('')
-        return;
-      }
-
-      
-      fetch('/users')
+        
+      }else{
+        fetch('/users')
         .then(data => data.json())
         .then(data => {
           localStorage.setItem('users', JSON.stringify(data));
+          localStorage.setItem('version',version)
           usersUL.innerHTML = data.map(user => `
             <li>
               ${user.username} - ${user.hometown}
             </li>
           `).join('')
         })
+      }
+
+      
+      
     }
     
   </script>
