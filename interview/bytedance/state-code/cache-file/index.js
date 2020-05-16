@@ -8,9 +8,9 @@ http.createServer((req,res) => {
     // 2. a.txt 请求一次就好
     // 3. 之后再请求 如果服务器端没有文件发生改变 就不用返回文件内容 直接使用前端缓存
 
-    // 1. 怎么区分第一次和其他次 
-    // 2. 怎么样判断文件是否修改了 
-    // 3. 怎么告诉浏览器 直接用缓存的数据 
+    // 1. 怎么区分第一次和其他次 if-modified-since
+    // 2. 怎么样判断文件是否修改了 if-none-match' == version
+    // 3. 怎么告诉浏览器 直接用缓存的数据 304
     let stat = fs.statSync('./a.txt');
     if(req.headers['if-modified-since']){
         if(req.headers['if-modified-since'] == stat.mtime) {

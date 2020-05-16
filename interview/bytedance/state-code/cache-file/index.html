@@ -1,45 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>首页</title>
 </head>
+
 <body>
   <ul id="users"></ul>
   <script>
     // console.log('localstorage')
-    window.onload = function() {
+    window.onload = function () {
       const usersUL = document.getElementById('users');
       const users = JSON.parse(localStorage.getItem('users'));
       const version = JSON.parse(localStorage.getItem('version'))
-      //但是服务器端内容改变了怎么办?
-      if (users&&version) {
-        console.log('已经缓存了');
-        usersUL.innerHTML = users.map(user => `
-          <li>
-            ${user.username} - ${user.hometown}-${version}
-          </li>
-        `).join('')
-        
-      }else{
-        fetch('/users')
+      console.log(version)
+      fetch('/version')
         .then(data => data.json())
         .then(data => {
-          localStorage.setItem('users', JSON.stringify(data));
-          localStorage.setItem('version',version)
-          usersUL.innerHTML = data.map(user => `
-            <li>
-              ${user.username} - ${user.hometown}
-            </li>
-          `).join('')
+          if (version) {
+            // 如果传过来的版本 与 之前存在local的版本号 相同
+            // 就用原来的 数据 
+            if (version == data) {
+              if (users) {
+                console.log('使用原来的缓存：')
+                usersUL.innerHTML = users.map(user => `
+                <li>
+                  ${user.username} - ${user.hometown}
+                </li>
+                `).join('')
+                return;
+              }
+
+              fetch('./users')
+                .then(data => data.json())
+                .then(data => {
+                  console.log('第一次保存数据：')
+                  localStorage.setItem('users', JSON.stringify(data));
+                  usersUL.innerHTML = data.map(user => `
+              <li>
+                ${user.username} - ${user.hometown}
+              </li>
+            `).join('')
+                })
+            }
+          }
+          console.log('---')
+          localStorage.setItem('version', JSON.stringify(data))
+          fetch('./users')
+            .then(data => data.json())
+            .then(data => {
+              console.log('第一次打开 存储数据和版本号')
+              localStorage.setItem('users', JSON.stringify(data));
+              usersUL.innerHTML = data.map(user => `
+              <li>
+                ${user.username} - ${user.hometown}
+              </li>
+            `).join('')
+            })
         })
       }
-
-      
-      
-    }
-    
   </script>
 </body>
+
 </html>
