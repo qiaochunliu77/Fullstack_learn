@@ -12,12 +12,13 @@
     window.onload = function() {
       const usersUL = document.getElementById('users');
       const users = JSON.parse(localStorage.getItem('users'));
+      const version = JSON.parse(localStorage.getItem('version'))
       //但是服务器端内容改变了怎么办?
-      if (users) {
+      if (users&&version) {
         console.log('已经缓存了');
         usersUL.innerHTML = users.map(user => `
           <li>
-            ${user.username} - ${user.hometown}
+            ${user.username} - ${user.hometown}-${version}
           </li>
         `).join('')
         

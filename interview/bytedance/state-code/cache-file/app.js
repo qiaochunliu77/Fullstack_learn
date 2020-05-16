@@ -3,7 +3,7 @@ const fs = require('fs');
 const users = require('./users.json');
 let version = 1234567
 let server = http.createServer((req, res) => {
-    // If-None-Match
+    // 判断是否存在该版本
     if(req.headers['if-none-match']){
         console.log(Number(req.headers['if-none-match']) == version);
         if(Number(req.headers['if-none-match']) == version){
@@ -11,26 +11,21 @@ let server = http.createServer((req, res) => {
             res.end();
             return;
         }
-        else{
-            res.setHeader('Etag',version);
-            fs.createReadStream('./index.html').pipe(res);
-            return;
-        }
     }else{
         if (req.url == '/') {
             res.setHeader('Etag',version)
             res.writeHead(200, { 'Content-Type': 'text.html;charset=utf-8' });
-    
             fs.createReadStream('./index.html').pipe(res);
         }
         else if (req.url == '/users') {
+            res.setHeader('Etag',version)
             res.writeHead(200, { 'Content-Type': 'text/json;charset=utf-8' });
             // fs.createReadStream('./users.json').pipe(res);
-            // res.setHeader('Etag',version)
+            
             res.end(JSON.stringify(users));
-            // send 文本 Buffer
+            // res.write(version);
             // JSON.stringify() 把JSON 类型 变成文本
-            // console.log(JSON.stringify(users));
+            console.log(JSON.stringify(users));
     
         } 
     }
