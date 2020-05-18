@@ -1,0 +1,36 @@
+<script>
+    // 要实现一秒后输出1-5
+    // 1. let 块级作用域 每循环一次都是一个独立的i
+    // 2. 借助函数作用域 每次生成的i 都是独立的 
+
+    // for(var i = 1; i <= 5; i++){
+    //     setTimeout(function timmer() {
+    //         // i = 6时，代码终止，循环退出 
+    //         console.log(i)
+    //     },1000);
+    //     // setTimeout 异步代码 
+    // }
+
+    // for (var i = 1; i <= 5; i++) {
+    //     log(i)
+    // }
+    // function log(i) {
+    //     setTimeout(function timmer() {
+    //         // i = 6时，代码终止，循环退出 
+    //         console.log(i)
+    //     }, 1000);
+    //     // setTimeout 异步代码 
+    // }
+
+    for (var i = 1; i <= 5; i++) {
+        // 立即执行函数表达式 IIFE 定义时就调用 
+        (function (i) {
+            setTimeout(function timmer() {
+                // i = 6时，代码终止，循环退出 
+                console.log(i)
+            }, 1000);
+            // setTimeout 异步代码 
+        })(i)
+
+    }
+</script>

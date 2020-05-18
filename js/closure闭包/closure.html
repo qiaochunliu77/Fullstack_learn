@@ -3,17 +3,19 @@
     function test() {
         var name = 0;
         function test1() {
-            // var name2 = 'ligang';
-
-            // debugger;
+            debugger; //断点
             return name++;
-            // console.log(name)
         }
         return test1;
+    }
+    function test3() {
+        var a=0;
+        return a++
     }
     var fn = test()
     // 延长 name 作用域 
     // test 形成闭包closure{ name: 1 }
+    // 形成闭包之后 变量值是会传递的 
     console.log(fn())
     console.log(fn())
     console.log(fn())
