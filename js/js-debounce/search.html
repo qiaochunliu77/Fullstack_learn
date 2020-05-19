@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="search">
+    <input type="text" id="search1">
+    <input type="text" id="search2">
+    <script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.15/lodash.min.js"></script>
+    <script>
+        const search = document.getElementById('search')
+        let timeout;
+        function handlesearch(event) {
+            // console.log(event.target.value)
+            // fetch / axios / xhr
+            if(timeout){
+                clearTimeout(timeout)
+            }
+            timeout = setTimeout(() => {
+                console.log(event.target.value)
+            },500)
+        }
+        search.addEventListener('input', handlesearch)
+        // 用户连续输入就会连续触发input 处于输入中 没必要请求
+        // 输入完 input 没触发了 等1000ms后 用户不触发input 输完之后请求
+
+        // let timeout1;
+        let handleMousemove = function() {
+            // if(timeout1){
+            //     clearTimeout(timeout1)
+            // }
+            // timeout1 = setTimeout(() => {
+            console.log('handleMousemove')
+            // },600)
+        }
+        // 引入loadah 
+        let hasDebounceedMove = _.debounce(handleMousemove,600)
+        window.addEventListener('mousemove',hasDebounceedMove)
+
+        const search1 = document.getElementById('search1')
+        search1.addEventListener('input',debounce(function(e){
+            console.log(this)
+            console.log(e.target.value)
+        },600))
+
+        // func 没有防抖功能 返回的函数有防抖功能
+        // 封装一个防抖函数 
+        function debounce(func, wait){
+            let timeout;
+            return function(event) {
+                if(timeout){
+                    clearTimeout(timeout)
+                }
+                timeout = setTimeout( () => {
+
+                    func.call(this,event)
+                    console.log(this)
+                },wait)
+            }
+        }
+
+
+    </script>
+</body>
+</html>
