@@ -36,7 +36,7 @@
             console.log('handleMousemove')
             // },600)
         }
-        // 引入loadah 
+        // 引入loadah 第三方库
         let hasDebounceedMove = _.debounce(handleMousemove,600)
         window.addEventListener('mousemove',hasDebounceedMove)
 
@@ -55,7 +55,7 @@
                     clearTimeout(timeout)
                 }
                 timeout = setTimeout( () => {
-
+                    // func this 原指向 window
                     func.call(this,event)
                     console.log(this)
                 },wait)
