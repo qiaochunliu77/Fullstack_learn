@@ -12,32 +12,32 @@ function sum(a, b, c) {
   let res = add11(20);
   console.log(res);
   
-  // // 基本
-  // function test(reg, str) {
-  //   return reg.test(str);
-  // }
-  // let str = `
-  // `
-  // let str1 = `123`, str2  = `
-  // 456
-  // `, str3 = `789`, str4 = '\n00000';
-  // // `` 输入过 都能帮你保留下来
-  // let whiteSpace = /\n/g;
-  // // \n n: new line
-  // // \t t: tab
-  // // glob: 全局
-  // console.log(test(whiteSpace, str));
-  // console.log(test(whiteSpace, str1));
-  // console.log(test(whiteSpace, str2));
-  // console.log(test(whiteSpace, str3));
-  // // test: 测试 一下 某个字符串存不在回车
-  // // 每次 都带着 whiteSpace
-  // let hasWhiteSpace = test.bind(null, whiteSpace);
-  // console.log(hasWhiteSpace(str4))
-  // console.log(hasWhiteSpace(str3))
-  // console.log(hasWhiteSpace(str1))
+  // 基本
+  function test(reg, str) {
+    return reg.test(str);
+  }
+  let str = `
+  `
+  let str1 = `123`, str2  = `
+  456
+  `, str3 = `789`, str4 = '\n00000';
+  // `` 输入过 都能帮你保留下来
+  let whiteSpace = /\n/g;
+  // \n n: new line
+  // \t t: tab
+  // glob: 全局
+  console.log(test(whiteSpace, str));
+  console.log(test(whiteSpace, str1));
+  console.log(test(whiteSpace, str2));
+  console.log(test(whiteSpace, str3));
+  // test: 测试 一下 某个字符串存不在回车
+  // 每次 都带着 whiteSpace
+  let hasWhiteSpace = test.bind(null, whiteSpace);
+  console.log(hasWhiteSpace(str4))
+  console.log(hasWhiteSpace(str3))
+  console.log(hasWhiteSpace(str1))
   
-  // let hasTabSpace = test.bind(null, /\t/g);
-  // console.log(hasTabSpace('\t123'))
-  // let hasNumber = test.bind(null, /[0-9]/g);
-  // console.log(hasNumber('abc123'));
+  let hasTabSpace = test.bind(null, /\t/g);
+  console.log(hasTabSpace('\t123'))
+  let hasNumber = test.bind(null, /[0-9]/g);
+  console.log(hasNumber('abc123'));
