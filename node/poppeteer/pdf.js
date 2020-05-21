@@ -27,18 +27,19 @@ const promise3 = (time) => {
 // 写法上同步 执行起来异步 
 // then  链式调用 
 
-// promise1.then((info) => {
-//     return promise2(info)
-// })
-// .then(() => {
-//     // 等着前面的promise 
-//     console.log('读写完成')
-//     return promise3(2000)
-// })
-// .then( ()=> {
-//     console.log('ok')
-// })
+promise1.then((info) => {
+    return promise2(info)
+})
+.then(() => {
+    // 等着前面的promise 
+    console.log('读写完成')
+    return promise3(2000)
+})
+.then( ()=> {
+    console.log('ok')
+})
 
+// 回调写法
 // fs.readFile('./pakage.json',(err,info) => {
 //     fs.writeFile('./p.json',info,(err) => {
 //         if(!err) {
@@ -56,3 +57,8 @@ async function run() {
     await promise3(2000)
     console.log('ok')
 }
+
+// promise是用回调封装了一层
+// 只是以then api 保证了 异步任务的 顺序
+// 回调 -> promise -> async + await
+// Xmlhttprequest -> axios 

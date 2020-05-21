@@ -1,5 +1,8 @@
 const puppeteer = require('puppeteer');
 
+// 没有界面浏览器 人操作不了
+// 代码： 命令我们浏览器执行 某某行为 某某自动 
+
 (async () => {
   const browser = await puppeteer.launch();
   const page = await browser.newPage();
@@ -13,5 +16,4 @@ const puppeteer = require('puppeteer');
     await page.pdf({path: 'hn.pdf', format: 'A4'});
     await browser.close();
   },2000)
-
 })();
