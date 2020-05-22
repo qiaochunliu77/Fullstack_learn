@@ -6,6 +6,7 @@
 </head>
 <body>
   <script>
+    //   es6 不使用var 
   var isMobile = {
     Android: function() {
       return navigator.userAgent.match(/Android/i);
@@ -32,6 +33,7 @@
 
 
   if(isMobile.any()) alert('Mobile');
+    //   window.neworientation.current来判断横竖屏状态。
   window.addEventListener('orientationchange', function(){
     if(window.neworientation.current === 'portrait'){
       document.getElementById("body").style.background="red";
