@@ -1,0 +1,14 @@
+<script>
+     var invertTree = function(root) {
+    function swap(node) {
+        // let val = root.val;
+        // 遇到左子树 也要 root left right 
+        if(!node) return;
+        [node.left, node.right] = [node.right,node.left]
+        swap(node.left);
+        swap(node.right);
+    }
+    swap(root)
+    return root;
+};
+    </script>
