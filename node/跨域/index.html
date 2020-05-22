@@ -1,0 +1,17 @@
+<link rel="stylesheet" href="">
+<img src="" alt="">
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+    //接口 API
+    axios({
+        url:'http://localhost:9090/api',
+        method:'POST',
+        data:{
+            username:'123',
+            ped:789
+        }
+    })
+    .then(res => {
+        console.log(res);
+    })
+</script>
