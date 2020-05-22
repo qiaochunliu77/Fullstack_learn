@@ -43,22 +43,36 @@ promise1.then((info) => {
 // fs.readFile('./pakage.json',(err,info) => {
 //     fs.writeFile('./p.json',info,(err) => {
 //         if(!err) {
-//             resolve();
+//             setTimeout(() => {
+//                 console.log('ok')
+//             },2000)
 //         }
 //     })
 // })
 
 // 
-async function run() {
-    // await 接一个 promise 那么后面的代码就会等待 等promise resolve了才会执行 
-    // async + await 替代 .then 
-    let info = await promise1  //promise1 info === resolve了什么 
-    await promise2(info);
-    await promise3(2000)
-    console.log('ok')
-}
+// async function run() {
+//     // await 接一个 promise 那么后面的代码就会等待 等promise resolve了才会执行 
+//     // async + await 替代 .then 
+//     let info = await promise1  //promise1 info === resolve了什么 
+//     await promise2(info);
+//     await promise3(2000)
+//     console.log('ok')
+// }
 
-// promise是用回调封装了一层
-// 只是以then api 保证了 异步任务的 顺序
-// 回调 -> promise -> async + await
-// Xmlhttprequest -> axios 
+// // promise是用回调封装了一层
+// // 只是以then api 保证了 异步任务的 顺序
+// // 回调 -> promise -> async + await
+// // Xmlhttprequest -> axios 
+
+// function f1() {
+//     console.log('1')
+// }
+// function f2() {
+//     console.log('2')
+// }
+// f1()
+// f2()
+//输出
+// 1
+// 2
