@@ -1,22 +1,27 @@
 ## 跨域 
+    img, script,link 都是跨域的
     浏览器安全策略
 
     一个域向另一个域发出请求
-    同源： 同协议 (http/https) 同端口 
+    同源： 同协议 (http/https) 同域名  同端口 
     两个源不相同 产生跨域 
 
-    CORS ： cross origin resouce share
+## CORS ： cross origin resouce share
+
 ## 1
  Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
-
+ 能够保存cookies :
+  前端 withCredentials: true,
+  后端 'Access-Control-Allow-Credentials':true, //凭证 cokkies ，允许前端请求携带cookies
+  设置为localhost 域名
 ## http 头
 请求头 
-accept
+    accept
 响应头
-set-Cookie:
+    set-Cookie:
 通用头
-Content0type
-- 请求的时候带给后端的内容的类型
+    Contenttype
+- 请求的时候带给后端的内容的类型 application/x-www-form-urlencoded, multipart/form-data, text/plain
 - 后端告诉前端给我资源的类型 ：MIME 
 
 

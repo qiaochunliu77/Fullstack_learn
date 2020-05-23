@@ -3,13 +3,19 @@
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
     //接口 API
+    document.cookie = 'abc=123';
+    // 真实的请求 POST/api 
+    // 1 -> 预检请求 preflight 试探一下 能不能跨域
+    // 2 -> POST /api
     axios({
+        withCredentials: true,
         url:'http://localhost:9090/api',
         method:'POST',
         data:{
             username:'123',
             ped:789
         }
+        
     })
     .then(res => {
         console.log(res);
