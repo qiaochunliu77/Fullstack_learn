@@ -18,3 +18,16 @@ set-Cookie:
 Content0type
 - 请求的时候带给后端的内容的类型
 - 后端告诉前端给我资源的类型 ：MIME 
+
+
+## JSONP
+不同 xhr 不受跨域限制
+img
+src
+link
+script
+
+借助了script
+1. jsonp后端给你返回的是什么
+    函数名+数据拼接的字符串
+2. jsonp 原理 
