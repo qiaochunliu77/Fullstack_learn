@@ -1,24 +1,21 @@
-<link rel="stylesheet" href="">
-<img src="" alt="">
 <script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
 <script>
-    //接口 API
+    // 接口 api
+    // js 写入cookie
     document.cookie = 'abc=123';
-    // 真实的请求 POST/api 
-    // 1 -> 预检请求 preflight 试探一下 能不能跨域
-    // 2 -> POST /api
+    // 真实请求：POST /api 
+    // 1 -> 预检preflight, 试探一下我们跨域能不能通过   2 -> POST /api
     axios({
-        withCredentials: true,
+        withCredentials:true,
+        headers: {'X-Requested-With': 'XMLHttpRequest'},
         url:'http://localhost:9090/api',
         method:'POST',
         data:{
             username:'123',
-            ped:789
+            pwd:789
         }
-        
     })
     .then(res => {
         console.log(res);
     })
-    
 </script>

@@ -9,11 +9,19 @@
 ## CORS ： cross origin resouce share
 
 ## 1
+- 普通跨域请求：只需服务器端设置
  Access-Control-Allow-Origin': 'http://127.0.0.1:5500'
- 能够保存cookies :
+- 带cookie跨域请求：前后端都需要进行设置
   前端 withCredentials: true,
-  后端 'Access-Control-Allow-Credentials':true, //凭证 cokkies ，允许前端请求携带cookies
+  后端 'Access-Control-Allow-Credentials':true, //凭证 cokkies ，允许前端请
   设置为localhost 域名
+
+  简单请求
+    
+  预检请求
+  - options preflight 
+  - post /api
+
 ## http 头
 请求头 
     accept
