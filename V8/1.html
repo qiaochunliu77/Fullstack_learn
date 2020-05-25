@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // let变量创建在块级作用域  不属于顶层对象的属性 
+        // 在变量声明之前就访问变量的话，会直接提示 ReferenceError
+        // var 变量在全局window
+        // 使用默认值 undefined
+        // JavaScript 仅提升声明，而不提升初始化。
+        // 如果你先使用的变量，再声明并初始化它，变量的值将是 undefined。以下两个示例演示了相同的行为。
+
+        // 与通过  var 声明的有初始化值 undefined 的变量不同，通过 let 声明的变量直到它们的定义被执行时才初始化。在变量初始化前访问该变量会导致 ReferenceError。该变量处在一个自块顶部到初始化处理的“暂存死区”中。
+
+        // JavaScript 仅提升声明，而不提升初始化。如果你先使用的变量，再声明并初始化它，变量的值将是 undefined。
+
+
+
+        // 文件 -> 读入内存 -> 内存中申明变量 
+        // 分词 
+
+        // js 预编译(语法解析) 执行过程
+        // debugger;
+        console.log(myName) 
+        var myName = "liuda"; 
+        // 1. 变量定义
+        // 2. 赋值
+        // console.log(myName) 
+
+        
+        // console.log(nn)
+        // let nn;
+        // console.log(nn)
+        // 报错 ReferenceError（引用错误） 对象代表当一个不存在的变量被引用时发生的错误。
+
+        // myName = 'lqc'
+        // console.log(myName)
+        // let myName;
+        //  SyntaxError 对象代表尝试解析语法上不合法的代码的错误。
+
+        // console.log(n)
+        // let n = 1; // 报错
+
+        // let n ;
+        // console.log(n) //undefined
+
+        // console.log(n)
+        // let n; //报错
+    
+        // n = 1;
+        // console.log(n)
+        // let n; //报错
+
+        var a ;
+        console.log(a) //undefined
+
+        console.log(a)
+        var a=1; //undefined
+
+
+
+    </script>
+</body>
+</html>
