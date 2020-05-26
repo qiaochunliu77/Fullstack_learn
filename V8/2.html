@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        function foo() {
+            var a = "极客时间"
+            var b = a
+            var c = { name: "极客时间" }
+            var d = c
+        }
+        foo()
+
+        // 执行期上下文 ： 全局执行上下文，函数上下文，eval上下文
+        // 同一个函数被多次调用，都会创建一个新的上下文。
+        // 执行上下文栈(下文简称执行栈)也叫调用栈，执行栈用于存储代码执行期间创建的所有上下文，具有LIFO（Last In First Out后进先出，也就是先进后出）的特性。
+        // JS代码首次运行，都会先创建一个全局执行上下文并压入到执行栈中，之后每当有函数被调用，都会创建一个新的函数执行上下文并压入栈内；由于执行栈LIFO的特性，所以可以理解为，JS代码执行完毕前在执行栈底部永远有个全局执行上下文。
+    </script>
+</body>
+
+</html>

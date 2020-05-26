@@ -18,6 +18,12 @@
 
         // JavaScript 仅提升声明，而不提升初始化。如果你先使用的变量，再声明并初始化它，变量的值将是 undefined。
 
+        // var提升声明是有初始化值undefined的
+        // let提升声明但是存在暂时性死区
+        // 只有它被真正执行时才有初始化值undefined+
+
+        // let变量存在暂时性死区 即未声明之前使用都会报错 只有在暂死区结束（变量声明后）才有初始化值undefined
+
 
 
         // 文件 -> 读入内存 -> 内存中申明变量 
@@ -42,26 +48,26 @@
         // let myName;
         //  SyntaxError 对象代表尝试解析语法上不合法的代码的错误。
 
-        // console.log(n)
-        // let n = 1; // 报错
+        console.log(n)
+        let n = 1; // 报错
 
-        // let n ;
-        // console.log(n) //undefined
+        let n ;
+        console.log(n) //undefined
 
-        // console.log(n)
-        // let n; //报错
+        console.log(n)
+        let n; //报错
     
-        // n = 1;
-        // console.log(n)
-        // let n; //报错
+        n = 1;
+        console.log(n)
+        let n; //报错
 
         var a ;
         console.log(a) //undefined
 
-        console.log(a)
-        var a=1; //undefined
+        console.log(a)//undefined
+        var a=1; 
 
-
+        // js弱类型 动态语言
 
     </script>
 </body>
