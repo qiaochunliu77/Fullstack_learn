@@ -22,6 +22,14 @@ let currentAttribute = null;
 let stack = [ { type: 'document', children: [] } ];
 parse(htmlStr);
 console.log(JSON.stringify(stack[0], null, 2));
+
+
+function computeCss(ele) {
+    // 计算符合这个元素的所有css规则  并应用到这个节点
+    // 1. 靠ele属性 父节点 和 css里面的选择题 匹配
+    // 2.匹配 从后往前匹配 .parent .cls
+    
+}
 function emit(token) {
   console.log(token);
   let top = stack[stack.length - 1];
@@ -33,6 +41,8 @@ function emit(token) {
       attributes: token.attributes,
       tagName: token.tagName
     }
+    // 知道属性 知道stack里面是elemnet的父节点
+    computeCss(element);
     stack.push(element);
     // 作为栈顶的元素子节点，为了生成树
     // if (!top.children) top.children = [];
