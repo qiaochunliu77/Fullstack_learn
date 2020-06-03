@@ -6,11 +6,49 @@ let htmlStr = `<html>
     <div class="cls" id="myid"></div>
   </body>
 </html>`
+let cssStr = `
+.parent .cls {
+    font-size:16px
+}
+#myid {
+    background-color:red
+}
+`
 let currentToken = null;
 let currentAttribute = null;
 let stack = [ { type: 'document', children: [] } ];
 parse(htmlStr);
 console.log(JSON.stringify(stack[0], null, 2));
+let elements = stack.slice(0).reverse();
+function match(selector, ele){
+    if(!selector || ele.attributes){
+        return false;
+    }
+    if(selector.charAt(0) === '#'){
+        let idAttr = ele.attributes.find(e => e.name === 'id')
+        if(idAttr && idAttr.value === idAttr.replace('#','')) return true;
+    }else if(selector.charAt(0) === '.'){
+        let classAttr = ele.attributes.find(e => e.name === 'class')
+        if(classAttr && classAttr.value === classAttr.replace('.','')) return true;
+    }else{
+        if(ele.tagName === selector ) return true
+    }
+    return false;
+}
+
+
+function computeCss(ele){
+    for(let rule of rules){
+        let selector = rules.selector[0].split(' ').reverse();
+        // 最后一项匹配上了 
+        if(!match(selector[0],ele)) {
+            continue //跳过本轮循环 
+        }
+        // 看父级满不满足 
+        let 
+    }
+}
+
 function emit(token) {
   console.log(token);
   let top = stack[stack.length - 1];
