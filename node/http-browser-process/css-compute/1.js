@@ -1,3 +1,4 @@
+const css =require('css')
 let htmlStr = `<html>
   <head></head>
   <body>
@@ -14,39 +15,73 @@ let cssStr = `
     background-color:red
 }
 `
+let rules = css.parse(cssStr).stylesheet.rules
+// console.log(rules,'rules')
+
 let currentToken = null;
 let currentAttribute = null;
 let stack = [ { type: 'document', children: [] } ];
 parse(htmlStr);
 console.log(JSON.stringify(stack[0], null, 2));
-let elements = stack.slice(0).reverse();
-function match(selector, ele){
-    if(!selector || ele.attributes){
-        return false;
-    }
-    if(selector.charAt(0) === '#'){
-        let idAttr = ele.attributes.find(e => e.name === 'id')
-        if(idAttr && idAttr.value === idAttr.replace('#','')) return true;
-    }else if(selector.charAt(0) === '.'){
-        let classAttr = ele.attributes.find(e => e.name === 'class')
-        if(classAttr && classAttr.value === classAttr.replace('.','')) return true;
-    }else{
-        if(ele.tagName === selector ) return true
-    }
+
+
+
+function match(selector, ele) {
+  if (!selector || !ele.attributes) {
     return false;
+  }
+  // #myid
+  // {name: id, value：‘myid’}
+  if (selector.charAt(0) === '#') {
+    let idAttr = ele.attributes.find(e => e.name === 'id');
+    if (idAttr && idAttr.value === selector.replace('#', '')) return true;
+  } else if (selector.charAt(0) === '.') {
+    let classAttr = ele.attributes.find(e => e.name === 'class');
+    if (classAttr && classAttr.value === selector.replace('.', '')) return true;
+  } else {
+    if (ele.tagName === selector) return true;
+  }
+  return false;
 }
 
 
-function computeCss(ele){
-    for(let rule of rules){
-        let selector = rules.selector[0].split(' ').reverse();
-        // 最后一项匹配上了 
-        if(!match(selector[0],ele)) {
-            continue //跳过本轮循环 
-        }
-        // 看父级满不满足 
-        let 
+function computerCss(ele) {
+  // 计算 符合这个 ele 的所有 css 规则 || css 规则 应用到这个节点上面
+  // 1: 靠 ele 属性 父节点，和 css 里面 选择器 匹配
+  // 2：匹配 从后往前匹配  .parent .cls
+  // tagName #id  .className
+  // .parent .cls
+  // div  || div .cls  || span #parentID .parent #id
+  let elements = stack.slice(0).reverse();
+  if (!ele.computerStyle) ele.computerStyle = {};
+  // 所有 css 规则
+  for (let rule of rules) {
+    let selector = rule.selectors[0].split(' ').reverse();
+    // 最后一项匹配上了
+    if (!match(selector[0], ele)) {
+      // 跳过本轮循环，往后的步骤
+      continue;
     }
+    // 看父级满不满足  
+    // [{type: 'doc'}, {html}, [header]]
+    // [#id .parent  #parentID  span]
+    let j = 1;
+    for (let i = 0; i < elements.length; i ++) {
+      if (match(selector[j], elements[i])) j ++
+    }
+    // 匹配
+    if (j >= selector.length) {
+      // rule rule css 规则添加到 ele
+      for (let delecare of rule.declarations) {
+        const { property, value } = delecare;
+        ele.computerStyle[property] = value
+      }
+    }
+
+
+
+  }
+  
 }
 
 function emit(token) {
@@ -60,6 +95,7 @@ function emit(token) {
       attributes: token.attributes,
       tagName: token.tagName
     }
+    computerCss(element);
     stack.push(element);
     // 作为栈顶的元素子节点，为了生成树
     // if (!top.children) top.children = [];
