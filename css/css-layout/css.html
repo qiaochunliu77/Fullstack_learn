@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{padding: 0;margin: 0;}
+        body{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .out{
+            margin-left: 10px;
+            margin-right: 10px;
+            width: 100%;
+        }
+        .ele{
+            background-color: blue;
+            text-align: center;
+            
+            /* 相对于包含块  */
+            padding-top: 25%;
+            padding-bottom: 25%;
+            line-height: 0;
+        }
+        /* 
+        因为ele是out子元素，是不是和out等宽，也是1220
+        ele计算padding-top 是不是相对于out这个包含块的宽度的，
+        有因为ele和out等宽，可以理解为
+        ele的高度就是宽度的一半了?
+
+         */
+       /* ele 的包含块
+        1.static 是body width：
+        */
+        /* 元素高度是宽度的一半 */
+        
+
+    </style>
+</head>
+<body>
+    <div class="out">
+        <div class="ele">
+            A
+        </div>
+    </div>
+        
+    
+</body>
+</html>
+
