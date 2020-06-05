@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .wrapper{
+            border: 1px solid #000;
+            overflow: hidden;
+        }
+        .main{
+            width: 40px;
+            height: 200px;
+            background-color: green;
+            float:left; 
+            /* position: absolute; */
+            /* 脱离文档流 */
+            /* 顶到包含快的最左边 */
+        }
+        .aside{
+            overflow: hidden;
+        }
+    </style>
+</head>
+<body>
+    <div class="wrapper"> 
+        <div class="main">main</div>
+        <div class="aside">asideasideasideasideaside</div>
+    </div>
+</body>
+</html>
