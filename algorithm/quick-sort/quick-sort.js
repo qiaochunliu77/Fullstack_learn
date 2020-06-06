@@ -7,6 +7,7 @@ function partition (nums, left, right) {
       // left right 互相替换
       // right 替换 left 位置
       // left 替换 right 位置
+      // [4,1,2,4,2,5,6]
       // 1: 右边扫描，比基准值小数，如果这个数比基准值大，一直往前走
       while(left < right && nums[right] >= provit) right --;
       nums[left] = nums[right];
