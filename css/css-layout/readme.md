@@ -42,4 +42,14 @@ fixed：相对于view
     - filter 不是none 或者  will-change 是 filter(only works on Firefox).
     - contain是 paint (例如: contain: paint;)
 
-## css 面试题
+## layout
+- normal flow
+- float
+- position
+- flex
+
+## flex
+容器
+flex-direction: row / column
+justify-content: center / start / end
+align-item: center / start / end
