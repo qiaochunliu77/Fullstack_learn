@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- <script src='index.js'></script> -->
+    <script>
+        // 实际应用场景中 url不用传
+        // 通过 location 获得url
+        function getQueryString() {
+            var url = location.search;
+            console.log(url)
+            var obj = new Object();
+            if(url.indexOf('?') != -1){
+                var str = url.substr(1);
+                console.log(str)
+            }
+            var strs = str.split('&');
+            console.log(strs)
+            for(var i = 0; i < strs.length; i++){
+                obj[str[i].split('=')[0]] = decodeURIComponent(strs[i].split('=')[1]);
+                // obj[str[i].split('=')[0]] = unescape(strs[i].split('=')[1]);
+            }
+            return obj
+        }
+        console.log(getQueryString())
+    </script>
+</body>
+</html>
