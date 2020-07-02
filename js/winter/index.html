@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .box {
+            width: 100px;
+            height: 200px;
+
+        }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+
+    </div>
+    <script>
+        // 渲染节点的入口 node cssStyleSheet
+        // w3c标准的属性有哪些 浏览器的实验属性
+
+        console.log( Object.keys(document.querySelector('.box').style)
+        .filter((e)=> !e.match(/^webkit/)).length)
+        
+
+
+
+    </script>
+</body>
+
+</html>
