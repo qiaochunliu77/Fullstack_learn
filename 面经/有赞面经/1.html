@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* li+li{
+            background-color: #150;
+        } */
+        ul>li {
+            background-color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <ul>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+    </ul>
+    <script>
+        let promise1 = Promise.resolve(1)
+        let promise2 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                reject(2)
+            }, 500)
+        })
+        let promise3 = Promise.resolve(3)
+        let promise4 = Promise.resolve(4)
+        let promise5 = new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(5)
+            }, 1000)
+        })
+        Promise.all([promise1, promise2, promise5])
+            .then((value) => {
+                console.log(value)
+            })
+        Promise.race([promise2, promise5])
+            .then((res) => {
+                console.log(res)
+            })
+        Promise.allSettled([promise1, promise2, promise5])
+            .then((value) => {
+                console.log(value)
+            })
+        // 怎么实现promise.all
+        Promise.all = function (promiseArr) {
+            return Promise((resolve, reject) => {
+                let total = 0;
+                let result = [];
+                promiseArr.forEach((promise,i) => {
+                    promise
+                        .then((res) => {
+                            total++;
+                            result[i] = res;
+                            if (len === total) {
+                                // 所有的promise 成功了
+                                resolve(result)
+                            }
+                        })
+                        .catch()
+                });
+            })
+        }
+
+       
+        function myInstance(obj, Constructor) {
+            let proto = obj.__proto__;
+            if(proto === Constructor.prototype){
+                return true
+            }
+            if(proto === null) return false
+            return myInstance(proto, Constructor)
+        }
+        console.log(myInstance([], Array))
+        console.log(myInstance({}, Object))
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=sc, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // [Symbol.hasInstance]可以自定义一个行为
+        class myArray {
+            static a =1;
+            static [Symbol.hasInstance](obj) {
+                return typeof obj === 'number'
+            }
+        }
+        class isarray {
+            static [Symbol.hasInstance](obj){
+                return Array.isArray(obj)
+            }
+        }
+        let arr = new myArray();
+        console.log(myArray[Symbol.hasInstance])
+        console.log(arr instanceof myArray)
+        console.log(7 instanceof myArray)
+        console.log([] instanceof isarray)
+    </script>
+</body>
+</html>

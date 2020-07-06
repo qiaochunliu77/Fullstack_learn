@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <ul>
+        <li data-uid='1'>1
+            <a>2</a>
+        </li>
+        <li data-uid='2'>2</li>
+        <li data-uid='3'>3</li>
+    </ul>
+    <script>
+        // 循环绑定
+        // const lis = document.querySelectorAll('ul li');
+        // for(let node of lis){
+        //     node.addEventListener('click',() => {
+        //         console.log('1')
+        //     })
+        // }
+
+
+        // 在父级绑定
+        // 利用事件冒泡的特性进行事件代理（委托）
+        let ul = document.querySelector('ul');
+        ul.addEventListener('click',(event) => {
+            console.log(event.path)          //冒泡的路径
+            console.log(event.currentTarget) //ul 被绑定的事件
+            console.log(event.target)        //li 实际触发的事件
+            
+            let nickname = event.target.innerHTML
+            let uid = event.target.getAttribute('data-uid');
+            console.log('click', nickname,uid)
+        })
+
+    </script>
+</body>
+</html>
