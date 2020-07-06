@@ -1,0 +1,43 @@
+<script>
+    // Tencent
+
+    function Page() {
+        return this.hosts;
+    }
+    Page.hosts = ['h11111'];
+    Page.prototype.hosts = ['h22222'];
+
+    var p1 = new Page();
+    var p2 = Page();
+    // this.posts到底指向谁
+    // this指向谁
+    // new这个过程发生了什么
+
+    console.log(p1);  //h22222
+    console.log(p2);  //undefined
+
+    // 模拟new的行为
+    function myNew(constuctor) {
+        // 1.创建一个继承自构造函数prototype的对象
+        let obj = {}
+        // 继承
+        obj.__proto__ = constuctor.prototype
+        // 2. 这个对象会作为构造函数运行时的this
+        constuctor.apply(obj);
+        // 3. new 结果 ：3.1 如果构造函数没有返回一个对象了 ，new的结果就是这个对象
+        // 3. new 结果 ：3.1 如果构造函数没有返回一个对象了 ，new的结果就是我们刚才创建的这个对象
+        return obj
+    }
+    const p3 = myNew(Page)
+
+    function Animal() {
+        return {
+            a: 1, b: 2
+        }
+    }
+    let ani = new Animal();
+    console.log(ani)
+    // 每个函数 function Foo() {}
+  // 都有 一个 属性 prototype = { constuctor: Foo }
+  // prototype.__proto__ = Object.prototype
+</script>

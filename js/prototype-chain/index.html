@@ -1,0 +1,11 @@
+<script>
+    function Animal() {
+        this.name = 'name'
+    }
+    console.log(Animal.prototype)
+    Animal.prototype.say = function() {
+        console.log('say')
+    }
+    let animal = new Animal();
+    console.log(animal)
+</script>

@@ -20,3 +20,15 @@ function reduce(arr, reduceCallback, initialValue) {
 reduce([1,2,3,4], function(pre, cur, index, arr){
     return pre + cur;
 }, 0)
+const arr1 = [1,2,3,4,5]
+Array.prototype.reduceFn = function (reduceCallback, initialValue){
+    if(Array.isArray(this) || !this.length ||
+    !typeof(reduceCallback) === 'function'){
+        return []
+    }else{
+        
+        return value
+    }
+    console.log(arguments)
+}
+console.log(([3,4,5,6,7]).reduceFn)
