@@ -1,0 +1,74 @@
+<script>
+    /**
+     * Definition for singly-linked list.
+     * function ListNode(val, next) {
+     *     this.val = (val===undefined ? 0 : val)
+     *     this.next = (next===undefined ? null : next)
+     * }
+     */
+    /**
+     * @param {ListNode} head
+     * @return {ListNode}
+     */
+    //  奇数链表 1-> 3 -> 5
+    //  偶数链表 2-> 4 -> 6
+    // var oddEvenList = function(head) {
+    //     if(head == null) return null;
+    //     let odd = new ListNode('head');
+    //     let even = new ListNode('head');
+    //     let i = 1;
+    //     while(head){
+    //         // 奇数
+    //         if(i % 2 === 0){
+    //             odd.next = head.val;
+    //         }else{
+    //             even.next = head.val;
+    //         }
+    //         i++;
+    //         head = head.next;
+    //     }
+    //     odd.next = even;
+    // };
+
+
+    /**
+ * Definition for singly-linked list.
+ * function ListNode(val, next) {
+ *     this.val = (val===undefined ? 0 : val)
+ *     this.next = (next===undefined ? null : next)
+ * }
+ */
+/**
+ * @param {ListNode} head
+ * @return {ListNode}
+ */
+// n 链表的长度
+// 事件复杂度 O(n) 空间复杂度 n
+var oddEvenList = function(head) {
+    let l1 = {val:null, next: null},l1Current = l1;
+        l2 = {val:null, next: null},l2Current = l2;
+    let current = head,
+        i = 1;
+    while(current) {
+        if(i % 2 !== 0){
+            l1Current.next = current;
+            l1Current = l1Current.next;
+        }else{
+            l2Current.next = current;
+            l2Current = l2Current.next;
+        }
+        i++;
+        current = current.next;
+    }
+    if(i%2 !== 0) {
+        l1Current.next = null;   
+    }else{
+        l2Current.next = null;
+    }
+    console.log('l1',l1)
+    console.log('l2',l2)
+    l1Current.next = l2.next;
+    return l1.next
+}
+    console.log(oddEvenList({ val: 1, next: { val: 2, next: { val: 3, next: { val: 4, next: { val: 5, next: null } } } } }))
+</script>

@@ -1,0 +1,38 @@
+<script>
+    /**
+ * Definition for singly-linked list.
+ * function ListNode(val) {
+ *     this.val = val;
+ *     this.next = null;
+ * }
+ */
+
+/**
+ * @param {ListNode} head
+ * @return {boolean}
+ */
+// 1.给循环到的每一个加标志位，第二遍循环的时候 如果有flag代表是环形链表
+var hasCycle = function(head) {
+    while(head){
+        if(head.flag) return true
+        head.flag = true;
+        head = head.next
+    }
+        return false
+};
+
+// 2.双指针
+// 时间 O(n)
+// 空间O（1）
+var hasCycle = function(head) {
+    // 链表为空
+    if(!head || !head.next) return false;
+    let fast = head.next, slow = head;               //定义两个快慢指针
+    while(fast != slow){                             //快慢指针不相等就一直向后循环
+        if(!fast || !fast.next) return false         //若快指针循环到停下了=> 没有圆 false
+        fast = fast.next.next;
+        slow = slow.next;
+    }
+    return true;
+}
+</script>

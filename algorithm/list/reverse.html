@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <!-- Node.appendChild() 方法将一个节点附加到指定父节点的子节点列表的末尾处。
+        如果将被插入的节点已经存在于当前文档的文档树中，
+        那么 appendChild() 只会将它从原先的位置移动到新的位置（不需要事先移除要移动的节点）。 -->
+    <div class="wrap">
+        <p>1</p>
+        <span>2</span>
+        <li>3</li>
+    </div>
+    <div class="wrap2"></div>
+    <script>
+        const child = document.querySelector('.wrap');
+        const eles = child.childNodes;
+        console.log(eles)
+        // child.innerHTML = '';
+        // 同一个dom节点 只能有一个父节点 （同一个dom节点，不能从属于两个父节点）
+        for(let len = eles.length - 1; len >= 0;len--){
+            console.log(eles[len])
+            child.appendChild(eles[len])
+        }
+        document.querySelector('.wrap2').appendChild(eles[1]);
+    </script>
+</body>
+</html>
