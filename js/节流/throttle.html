@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+<body>
+    <script>
+        // 节流的意思是让函数有节制地执行，而不是毫无节制的触发一次就执行一次。
+        // 什么叫有节制呢？就是在一段时间内，只执行一次。
+        // 应用： 拖拽元素、图片懒加载
+        const body = document.body;
+        function getUserInfo() {
+            console.log('发出请求。')
+        }
+        body.onmousemove = throttle(getUserInfo, 3000)
+        // 按固定事件间隔去触发
+        function throttle(func, wait) {
+            var previous = 0;
+            return function () {
+                var now = new Date().getTime();
+                const remain = wait - (now - previous);
+                var time = null;
+                // 时间戳只用于头事件 
+                // 之后中间的事件触发 时间戳和timeout是互竞的
+                if (now - previous > wait) {
+                    console.log('1')
+                    func();
+                    previous = now;
+                } else if (!time) {
+                    time = setTimeout(() => {
+                        console.log('2')
+                        func()
+                        time = null;
+                        previous = new Date().getTime();
+                    }, remain)
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

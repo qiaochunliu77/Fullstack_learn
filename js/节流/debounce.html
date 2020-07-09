@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            width: 100vw;
+            height: 100vh;
+        }
+    </style>
+</head>
+
+<body>
+    <script>
+        // 也就是当持续触发事件的时候，函数是完全不执行的，
+        // 等最后一次触发结束的一段时间之后，再去执行。
+        // 应用：搜索框 
+        const body = document.body;
+        body.onmousemove = debounce(userInfo, 3000)
+        function userInfo() {
+            console.log('触发')
+        }
+        function debounce(func, wait) {
+            let timeout = null;
+            return function () {
+                if(timeout) clearTimeout(timeout);
+                timeout = setTimeout(() => {
+                    func()
+                },wait)
+            }
+        }
+    </script>
+</body>
+
+</html>
