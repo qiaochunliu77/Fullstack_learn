@@ -27,6 +27,8 @@
         // 利用事件冒泡的特性进行事件代理（委托）
         let ul = document.querySelector('ul');
         ul.addEventListener('click',(event) => {
+            const target = event.path.find(x=> x.tagName === 'LI' && x.getAttribute('data-uid'))
+            console.log(target)
             console.log(event.path)          //冒泡的路径
             console.log(event.currentTarget) //ul 被绑定的事件
             console.log(event.target)        //li 实际触发的事件
@@ -36,6 +38,11 @@
             console.log('click', nickname,uid)
         })
 
+        const li1 = document.querySelectorAll('li');
+        const li2 = document.getElementsByTagName('li')
+        ul.removeChild(li1[0])
+        console.log('li1',li1)
+        console.log('li2',li2)
     </script>
 </body>
 </html>
