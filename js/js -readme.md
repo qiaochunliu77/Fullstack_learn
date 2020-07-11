@@ -68,3 +68,42 @@ tag: 为对象 object 为标签 为文本
     - pageX : 相对于html文档 页面长 滚动条
     - screenX : 相对于用户显示屏
     - pageXOffset : x滚动条滚动过的像素数
+
+
+## 作用域
+- 作用域:程序存储和访问变量的规则
+  包含：全局作用域
+        块级作用域(用了let、const定义)
+        函数作用域
+- 作用域链：一层一层往外找
+
+``` js
+function addABC(){
+  var a = 1,b = 2;
+  
+  function add(){
+    return a+b+c;
+  }
+  return add;
+}
+
+var c = 3
+
+var globalAdd = addABC()
+
+console.log(globalAdd()) // 6
+``` 
+- 自由变量：像abc这样在函数中被使用，但既不是函数参数，也不是函数局部变量，而是一个不属于当前作用域的变量，此时它相对于当前作用域来说就是一个自由变量。
+- 闭包：像add这样引用了自由变量的函数就叫闭包。
+
+- LHS、RHS是引擎在执行代码时，查询变量的两种方式
+``` js
+  name = 'lqc'//LHS
+  var myName = name;//RHS
+```
+- LHS  变量出现在赋值操作的左侧。意味着变量赋值或写入内存，查询的是变量的内存地址。
+- RHS  变量出现在赋值操作的右侧。意味着变量查找或从内存读取，查询的是变量的内容。
+
+## 词法作用域
+  
+
