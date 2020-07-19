@@ -1,0 +1,14 @@
+<script>
+    // 先行断言 环视
+    let str = 'hello';
+    // ？=  正向先行断言
+    // ？！ 负向先行断言
+    // ?=                        #h#e#l#l#o#
+    // ?=l l前面这个位置          he#l#lo
+    // ?!l 非l前面的位置都匹配    he#llo
+    // es6
+    // ?<=l l后面这个位置
+    // ?<!l 除了l前面的位置
+    str = str.replace(/(?<!l)/g,'#');  //
+    console.log(str)
+</script>

@@ -1,0 +1,87 @@
+<script>
+
+    let reg = /abc/
+    //长度 ? + *
+    // * 出现0次或者多次
+    // + 出现一次或者多次
+    // ？出现0次或者1次
+
+    //  \1\2 ===$1$2
+    // () 作为一个整体
+    // | 或者
+    // ^ 开始
+    // $ 结束
+
+    let reg4 = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[0-1])$/;
+    // YYYY-MM-DD
+
+    // api
+    console.log(reg4.test('2019-12-12'))  //true ？ fasle
+    console.log(reg4.exec('2017-09-12'))  //[输入的源文本，分组1，分组2]
+
+    // \b单词边界  /\bm/匹配“moon”中的‘m’；
+    let  reg5 = /[a-z]/g; //全局匹配
+    let str = 'abc';
+    console.log(reg5.test(str))
+    console.log(reg5.test(str))
+    console.log(reg5.test(str))
+    console.log(reg5.test(str))
+    console.log(reg5.test(str))
+    console.log(reg5.test(str))
+
+
+    var state = {
+        name:'lelei',
+        age:18.
+    }
+    var str3 = 'my name is {name}, age is {age}';
+    // 1.
+    // function complie(str , obj){
+    //     let reg = /{([0-9A-Za-z]+)}/g;
+    //     let i = 0;
+    //     let info = reg.exec(str)
+    //     let res=''
+    //     while(info){
+    //         console.log(info,'info-----------')
+    //         res+=str.substring(i, info.index);
+    //         let key = info[1];
+    //         res+=obj[key];
+    //         console.log(obj[key]);
+    //         i = reg.lastIndex;
+    //         info=reg.exec(str)
+    //     }
+    //     return res;
+    // }
+    // 2. 
+    function complie(str, obj){
+        let reg = /{(\w+)}/g;
+        let newstr = str
+        .replace(reg, (...arg) => {
+            console.log(arg,'arg==============')
+            let key = arg[1]
+            // return 'lilei'
+            return obj[key]
+        })
+    }
+    console.log(complie(str3,state))
+    
+
+    // format('2017-10-10')  MM-DD.YYYY
+    // let str6 = '565-10-10';
+    function format(str) {
+        return str.replace(/(\d{4})-(\d{2})-(\d{2})/g,'$2-$3.$1')
+    }
+    console.log(format('5965-10-10'))
+
+    // background-color 
+    // backgroundColor
+    function color(str) {
+        return str.replace((/-(\w)/), (...arg) => {
+            console.log(arg)
+            return arg[1].toUpperCase()
+        })
+    }
+    console.log(color('background-color'))
+
+
+</script>
