@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // async await
+        // 协（纤）程： 比线程、进程更小
+        // 不可能被打断 一次性执行完
+        // 终止、打断
+        function * foo() {
+            console.log('start')
+           let a = yield 33; //yield不是返回值
+            console.log('1', a)
+           let b = yield 2;
+            console.log('2', b)
+           let c = yield 3 
+            console.log('3', c)
+            console.log('end')
+        }
+        let iterator = foo();
+        let val1 = iterator.next()
+        let val2 = iterator.next(4) //上一个yeild的返回值
+        let val3 = iterator.next(56)
+        let val4 = iterator.next(3)
+        console.log(val1,val2,val3,val4)
+
+
+        // console.log(iterator.next())
+        // console.log(iterator.next())
+        // console.log(iterator.next())        
+        // console.log(iterator.next())
+
+        // function autoRun(iteratorObj) {
+        //     let { done } = iteratorObj.next(87);
+        //     if( done ) return 
+        //     autoRun(iteratorObj)
+        // }
+        // autoRun(iterator)
+    </script>
+</body>
+</html>
