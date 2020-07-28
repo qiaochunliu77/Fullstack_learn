@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        /* 宽高比 16:9 */
+        .ration {
+            width: 100%;
+            /* 用padding把高度撑开 */
+            /* 相对于宽度来算 */
+            padding-top: calc(100%*9/16);
+            height: 0;
+            background-color: orange;
+            position: relative;
+
+        }
+
+        .ration>div {
+            position: absolute;
+            left: 0;
+            top: 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="ration">
+        <div>content</div>
+    </div>
+    <script>
+        let obj = {
+            a: 1,
+            tostring() {
+                return 1;
+            },
+            valueOf() {
+                return 2
+            },
+            [Symbol.toPrimitive]: () => {
+                return 123;
+            }
+        };
+
+
+        let res = obj + 1;
+        console.log(res)
+
+        Object.prototype.toString()
+        let arr = [1,2];
+        arr.toString()
+        let num = 123;
+        num.toString()
+        console.log(arr, num)
+        
+    </script>
+</body>
+
+</html>
