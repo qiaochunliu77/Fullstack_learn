@@ -13,14 +13,10 @@ function sumIntervals(intervals){
     });
     return numbers.length;
   }
-//   1,2,3,4
-//               7,8,9,10
-//       3,4,5
-  console.log(sumIntervals([
-    [1,4],
-    [7, 10],
-    [3, 5]
- ]))
+  console.log(sumIntervals([[1,4],[3,11 ],[8, 10],[16,19]]))
+  //   1,2,3,4
+  //               7,8,9,10
+  //       3,4,5
 
 //  2. ？
 function sumIntervals(intervals) {
