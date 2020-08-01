@@ -1,0 +1,19 @@
+<script>
+    // 实现一个函数a（），
+    // 第一次调用输出0，再调用输出1，再调用又是0。再调又是1。不得使用全局变量
+    // 闭包
+
+    let i = 0;
+    function a() {
+        i++;
+        return i%2==0 ? '1' : '0';
+    }
+
+    const a1 = (function() {
+        let c = 0;
+        return function() {
+            c++;
+            return c%2==0 ? '1' : '0';
+        }
+    })()
+</script>

@@ -13,7 +13,7 @@ function lwstBT(i, j, dist){
     // 退出条件
     if(i == n || j == m){
         if(i<n) edist += (n-i);
-        if(j<m)) edist += (m-j)
+        if(j<m) edist += (m-j)
         if(edist<minDist) minDist = edist;
         return ;
     }
