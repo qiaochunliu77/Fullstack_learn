@@ -1,0 +1,16 @@
+<script>
+
+    function zip(...args) {
+        let res = []
+        for (let i = 0; i < args[0].length; i++) {
+            if(!res[i]) res[i]=[]
+            for (let j = 0; j < args.length; j++) {
+                res[i].push(args[j][i])
+            }
+        }
+        return res
+    }
+    console.log(zip(['fred', 'barney'], [30, 40], [true, false]))
+//    ;
+  // => [['fred', 30, true], ['barney', 40, false]]
+</script>

@@ -1,0 +1,13 @@
+<script>
+// 写一个日期格式化函数
+const dateFormat = (dateInput, format)=>{
+  // todo
+    let res =[dateInput.getFullYear()+1,dateInput.getMonth()+1,dateInput.getDate()+1]
+     return format.replace(/(y|Y){4}/g,res[0]).replace(/(m|M){2}/g,res[1]).replace(/(d|D){2}/g,res[2])
+}
+
+console.log(dateFormat(new Date('2020-12-01'), 'yyyy/MM/dd'))
+
+dateFormat(new Date('2020-04-01'), 'yyyy/MM/dd') // 2020/04/01
+dateFormat(new Date('2020-04-01'), 'yyyy年MM月dd日') // 2020年04月01日
+</script>
