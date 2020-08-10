@@ -1,0 +1,45 @@
+<script>
+    /**
+ * @param {string} path
+ * @return {string}
+ */
+    // var simplifyPath = function (path) {
+    //     let stack = [];
+    //     let Rpath = path.split('/')
+    //     for (let i = 0; i < Rpath.length; i++) {
+    //         console.log(Rpath[i],i)
+    //         if(Rpath[i] === '..'){
+    //             stack.pop()
+    //         }else if(Rpath[i] === '.'){
+    //             Rpath.pop()
+    //         }else{
+    //             stack.push(Rpath[i])
+    //         }
+    //     }
+    //     let res = stack.filter((item) => 
+    //        item !==''
+    //     )
+    //     return '/'+res.join('/')
+    // };
+    var simplifyPath = function (path) {
+        let stack = [];
+        let Rpath = path.split('/')
+        for (let i = 0; i < Rpath.length; i++) {
+            console.log(Rpath[i],i)
+            if(Rpath[i] === '..'){
+                stack.pop()
+            }else if(Rpath[i] === '.'){
+                
+            }else if(Rpath[i] ==''){
+                
+            }else{
+                stack.push(Rpath[i])
+            }
+        }
+        let res = stack.filter((item) => 
+           item !==''
+        )
+        return '/'+res.join('/')
+    };
+    console.log(simplifyPath("/a//b////c/d//././/.."), '------')
+</script>
