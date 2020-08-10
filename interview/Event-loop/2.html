@@ -1,0 +1,21 @@
+
+<body></body>
+<script>
+    document.body.style.backgroundColor = 'red';
+    setTimeout(() => {
+        document.body.style.backgroundColor = 'blue';
+    },0)
+    // red -> blue
+    // blue
+    document.body.addEventListener('click', () => {
+        console.log(1)
+        Promise.resolve(2).then(console.log)
+    })
+    document.body.addEventListener('click', () => {
+        console.log(3)
+        Promise.resolve(4).then(console.log)
+    })
+    // macrotask[click1]
+    // microtask[p1]
+
+</script>
