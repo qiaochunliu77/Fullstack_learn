@@ -1,0 +1,50 @@
+<script>
+    window.name = 'ByteDance';
+    function A() {
+        // console.log(this)
+        // debugger
+        // new 过程
+        // 生成一个空对象 {} 
+        // {} .__proto__ = A.prototype 
+        // {} 添加name属性
+        // return {}
+        // 我们new的时候拿到的就是这个{}
+        console.log(this.name); //456 new-> 指向A.prototype 
+        this.name = 123;
+    }
+    A.prototype.getA = function () {
+        console.log(this); //window 函数在全局调用 默认指向window
+        return this.name + 1;
+    }
+    A.prototype.name = 456;
+    let a = new A();
+    let funcA = a.getA;
+    console.log(funcA());//Bytedance1
+
+    // 重写new
+    function newConstructor(constructor) {
+        let obj = []
+        obj.__proto__ = constructor.prototype;
+        // 附 属性
+        constructor.apply(obj)
+        return obj
+    }
+    console.log(newConstructor(A))
+    // A.prototype.__proto__ 指向Object
+    let obj1 = new A()
+    // obj1.__proto__ === A.prototype -> Object.prototype -> Object.prototype.__proto__ -> null
+    
+
+   
+  function Animal() {
+    // this === ani
+    // ani.name = 'cat'
+    this.name = 'cat';
+    // ani.live = 'land';
+    this.live = 'land';
+  }
+  let ani = {};
+  Animal.apply(ani);//animal的this指向ani
+  console.log(ani);
+
+</script>

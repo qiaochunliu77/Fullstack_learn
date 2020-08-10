@@ -1,0 +1,24 @@
+<script>
+    // 回调函数 读取
+    function FileComponent(file, func) {
+        // todo
+        setTimeout(() => {
+            func('读取完毕')
+        }, 3000)
+    }
+
+    FileComponent('index.js', (file) => {console.log(file)
+        // 3s 之后 输出 “读取完毕”
+    })
+
+    // 手写foeEach
+    Array.prototype.myForeach = function (func) {
+        for (let i = 0; i < this.length; i++) {
+            func(this[i], i, this)
+        }
+    }
+    let a =  [1, 2, 3]
+   a.myForeach((item, i,arr) => {
+        console.log(item, i,arr)
+    })
+</script>

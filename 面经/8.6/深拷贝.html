@@ -1,0 +1,49 @@
+<script>
+    // 浅拷贝
+
+    let a = {a:1}
+    let b = {b:2}
+    Object.assign({},a,b)
+
+
+    // 深拷贝
+    // 1.
+    let w = {a:1,b:{b:2}}
+    let obj2 = JSON.parse(JSON.stringify(w))
+    console.log(obj2)
+
+    // 2.递归 手写
+
+    let map = new Map()
+    // map key 任意值 
+    // {} key 字符串 Symbol
+
+    function deepClone(obj) {
+        let t = {}
+
+        // 有循环结构的
+        if(map.get(obj)) return map.get(obj)
+        map.set(obj, t)
+        
+        Object.keys(obj).forEach(k => {
+            if(typeof obj[k] === 'object') {
+                t[k] = deepClone(obj[k])
+            }else{
+                t[k] = obj[k]
+            }
+        })
+        return t
+    }
+    let obj = {a:1,b:{b:2}}
+    let obj1 = deepClone(obj);
+    obj1.b.b = 4;
+    obj.t = obj
+    console.log(obj,obj1)
+
+    let o1 = {}
+    let o2={}
+    let o3={}
+    o1[o3] = 1;
+    o1[o2] = 2;
+    console.log(o1[o3])
+</script>
