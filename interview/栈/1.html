@@ -1,0 +1,22 @@
+<script>
+    var resolve = function (baseUrl, moduleId) {
+        let stack = [];
+        let url = moduleId.split('/')
+        for(let i =0;i<url.length;i++){
+            if(url[i] === '..'){
+                stack.pop()
+            }else if(url[i] === '.'){
+            }else if(url[i] ==''){
+            }else{
+                stack.push(url[i])
+            }
+        }
+        let res = stack.filter((item) => 
+           item !==''
+        )
+        return baseUrl+'/'+res.join('/')
+    }
+    console.log(resolve('http://www.baidu.com', 'a/b/c'))
+    console.log(resolve('http://www.baidu.com', 'a/../c'))
+    console.log(resolve('http://www.baidu.com/1/2', 'a/.././c'))
+</script>
