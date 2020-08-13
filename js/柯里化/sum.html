@@ -1,0 +1,55 @@
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/lodash.js/4.17.19/lodash.min.js"></script>
+<script>
+    function sum1(num) {
+        return function (a) {
+            return function (b) {
+                return num + a + b
+            }
+        }
+    }
+    let len = 3,i=-1,sum3=0;
+    function sum2(n) {
+        i++;
+        sum3+=n;
+        if(i>len){
+            return sum3
+        }
+        return sum2
+    }
+    // console.log(sum2(1)(6)(3))
+
+    // curry 柯里化
+    function sum(a,b,c) {
+        return a+b+c
+    }
+    let curriedSum = _.curry(sum);
+    console.log(curriedSum(1)(2)(3))
+    console.log(curriedSum(1,2)(3))
+    let curriedSum10 = curriedSum(10);
+    console.log(curriedSum10(2,3))
+    console.log(curriedSum10(2)(3))
+
+    function curry(fun) {
+        // 
+        const len = fun.length;
+        // console.log(len)
+        // fun普通函数
+        // return 出去的是 具有 柯里化功能的 参数分批次传
+        return function() {
+            // 无论分几次传 接受到之后放在 args里面
+            let args = [];
+            function help() {
+                
+            }
+            if(arg.length >= len) {
+
+            }else{
+                return help
+            }
+        }
+    }
+    curry(sum)
+
+</script>
