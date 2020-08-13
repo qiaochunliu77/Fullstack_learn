@@ -1,0 +1,74 @@
+<script>
+    // document.addEventListener('click',() => {})
+    // document.onclick=() => {
+
+    // }
+    // http.createServer((req,res) => {
+    //     res.on('data',() => {
+
+    //     })
+    // })
+    let listeners = {}
+    let price1 = () => {
+        console.log("price1");
+
+    }
+    let price2 = () => {
+        console.log("price2");
+
+    }
+    let price3 = () => {
+        console.log("price3");
+
+    }
+    let blog1 = () => {
+        console.log("blog1");
+
+    }
+    let blog2 = () => {
+        console.log("blog2");
+
+    }
+    // {
+    //     'price': [price1,price2],
+    //     'blog':[blog1,blog2]
+    // }
+    // 开启订阅
+    function on(name, fn) {
+        // lisiten结构和下面一样
+        if (!listeners[name]) {
+            listeners[name] = []
+        }
+        listeners[name].push(fn)
+    }
+    // 发布
+    function emit(name) {
+        // 已知listener结构
+        // 找到 name下面的 所有
+        const listen = listeners[name] || [];
+        for (let fn of listen) {
+                fn()
+        }
+        listeners[name] = listen.filter( item => !listen.once)
+    }
+    // 取消订阅
+    function off(name, fn) {
+        const listen = listeners[name] || [];
+        listeners[name] = listen.filter(listen => listen !== fn)
+    }
+    function once(name, fn) {
+        fn.once = '12';
+        on(name, fn);
+    }
+    on('price', price1)
+    once('price',price2)
+    on('price', price3)
+    on('blog', blog1)
+    emit('blog')
+    off('price', price1)
+    emit('price')
+    emit('price')
+    console.log(listeners)
+
+
+</script>
