@@ -1,0 +1,33 @@
+<script>
+    /**
+ * @param {character[][]} board
+ * @return {void} Do not return anything, modify board in-place instead.
+ */
+    var solve = function (board) {
+        // 边界O 用A填充
+        // 全局 A变O O变X
+        let res = board;
+        let col = res.length;// i
+        let rol = res[0].length;// j
+        for (let i = 0; i < col; i++) {
+            for (let j = 0; j < rol; j++) {
+                if ((i == 0 || j == 0) && res[i][j] === 'O') {
+                    res[i][j] = 'A'
+                }
+                console.log(res[i][j])
+            }
+        }
+        console.log(res)
+        for (let i = 0; i < col; i++) {
+            for (let j = 0; j < rol; j++) {
+                if (board[i][j] == 'O') {
+                    board[i][j] = 'X'
+                } else if (board[i][j] == 'A') {
+                    board[i][j] = 'O'
+                }
+            }
+        }
+        return board
+    };
+    console.log(solve([["X", "X", "X", "X"], ["X", "O", "O", "X"], ["X", "X", "O", "X"], ["X", "O", "X", "X"]]))
+</script>
