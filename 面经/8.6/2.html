@@ -1,0 +1,23 @@
+<script>
+    let arr = new Array(5)
+    function set(n) {
+        if (n <= 0) return
+        let a = Math.floor(Math.random() * 30 + 2)
+        if (arr.indexOf(a) > 0) return set(n)
+        arr[n-1] = a
+        return set(n - 1)
+    }
+    set(5)
+    console.log(arr)
+
+    // let arr = new Array(5)
+    // function set1(n) {
+    //     if(n<0) return 
+    //     let a = Math.floor(Math.random() * 30+2)
+    //     if(arr.indexOf(a) >0) return set1(n)
+    //     arr[n]=a
+    //     return set1(n-1)
+    // }
+    // set1(5)
+    // console.log(arr)
+</script>

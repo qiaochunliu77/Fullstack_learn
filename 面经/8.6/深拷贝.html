@@ -1,14 +1,14 @@
 <script>
     // 浅拷贝
 
-    let a = {a:1}
-    let b = {b:2}
-    Object.assign({},a,b)
+    let a = { a: 1 }
+    let b = { b: 2 }
+    Object.assign({}, a, b)
 
 
     // 深拷贝
     // 1.
-    let w = {a:1,b:{b:2}}
+    let w = { a: 1, b: { b: 2 } }
     let obj2 = JSON.parse(JSON.stringify(w))
     console.log(obj2)
 
@@ -20,30 +20,40 @@
 
     function deepClone(obj) {
         let t = {}
-
         // 有循环结构的
-        if(map.get(obj)) return map.get(obj)
+        // 如果有的话 直接返回 
+        if (map.get(obj)) return map.get(obj)
         map.set(obj, t)
-        
+        // Object.keys(obj) 对obj的key的枚举
         Object.keys(obj).forEach(k => {
-            if(typeof obj[k] === 'object') {
+            if (typeof obj[k] === 'object') {
                 t[k] = deepClone(obj[k])
-            }else{
+            } else {
                 t[k] = obj[k]
             }
         })
         return t
     }
-    let obj = {a:1,b:{b:2}}
+//     var deepCopy = function(obj) {
+//     if (typeof obj !== 'object') return;
+//     var newObj = obj instanceof Array ? [] : {};
+//     for (var key in obj) {
+//         if (obj.hasOwnProperty(key)) {
+//             newObj[key] = typeof obj[key] === 'object' ? deepCopy(obj[key]) : obj[key];
+//         }
+//     }
+//     return newObj;
+// }
+    let obj = { a: 1, b: { b: 2 } }
+    obj.t = obj;//死循环
     let obj1 = deepClone(obj);
-    obj1.b.b = 4;
-    obj.t = obj
-    console.log(obj,obj1)
+    // obj1.b.b = 4;
+    console.log(obj, obj1)
 
-    let o1 = {}
-    let o2={}
-    let o3={}
-    o1[o3] = 1;
-    o1[o2] = 2;
-    console.log(o1[o3])
+    // let o1 = {}
+    // let o2 = {}
+    // let o3 = {}
+    // o1[o3] = 1;
+    // o1[o2] = 2;
+    // console.log(o1[o3])
 </script>
