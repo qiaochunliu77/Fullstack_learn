@@ -1,0 +1,42 @@
+<script>
+    // 异步
+    // 加上状态
+    // pending -》 onfulfilled / onRejected
+    const PENDING = Symbol('PENDING');
+    const FULFILLED = Symbol('FULFILLED');
+    const REJECTED = Symbol('REJECTED');
+
+    function Mypromise(fn) {
+        this.status = PENDING;
+        this.value = undefined;
+        this.onFulFilled = () => {}
+        let self = this; //保存Mypromise内部的this
+        function resolve(value) {
+            self.value = value;
+            self.status = FULFILLED;
+            console.log(value)
+            self.onFulFilled(value)
+        }
+        function reject() {
+            self.status = REJECTED;
+        }
+        fn(resolve, reject)
+    }
+    Mypromise.prototype.then = function (onFulFilled, onRejected) {
+        // console.log(this)
+        if(this.status === FULFILLED) onFulFilled(this.value)
+        else if(this.status === PENDING) {
+            this.onFulFilled = onFulFilled
+        }else{}
+    }
+
+    new Mypromise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1)
+        }, 2000)
+    })
+        .then((res) => {
+            console.log(res)
+        }, () => { })
+
+</script>

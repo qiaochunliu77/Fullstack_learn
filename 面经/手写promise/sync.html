@@ -1,0 +1,30 @@
+<script>
+    // 同步
+    // promise解决相互依赖的函数嵌套调用的问题 防止回调地狱
+    
+    function Mypromise(fn) {
+        this.status = 'PENDING';
+        this.value = undefined;
+        let self = this;//保存Mypromise内部的this
+        console.log(this)
+        let resolve = (n) => {
+            self.value = n;
+
+        }
+        let reject = () => {
+
+        }
+        fn(resolve, reject)
+    }
+    Mypromise.prototype.then = function (onFulfiled, onRejected) {
+        console.log(this)
+        onFulfiled(this.value)
+    }
+    new Mypromise((resolve, reject) => {
+        resolve(1)
+    })
+        .then((res) => {
+            console.log(res)
+        }, () => { })
+
+</script>
