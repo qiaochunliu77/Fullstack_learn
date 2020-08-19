@@ -1,0 +1,47 @@
+<script>
+    // xhr
+    // 保存一份 重写方法 引入这段脚本 可以监听用户的操作
+    const _XMLHttpRequest = window.XMLHttpRequest;
+    window.XMLHttpRequest = function XMLHttpRequest() {
+        const _xhr = new _XMLHttpRequest();//恢复原先功能
+        _xhr.addEventListener('readystatechange', function () {
+            if (_xhr.readyState === 4) {
+                console.log(_xhr.responseURL, 'success')
+            }
+        })//不与用户的onreadystatechange冲突
+
+        return _xhr
+    }
+    // const xhr = new XMLHttpRequest();
+    // xhr.open()
+    // xhr.onreadystatechange = () => { }
+    // xhr.send()
+
+    // 1.
+    // fetch
+    // const _fetch = window.fetch;
+    // window.fetch = function fetch(url, fn) {
+    //     return new Promise((resolve, reject) => {
+    //         _fetch(url, fn).then(res => {
+    //             console.log(res.url,'suceess')
+    //             resolve(res)
+    //         })
+    //         .catch(reject)
+    //     })
+    // }
+
+    // 2.
+    const _fetch = window.fetch;
+    window.fetch = function fetch(url, fn) {
+        return _fetch(url, fn).then((res) => {
+            console.log(res.url, 'success')
+            return res;
+        })
+    }
+    fetch('http://neteasecloudmusicapi.zhaoboy.com/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA')
+        .then(res => {
+            return res.json()
+        })
+        .then(res => console.log(res))
+
+</script>

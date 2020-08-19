@@ -1,0 +1,23 @@
+<script>
+// hash 路由
+// hashchange
+window.addEventListener('hashchange', () => {
+    console.log(window.location.hash)
+})
+
+// H5 history 路由 
+// popstate 用户的前后（用户的操作）
+window.addEventListener('popstate', () => {
+    console.log('new url', window.location.pathname)
+})
+// push replace检测不到 hook方式重写
+let names = ['pushState', 'replaceState'];
+for(let name of names){
+    let original = window.history[name];
+    window.history[name] = function (...args) {
+        console.log(args)
+        console.log('new url', args[2]);
+        return original.apply(window.history, args)
+    }
+}
+</script>
