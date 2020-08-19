@@ -1,0 +1,75 @@
+<script> 
+    //     题目 继承
+    // 填充 inherit 完成输出。
+
+    // 继承父类的属性 和 方法
+    function inherit(parentConstructor, prototypeObj) {
+        function Cat(name) {
+            // 继承属性 super
+            // 将Animal的this指向 cat1实例 =》 继承了Animal
+            parentConstructor.call(this, name);
+        }
+        Cat.prototype = prototypeObj;//实例cat1的proto
+        // 继承方法
+        Object.setPrototypeOf(Cat.prototype, parentConstructor.prototype);
+        // 相当于  Cat.prototype.__proto__ = parentConstructor.prototype
+        // 将Animal.prototype设置给Cat.prototype
+        return Cat
+    }
+    let animalNum = 0;
+    // 属性
+    function Animal(name) {
+        animalNum++;
+        this.name = name;
+    }
+    // 方法
+    Animal.prototype.getName = function () {
+        return this.name;
+    };
+    const Cat = inherit(Animal, {
+        say: function () {
+            console.log(`NO${animalNum}:${this.getName()}`);
+        }
+    });
+    const cat1 = new Cat('小花');
+    console.log(cat1)
+    cat1.say(); // NO1:小花
+
+
+    // 简单例子
+    function Foo() {
+        this.a = 1;
+        this.b = 2;
+    }
+    // 3.
+    Foo.prototype.getName = function() {
+        console.log(this.a)
+    }
+    let obj = {}
+    Foo.apply(obj);//Foo的this指向obj
+    console.log(obj)
+    function Child() {
+        Foo.call(this)//1.自己的属性
+    }
+    // 2.
+    Child.prototype.__proto__ = Foo.prototype;
+    // Child.prototype = Object.create(Foo)
+    let c = new Child()
+
+    // c.__proto__ = Child.prototype;
+    // Child.prototype.__proto__ = Foo.prototype;
+
+    let aaa= {
+        a:1
+    }
+    // let xx ={}
+    // xxx.__proto__ =bbb
+    console.log(Object.create(aaa))//创建一个对象 并将原型链指向aaa
+
+    console.log('c.__proto__ === Child.prototype', c.__proto__ === Child.prototype)
+    console.log('Child.prototype.__proto__ === Foo.prototype', Child.prototype.__proto__ === Foo.prototype)
+    console.log('Foo.prototype.__proto__ === Object.prototype', Foo.prototype.__proto__ === Object.prototype)
+    console.log('Object.prototype.__proto__ === null', Object.prototype.__proto__ === null)
+    // 实例的proto === 构造函数的prototype
+    
+</script>
