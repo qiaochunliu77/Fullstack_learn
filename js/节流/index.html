@@ -1,52 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-        body{
+        body {
             width: 100vw;
             height: 100vh;
         }
     </style>
 </head>
+
 <body>
     <script>
         // 节流的两种
         const body = document.body;
-        function getUserInfo () {
+        function getUserInfo() {
             console.log('发出请求。')
         }
-        body.onmousemove = throttled(getUserInfo,2000)
+        // body.addEventListener('click',() => {})
+        body.onmousemove = throttled1(getUserInfo, 2000)
+
+
         // 时间戳
         // 头部事件有了 尾巴没有
         function throttled(func, wait) {
             var previous = 0;
             console.log('外部')
-            return function () {
+            return function (...args) {
                 console.log('里面')
                 var now = new Date().getTime();
-                if(now - previous > wait){
-                    func();
+                if (now - previous > wait) {
+                    func.apply(this, args);
                     previous = now;
                 }
             }
         }
         // 定时器实现
         // 头部没有 尾巴有
-        function throttled1 (func, wait){
+        function throttled1(func, wait) {
             var timeout = null;
-            return function() {
-                if(!timeout) {
+            return function (...args) {
+                if (!timeout) {
                     timeout = setTimeout(() => {
-                        func();
+                        func.apply(this, args);
                         timeout = null;
-                    },wait)
+                    }, wait)
                 }
             }
         }
         // 所谓节流，就是指连续触发事件但是在 n 秒中只执行一次函数。
     </script>
 </body>
+
 </html>
