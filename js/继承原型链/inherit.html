@@ -1,25 +1,26 @@
-<script> 
+<script>
     //     题目 继承
     // 填充 inherit 完成输出。
 
     // 继承父类的属性 和 方法
     function inherit(parentConstructor, prototypeObj) {
-        function Cat(name) {
+        function Cat(...args) {
             // 继承属性 super
             // 将Animal的this指向 cat1实例 =》 继承了Animal
-            parentConstructor.call(this, name);
+            parentConstructor.apply(this, args);
         }
         Cat.prototype = prototypeObj;//实例cat1的proto
         // 继承方法
-        Object.setPrototypeOf(Cat.prototype, parentConstructor.prototype);
-        // 相当于  Cat.prototype.__proto__ = parentConstructor.prototype
+        // Object.setPrototypeOf(Cat.prototype, parentConstructor.prototype);
+        Cat.prototype.__proto__ = parentConstructor.prototype
         // 将Animal.prototype设置给Cat.prototype
         return Cat
     }
     let animalNum = 0;
     // 属性
-    function Animal(name) {
+    function Animal(name, size) {
         animalNum++;
+        this.size = size
         this.name = name;
     }
     // 方法
@@ -31,7 +32,7 @@
             console.log(`NO${animalNum}:${this.getName()}`);
         }
     });
-    const cat1 = new Cat('小花');
+    const cat1 = new Cat('小花', 10);
     console.log(cat1)
     cat1.say(); // NO1:小花
 
@@ -42,7 +43,7 @@
         this.b = 2;
     }
     // 3.
-    Foo.prototype.getName = function() {
+    Foo.prototype.getName = function () {
         console.log(this.a)
     }
     let obj = {}
@@ -59,8 +60,8 @@
     // c.__proto__ = Child.prototype;
     // Child.prototype.__proto__ = Foo.prototype;
 
-    let aaa= {
-        a:1
+    let aaa = {
+        a: 1
     }
     // let xx ={}
     // xxx.__proto__ =bbb
@@ -71,5 +72,20 @@
     console.log('Foo.prototype.__proto__ === Object.prototype', Foo.prototype.__proto__ === Object.prototype)
     console.log('Object.prototype.__proto__ === null', Object.prototype.__proto__ === null)
     // 实例的proto === 构造函数的prototype
-    
+    // 模拟 instanceof
+    function instance_of(L, R) {
+        let O = R.prototype;
+        L = L.__proto__;
+        while (true) {
+            if (L === O) {
+                return true;
+            } else if(L.__proto__ === null) {
+                return false
+            }
+            L = L.__proto__;
+        }
+    }
+    console.log(instance_of(c, null))
+
+
 </script>
