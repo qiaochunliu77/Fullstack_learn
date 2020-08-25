@@ -1,0 +1,50 @@
+<!-- 真实dom -->
+<!-- <div >
+    <ul class="wrap">
+        <li>1</li>
+        <li>2</li>
+    </ul>
+</div> -->
+<div id="root"></div>
+<script>
+    // 虚拟dom
+    let Vnode = {
+        type: 'div',
+        props: {
+            children: [
+                {
+                    type: 'ul',
+                    className:'wrap',
+                    props: {
+                        children: [
+                            { type: 'li', props: { children: ['1'] } },
+                            { type: 'li', props: { children: ['2'] } }
+                        ]
+                    }
+                },
+                {
+                    type: 'div'
+                }
+            ]
+        }
+    }
+    // jsx => createElememnt =>虚拟dom
+    // 虚拟dom -》 渲染出来
+    function render(vnode, container) {
+        const {type, props } = vnode;
+        // 文本节点 没有属性 直接添加
+        if(!type) {
+            container.textContent =vnode
+            return 
+        }
+        // 若有孩子节点 则递归
+        const dom = document.createElement(type);
+        props?.children?.forEach(child => {
+            render(child, dom);
+        })
+        container.appendChild(dom)
+    }
+    render(Vnode , document.getElementById('root'))
+    // Vnode,props.children 虚拟 dom 优势: 1.跨平台(Node Browser) 2. 保证性能下限
+    // document.querySelector('div').childNodes
+</script>
