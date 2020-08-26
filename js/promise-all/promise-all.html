@@ -1,0 +1,78 @@
+<script>
+    // 写出这段代码的输出结果：
+
+    function createTask(ms) {
+        return () => {
+            console.log('start', ms);
+            return new Promise(r => setTimeout(() => {
+                console.log('end', ms);
+                r(ms);
+            }, ms));
+        }
+    }
+    const tasks = Array(5).fill(null).map((_, i) => createTask(i * 1000));
+    // 0-4s
+    Promise.all(tasks.map(task => task()))
+        .then(console.log);
+    // 0
+    // 1000
+    // 2000
+    // 限流2个 在运行 
+    // 
+    const p = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve()
+            }, 2000)
+        })
+    }
+    const p2 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 3000)
+        })
+    }
+    const p3 = () => {
+        return new Promise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1)
+            }, 4000)
+        })
+    }
+
+    // 等待所有都完成（或第一个失败）。
+    Promise.myALl = function (promiseArr) {
+        return Promise((resolve, reject) => {
+            let total = 0;
+            let result = [];
+            promiseArr.forEach((promise, i) => {
+                promise
+                    .then((res) => {
+                        total++;
+                        result[i] = res;
+                        if (len === total) {
+                            // 所有的promise 成功了
+                            resolve(result)
+                        }
+                    })
+                    .catch()
+            });
+        })
+    }
+    Promise.myALl([p1(), p2(), p3()])
+        .then(r => {
+            console.log(r)
+        })
+    limitRunTask([p1, p2, p3], 2)
+        .then(r)
+    // 接上一题，实现限制同时运行任务数的函数limitRunTask
+
+    // 表示同时只能有2个任务运行，且then中得到的数组顺序和通过Promise.all得到的一致
+    limitRunTask(tasks, 2).then(console.log);
+// 题解
+    function limitRunTask(){
+        
+    }
+
+</script>
