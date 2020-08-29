@@ -31,6 +31,7 @@
                         // if (finish >= tasks.length) {}
                         run();  // 
                     })
+                    // 结束之后
                     index++;
                     running++;
                 }
@@ -39,9 +40,9 @@
         })
     }
     // i = 5 才会退出循环
-    // for (var i = 0; i < 5; i ++) {
-    //   setTimeout(() => {
-    //     console.log(i);
-    //   }, i * 1000);
-    // }
+    for (var i = 0; i < 5; i ++) {
+      setTimeout(() => {
+        console.log(i);
+      }, i * 1000);
+    }
 </script>
