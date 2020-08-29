@@ -1,0 +1,57 @@
+<script>
+    const a1 = { name: 'a1' };
+    const b1 = { name: 'b1' };
+    const b2 = { name: 'b2' };
+    const b3 = { name: 'b3' };
+    const c1 = { name: 'c1' };
+    const c2 = { name: 'c2' };
+    const d1 = { name: 'd1' };
+    const d2 = { name: 'd2' };
+    // 树
+    a1.child = b1; b1.return = a1;
+    b1.sibling = b2; b2.return = a1;
+    b2.sibling = b3; b3.return = a1;
+
+    b2.child = c1; c1.return = b2;
+
+    c1.child = d1; d1.return = c1;
+    d1.sibling = d2; d2.return = c1;
+
+    b3.child = c2; c2.return = b3;
+
+    console.log(a1);
+    // 以循环的方式 遍历这棵树 
+    // 之前 更新是同步的 
+
+    let node = a1;
+    // 深度优先遍历
+    // 先找一层一层找孩子 若没有孩子 则找兄弟节点 若兄弟节点也没有 则去父节点
+    function walk(deadline) {
+        //浏览器有空闲的时候 
+        // while(true) {
+            console.log('批次-----------')
+        // 获取这一帧的剩余时间
+        while (deadline.timeRemaining() > 0) {
+            console.log(node.name);  //a1 b1 b2 c1 d1 d2 b3 c2 
+            let child = node.child;
+            if (child) {
+                //有子节点 就找子节点
+                node = child;
+                continue;
+            }
+            //如果没有兄弟 就找父节点
+            while (!node.sibling) {
+                // node = node.return;
+                if (node.return === a1 || !node.return) {
+                    return;
+                }
+                node = node.return;
+            }
+            node = node.sibling;
+        }
+    }
+
+    requestIdleCallback(walk);
+
+
+</script>
