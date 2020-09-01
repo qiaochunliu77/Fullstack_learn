@@ -1,0 +1,34 @@
+<script>
+    // for of 遍历数组 可迭代对象
+    // for in 遍历数组和对象 for ... in 循环返回的值都是数据结构的 键值名。
+    // 可以用for of来遍历对象吗
+    // 实现 Symbol.iterator（可迭代协议）内部有next方法
+
+    // 只要有 iterator 接口的数据结构,都可以使用 for of循环：
+    // 数组 Array
+    // Map
+    // Set
+    // String
+    // arguments对象
+    // Nodelist对象, 就是获取的dom列表集合
+    
+    var obj = {
+        a: 1,
+        b: 2,
+        [Symbol.iterator]: () => {
+            let i = 0
+            return {
+                next: () => {
+                    i++
+                    return ({
+                        value: 9,
+                        done: i >= 2
+                    })
+                }
+            }
+        }
+    }
+    for (let item of obj) {
+        console.log(item)
+    }
+</script>
