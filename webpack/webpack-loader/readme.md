@@ -1,0 +1,2 @@
+- babel-loader jsx -> createElemnt
+- file-loader  jpg -> base64
