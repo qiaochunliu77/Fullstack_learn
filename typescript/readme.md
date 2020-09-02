@@ -12,3 +12,4 @@ npm install react react-dom --save 运行时用到的依赖
 npm install @types/react @types/react-dom --save-dev 开发时候用到的依赖
 
 ts类型约束 在编译时就会报错 
+ tsc StackTest.ts 编译代码
