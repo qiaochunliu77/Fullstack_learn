@@ -20,5 +20,26 @@ vue - 原生支持ts
 - npm run serve 运行项目
 
 
+## 阅读element-ui源码 解析
+https://github.com/ElemeFE/element/blob/dev/packages/button/src/button.vue
+- Button组件源码分析
+    1. 定义组件
+    2. <slot></slot>
+    3. :class 动态类名 动态绑定属性
+    4. @click
+    5. type
+    6. export default
+        props  data 传值 外界传入
+        computed 计算属性 设置阈值
+        created() 生命周期
+        inject
+
+## react和vue的区别
+vue比react多了一个 计算属性的API computed，react没有
+vue API特别友好 好入门 渐进式
+react组件化 没必要
+研究vue的源码分析
+Badge 标记属性
+
 
 
