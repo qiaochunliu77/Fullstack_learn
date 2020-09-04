@@ -1,0 +1,37 @@
+<script>
+    const FULFIILED = Symbol('FULFIILED');
+    const PENDDING = Symbol('PENDDING');
+    const REJECTED = Symbol('REJECTED');
+
+    function MyPromise(fn) {
+        this.value = undefined;
+        this.status = PENDDING;
+        let self = this;
+        function resolve(value) {
+            self.value = value;
+            self.status = FULFIILED;
+            self.onfullfilled(value)
+        }
+        function reject() {}
+        fn(resolve,reject)// promise内部是同步 立即执行
+    }
+    MyPromise.prototype.then = function(onfullfilled,onrejected) {
+        if(this.status === FULFIILED) {
+            onfullfilled(this.value);
+    }
+    else if(this.status === PENDDING) {
+        this.onfullfilled = onfullfilled;
+    }
+    else{}
+    }
+    //执行
+    new MyPromise((resolve, reject) => {
+        setTimeout(() => {
+            resolve(1); //如果这里是异步setTimeout 只会拿到value为undefined
+        }, 2000)
+    })
+        // 拿到结果
+        .then((res) => {
+            console.log(res);
+        }, () => { })
+</script>

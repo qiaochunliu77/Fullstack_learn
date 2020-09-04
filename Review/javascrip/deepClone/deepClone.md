@@ -8,14 +8,14 @@ String Number symbol Boolean null undefined bignum Object
 即 原始类型的赋值会完整复制变量值，而引用类型的赋值是复制引用地址。
 
 ## 浅拷贝
-- Object.assign
+- Object.assign(target, source);(合并， 克隆)
 ```js
     let obj = {a:1,b:{m:3}}
     let obj1 = Object.assign({},obj)
     console.log(obj===obj1) //false
 ```
 ## 深拷贝
-1. 
+1. JSON.parse(JSON.stringify）
 ```js
     let w = { a: 1, b: { b: 2 } }
     let obj2 = JSON.parse(JSON.stringify(w))
@@ -25,9 +25,10 @@ String Number symbol Boolean null undefined bignum Object
 不能循环引用
 所有的constructor都指向Object
 如果对象中有函数，正则会出错
-2. 
+
+2. 递归
 ```js
-        let map = new Map()
+    let map = new Map()
     function deepClone(obj){
         let res = {}
         if(map.get(obj)) return map.get(obj)

@@ -1,0 +1,51 @@
+<script>
+    Function.prototype._call = function (obj) {
+        // 若传参为空 this默认指向window
+        const context = obj || window;
+        // this 为 函数a
+        context.fn = this; //给obj增加一个属性为函数
+        let arg = [];
+        // 将参数列表第二项以后的遍历保存
+        for (let i = 1; i < arguments.length; i++) {
+            arg.push(arguments[i])
+        }
+        context.fn(...arg)
+        let resulit = context.fn(...arg);// 传参并执行
+        delete context.fn;
+        return resulit
+    }
+
+    Function.prototype._apply = function (obj, arr) {
+        const context = Object(obj) || window;
+        context.fn = this;
+        var result;
+        // 若无参数 则直接执行
+        console.log(arr)
+        if (!arr) {
+            result = context.fn()
+        } else {
+            console.log(context.fn(...arr))
+            result = context.fn(...arr);
+        }
+        delete context.fn;
+        return result
+    }
+    var value = 2;
+
+    var obj = {
+        value: 1
+    }
+
+    function bar(name, age) {
+        // console.log(this.value);
+        return {
+            value: this.value,
+            name: name,
+            age: age
+        }
+    }
+
+    // console.log(bar._apply(null)); // 2
+
+    console.log(bar._apply(obj, ['kevin', 18]));
+</script>
