@@ -11,7 +11,7 @@
     setTimeout(function () {
         console.log('setTimeout');
     }, 0);
-    async1();
+    async1();// 立即执行 在宏任务跳回上面函数去执行
     new Promise(function (resolve) {
         console.log('promise1');
         resolve();

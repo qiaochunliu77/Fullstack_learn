@@ -1,0 +1,25 @@
+<script>
+    function Foo() {
+        Foo.a = function () {
+            console.log(1)
+        }
+        this.a = function () {
+            console.log(2)
+        }
+    }
+    // 原型链
+    Foo.prototype.a = function () {
+        console.log(3)
+    }
+    // 属性覆盖
+    Foo.a = function () {
+        console.log(4)
+    }
+    Foo.a(); //4 Foo函数还没有执行
+    let obj = new Foo();//Foo执行 
+    obj.a();//2 this是window
+    Foo.a();//1 函数没有执行前先将a=4挂上去了 再是a=1 覆盖
+    
+    
+
+</script>

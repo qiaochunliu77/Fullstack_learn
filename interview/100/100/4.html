@@ -1,0 +1,19 @@
+从面向对象聊继承 ？ Object.create
+最简单的继承方法 
+<script>
+    const person = {
+        isHuman: false,
+        printIntroduction: function() {
+            console.log(`My name is ${this.name}. Am i human? ${this.isHuman}`)
+        }
+    }
+    person.printIntroduction()
+    const l = Object.create(person);
+    l.name = 'lqc'
+    l.printIntroduction()
+    console.log(l.__proto__)
+    console.log(l.__proto__ === Object.prototype)
+    
+    let q = Object.create(null)//原型对象未定义
+    console.log(q.__proto__ === Object.prototype)
+</script>
