@@ -1,0 +1,33 @@
+<script>
+    /**
+ * Definition for a binary tree node.
+ * function TreeNode(val) {
+ *     this.val = val;
+ *     this.left = this.right = null;
+ * }
+ */
+    /**
+     * @param {TreeNode} root
+     * @return {string[]}
+     * 给定一个二叉树，返回所有从根节点到叶子节点的路径。
+     */
+    var binaryTreePaths = function (root) {
+        let res = [];
+        function help(root) {
+            let one = []
+            while (root) {
+                one.push(root)
+                if (root.left) {
+                    help(root.left)
+                }else if(root.right){
+                    help(root.right)
+                }else{
+                    return one.join('->')
+                }
+            }
+        }
+        help(root)
+        return res;
+
+    };
+</script>
