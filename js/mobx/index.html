@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="showValue"></div>
+    <script src="https://unpkg.com/mobx@5.15.6/lib/mobx.umd.js"></script>
+    <script>
+        // observerble
+        let obj = { a: 1, b: 2 }
+        // proxy defineproperty 发布订阅
+        let proxyObj = mobx.observable(obj);
+        // 数据变了 渲染页面
+        mobx.autorun(() => {
+            console.log('run1')
+            
+            document.getElementById('showValue')
+                .innerHTML = proxyObj.a;// get
+        })
+        mobx.autorun(() => {
+            console.log('run 2');
+            console.log(proxyObj.b)
+        })
+        // 收集依赖 ：知道哪个autorun 需要哪个key 
+        setInterval(() => {
+            proxyObj.a = ++proxyObj.a // set
+        }, 1000);
+        // {
+        //     XXXobj:{
+
+        //     }
+        // }
+    </script>
+</body>
+
+</html>

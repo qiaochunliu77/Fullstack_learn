@@ -1,0 +1,39 @@
+<script>
+    // 监听一个数组的push
+    // 
+    // let originPush = Array.prototype.push;
+    // Array.prototype.push = function () {
+    //     // 监听
+
+    //     return originPush
+    // }
+    let obj = { a: 1, b: 2 };
+    let handlers = [];
+    // 代理对象
+    let pObj = new Proxy(obj, {
+        get(obj, prop) {
+            console.log('get')
+            return Reflect.get(obj, prop)//相当于 恢复它的get 方法功能
+        },
+        set(obj, prop, val) {
+            console.log('set');
+            handlers.push([obj, prop]);
+            return Reflect.set(obj, prop, val)
+        }
+    });
+    pObj.a = 123;
+    console.log(pObj.b)
+    let obj = new Map();
+    // {} Map
+    function autorun(handlers) {
+        console.log(handlers)
+        for (let [obj, props] of handlers) {
+            let arr = [];
+            arr.push(prop);
+            obj.set(obj)
+        }
+    }
+    autorun(() => {
+        console.log(pObj.a)
+    })
+</script>

@@ -1,0 +1,26 @@
+<script>
+    // 1. 
+    // 反向代理：node请求 
+    // 后端不存在跨域(ngnix) 跨域是浏览器http的 
+    // 前端像后端请求数据 
+    // ngnix 80 dist 我们被 ngnix托管 
+    // 
+    // 2. 
+    // CORS
+    // 后端给你设置的五个头 
+    // Access-control-XXXX
+    // 请求被发送两次 （有些情况）
+    // 什么情况下要预检 
+    // 满足简单请求的条件不会预检
+    // 使用GET，POST,HEAD方法， 头部不能有以下字段 cotenttype的 
+    // 1. 预检请求 检测后端设置的头是否有效 options 
+    // 2. 真实请求 POST /api/XXX 
+
+    http.creServer((req,res) => {
+        res.setHeader('Access-Control-X','XXX')
+    })
+
+    // 3. 
+    // jsonp
+    
+</script>

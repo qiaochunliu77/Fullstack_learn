@@ -1,0 +1,33 @@
+<script>
+    function Foo () {
+        this.color = 'red'
+    }
+    Foo.prototype.say = function () {
+        console.log('say')
+    }
+    // 谁帮我们完成：new 
+    // 新建一个空对象 
+    // f.__proto__ === Foo.prototype 实例的proto 指向构造函数的prototype
+    let f = new Foo()
+    f.say() // f 为什么拿到 say
+
+    // 继承 === Foo.apply(this) + 方法 
+    function Bar() {
+        Foo.apply(this)// foo的this指向bar 把foo的属性继承过来
+    }
+    // Bar.prototype.__proto__ = Foo.prototype; 考虑兼容性
+    // 1. 
+    Object.setPrototypeOf(Bar.prototype,Foo.prototype);// bar指向foo
+    // 2. 
+    // {}.__proto__ = Foo.prototype return {}
+    Bar.prototype = Object.create(Foo.prototype)
+
+    // Bar.prototype = new Foo()
+    // Bar.prototype.__proto__ = new Foo()
+    // 缺点 
+    // let b = new Bar();
+    // console.log(b)
+    // b.xxx没有
+    // Bar.prototype
+    // 属性和方法分开继承
+</script>
