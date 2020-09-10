@@ -152,31 +152,3 @@ console.log(Object.prototype.toString.call(num2) == '[object Number]')  //true
 
 
 
-
-## 百应一面凉经(完全拿着我的简历来问的)
- 1. 你的项目app用的什么客户端框架
-
- 2. styled-component和传统的css的区别，
-    优点（方便复用，类名不冲突），
-    怎么写第一级元素的样式
-
- 3. 项目中的难点，分页等
-
- 4. react方面的性能优化有哪些
-
- 5. css类名和权重
-
- 6. typescript 
-
- 7. useEffect的第二个参数，作用
-
- 8. webpack的打包原理，babel
-
- 9. 你知道哪些排序：快速排序，冒泡排序的实现，时间空间复杂度
-
- 10. 讲一下七层协议
-     传输层有哪些协议 UDP,TCP
-
- 11. 用自己的话说一下三次握手和四次挥手
-
- 12. 最近影响深刻的文章 讲了一下浏览器缓存原理
