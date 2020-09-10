@@ -1,0 +1,19 @@
+
+<script>
+    function sum(a, b, c){
+        console.log(this,a+b+c)
+    }
+    Function.prototype.mybind = function (THIS, ...args){
+        let self = this
+        return function self(b){
+            
+        }
+    }
+    let sum10 = sum.bind(null,10);
+    sum10(20,30);
+
+    // let sumCurry = curry(sum)
+    // sumCurry(1)(2)(3)
+    // sumCurry(1)(2,3)
+    // sumCurry(1,2,3)
+</script>

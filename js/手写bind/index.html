@@ -1,0 +1,19 @@
+<script>
+    function Animal(name, color) {
+        this.name = name;
+        this.color = color;
+    }
+    Animal.prototype.say = function () {
+        return `I'm a ${this.color} ${this.name}`;
+    };
+    // bing === mybind 
+    const Cat = Animal.mybind(null, 'cat');
+    const cat = new Cat('white');
+    // Cat 内部 指向 cat 
+    // 当两个都想改变this 
+    // new 的 优先级 大于 bind
+    // new > bind/call/apply > obj.XXXX
+    if (cat.say() === 'I\'m a white cat' && cat instanceof Cat && cat instanceof Animal) {
+        console.log('success');
+    }
+</script>
