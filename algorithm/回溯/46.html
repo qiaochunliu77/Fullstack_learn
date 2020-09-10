@@ -1,0 +1,41 @@
+<script>
+    /**
+ * @param {number[]} nums
+ * @return {number[][]}
+ * 给定一个 没有重复 数字的序列，返回其所有可能的全排列。
+ * result = []
+function backtrack(路径, 选择列表):
+    if 满足结束条件:
+        result.add(路径)
+        return
+    
+    for 选择 of 选择列表:
+        做选择
+        backtrack(路径, 选择列表)
+        撤销选择
+ */
+
+    // backTrack的公式
+    // 组合的题目 
+    // 暴力枚举
+    // 回溯
+    var permute = function (nums) {
+        var res = []
+        function backtrack(nums, path = []) {
+            if (path.length === nums.length) {
+                res.push(path.slice(0))
+                return;
+            }
+            for (let n of nums) {
+                if (path.includes(n)) continue
+                path.push(n)
+                backtrack(nums, path);
+                path.pop()
+            }
+            // return path
+        }
+        backtrack(nums)
+        return res
+    };
+    console.log(permute([1, 2, 3]))
+</script>
