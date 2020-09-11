@@ -3,15 +3,26 @@
     function sum(a, b, c){
         console.log(this,a+b+c)
     }
-    Function.prototype.mybind = function (THIS, ...args){
+    // bind 的参数一次可以传一个或者多个 可以传两次
+    Function.prototype.mybind = function (THIS, ...args1){
         let self = this
-        return function self(b){
-            
+         function test(...args2){
+            let args = args1.concat(args2);
+            // 如果被new 他的this应该指向实例  怎么判断一个函数 被 new
+            // cat instanceOf Cat
+            // let isNewCall = this instanceof test;
+            // new.target es6 判断被谁new
+            let isNewCall = new.target === test;
+            return self.apply(isNewCall ? this : THIS, args) 
         }
+        // 谁继承谁 
+        test.prototype = Object.create(this.prototype)
+        return test
     }
-    let sum10 = sum.bind(null,10);
-    sum10(20,30);
+    let sum10 = sum.mybind(null,10,20);
+    console.log(sum10(30))
 
+    // 与柯里化相似
     // let sumCurry = curry(sum)
     // sumCurry(1)(2)(3)
     // sumCurry(1)(2,3)
