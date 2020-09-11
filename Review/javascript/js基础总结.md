@@ -8,7 +8,7 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 - 防抖 文本框输入 n秒只会执行一次 每次触发事件会重新计时
   
   节流 滚动事件监听 规定事件内再次触发事件 时间间隔内执行
-  
+     
   
   立即执行/非立即执行   时间戳/定时器
   

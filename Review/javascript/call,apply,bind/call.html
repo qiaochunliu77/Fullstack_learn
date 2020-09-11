@@ -1,4 +1,5 @@
 <script>
+    // call
     Function.prototype._call = function (obj) {
         // 若传参为空 this默认指向window
         const context = obj || window;
@@ -15,6 +16,7 @@
         return resulit
     }
 
+    // apply
     Function.prototype._apply = function (obj, arr) {
         const context = Object(obj) || window;
         context.fn = this;
@@ -48,4 +50,20 @@
     // console.log(bar._apply(null)); // 2
 
     console.log(bar._apply(obj, ['kevin', 18]));
+
+
+    // bind
+    function sum(a, b, c){
+        console.log(this,a+b+c)
+    }
+    // bind 的参数一次可以传两个或者一个 可以传两次
+    Function.prototype.mybind = function (THIS, ...args1){
+        let self = this
+        return function (...args2){
+            let args = args1.concat(args2);
+            return self.apply(THIS, args)
+        }
+    }
+    let sum10 = sum.mybind(null,10);
+    console.log(sum10(20,30))
 </script>
