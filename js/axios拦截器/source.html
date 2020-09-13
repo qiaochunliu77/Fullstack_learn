@@ -1,0 +1,28 @@
+<script>
+    let chains = [
+        // 请求拦截器
+        () => {
+            console.log('res')
+            return {}
+        },
+        () => {
+            let xhr = new XMLHttpRequest();
+            console.log('axios 发出真实请求 ')
+            return {code:0}
+        },
+        // 响应拦截器
+        (config) => {
+            console.log('req')
+            return {}
+        }
+    ]
+    let p = Promise.resolve();
+    while(chains.length){
+        p = p.then(chains.shift());
+    }
+    // axios 跨平台 
+    // 前端 xhr = xhr + node(http模块) 同构 
+    // 后端node怎么发http请求
+    // http.request
+    // 了解axios的实现 
+</script>
