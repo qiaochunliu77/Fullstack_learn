@@ -12,17 +12,17 @@
             self.status = FULFIILED;
             self.onfullfilled(value)
         }
-        function reject() {}
-        fn(resolve,reject)// promise内部是同步 立即执行
+        function reject() { }
+        fn(resolve, reject)// promise内部是同步 立即执行
     }
-    MyPromise.prototype.then = function(onfullfilled,onrejected) {
-        if(this.status === FULFIILED) {
+    MyPromise.prototype.then = function (onfullfilled, onrejected) {
+        if (this.status === FULFIILED) {
             onfullfilled(this.value);
-    }
-    else if(this.status === PENDDING) {
-        this.onfullfilled = onfullfilled;
-    }
-    else{}
+        }
+        else if (this.status === PENDDING) {
+            this.onfullfilled = onfullfilled;
+        }
+        else { }
     }
     //执行
     new MyPromise((resolve, reject) => {

@@ -99,7 +99,7 @@ console.log(Object.prototype.toString.call(num2) == '[object Number]')  //true
 
 ```
 函数组件
-1. 内部没有state私有的数据，
+1. 内部没有state私有的数据，useState也是自己私有的
 	无状态组件 没有自己的生命周期
 2. 只有props来接受外界传递过来的数据
 没有this
@@ -142,9 +142,54 @@ console.log(Object.prototype.toString.call(num2) == '[object Number]')  //true
 
 ```
 
+### 面向对象语言的特征
+
+封装，继承，多态 
+
+### 静态属性
+
+```
+1. class es6
+	class A () {
+	static a = 1;// 继承的时候不会继承到静态属性
+				// 继承的时候是继承 this上的属性和方法 
+}
+2. function es5
+function A () {}
+A.a = 1;// 静态属性
+A.getIntialProps = () => {};// 静态属性 会直接执行 
+```
+
+#### 定义一个字符串，对这个字符串使用typeof，结果返回什么？既然返回结果是string，而属性和方法是对象才有的，那为什么会在我定义的字符串上可以使用split，join()，length等方法和属性？
+
+```
+let a = '123';
+// a 上面就有split等方法了
+// 其实在第一步有隐式类型转换的过程
+=== new String(123)
+```
+
+### 前端工程化，代码模块化带来的问题
+
+```
+开发 测试 上线 自动化
+```
 
 
-### 10. 为什么要用虚拟dom
+
+### react和vue改变数据的方式，diff算法的差异
+
+```
+vue:数据和页面双向绑定，只要数据变了页面自动更新,vue知道页面依赖哪些数据 不需要domdiff 只需要在单个组件进行diff
+
+react:通过setState改变 从根节点开始diff
+
+时间复杂度：都是O(n),vue空间复杂度更高，因为要对数据跟页面由一个依赖关系的收集
+```
+
+
+
+
 
 
 

@@ -28,12 +28,12 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 - let const var的区别
 
     - var 是函数作用域，let/const 块级作用域，比如 for循环，var定义i，在for外部也能使用，let只能在for内部。
-
-    - var存在变量提升 ，在变量未定义之前使用值为undefined，let/const 不存在变量提升，在未定义之前存在`暂时性死区`
+    - var存在变量提升 ，在变量未赋值之前使用值为undefined，let/const 不存在变量提升，在未赋值之前存在`暂时性死区`
     - const 赋值必须初始化，否则syntaxError
-    - var可以被重新定义，let不可以（强行定义则报错：变量已经被定义）
-    - const不可以重复声明，若声明的变量是基本数据类型，则不能修改，若为引用数据类型，可以修改他的数据结构(属性)；
-    - var、let 和 const 区别的实现原理是什么？ var会预先分配内存空间，等到执行时再存储变量。let不会预先分配，而是在栈内存找是否已经存在这个变量。const同
+    - var可以被重新声明，let / const 不可以重复声明
+    - let 值可以修改， const 不可以修改。
+    - 但若const 为引用类型 ，若为引用数据类型，保存的是对象的指针，给对象增加属性并不影响；
+    - var、let 和 const 区别的实现原理是什么？ var会预先分配内存空间，等到执行时再存储变量。let / const 不会预先分配，而是在栈内存找是否已经存在这个变量。
     - 解答：https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/133
 
 - 箭头函数与普通函数的区别

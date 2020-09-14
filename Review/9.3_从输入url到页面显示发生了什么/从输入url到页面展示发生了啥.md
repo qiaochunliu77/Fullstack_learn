@@ -135,6 +135,10 @@
 
 * 浏览器自身有优化，它会维持一个待更新队列，类似批处理的方式来优化，只有当队列中的任务或者时间间隔达到一个阈值，浏览器就会将队列清空，这样可以把多次回流和重绘变成一次。但是如果触发了同步布局事件，浏览器就会强制flush这个队列（立即清空队列）。所以我们要避免触发同步布局事件，我们熟悉的有如下：
 > getBoundingClientRect、getComputedStyle()、offsetTop、scrollWidth、`clientWidth`、
+若待更新队列为空，触发offsetWidth也不会触发重排。
+
+![image-20200913144914877](C:\Users\ASUS\AppData\Roaming\Typora\typora-user-images\image-20200913144914877.png)
+
 #### 如何减少回流和重绘
 
 - 最小化重排重绘
