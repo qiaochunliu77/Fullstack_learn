@@ -1,268 +1,103 @@
-## 学习Promise基础及手写Promise
+## 手写一个 Promise
 
-### 什么是Promise
+### 什么是 Promise
 
-> 所谓`Promise`，就是里面保存着某个未来才会结束的事情的**结果**的一个**容器**。`Promise`是一个对象，从它可以获取异步操作的消息。因为`Promise`一般是一个异步操作。
+Promise 对象用于表示一个异步操作的最终完成(或失败)，及其结果值。
 
-- Promise是ES6引入的新特性，旨在解决回调地狱。
+Promise 有以下几种状态
 
-- Promise对象有以下两个特点：
+- pending：初始状态，既不是成功，也不是失败。
+- fulfilled：意味着操作成功完成。
+- rejected：意味着操作失败。
 
-1. 对象的状态不受外界影响。
+默认：
 
-   `Promise`对象代表一个异步操作，有三种状态：
+- 初始状态 pending -> 调用 resolve fulfilled  
+- 初始状态 pending -> 调用 reject rejected 
 
-   - `pending`(进行中)
-   - `fulfilled`(已成功)
-   - `rejected`(已失败)
+只要这两种情况发生， 状态就凝固了， 不会再变了。
 
-   只有异步操作的结果可以决定当前是哪一种状态，任何其他操作都无法改变这个状态。
+### Promise 的优缺点
 
-2. 一旦状态改变，就不会再改变，任何时候都可以得到这个结果。
+#### 优点
 
-   `Promise`对象的状态改变，只要两种可能：
+1. 防止回调嵌套，回调地狱
+2. 链式调用。
 
-   - pending  ->  fulfilled
-   - pending  ->  rejected
+#### 缺点
 
-- 优点：有了`Promise`对象，就可以将异步操作以同步操作的流程表达出来，避免了层层嵌套的回调函数
+ 1. `.then` 实际上也是返回一个promise， 多次调用消耗性能。
 
-- 缺点：1.  一旦创建就无法停止；2. promise处于pedding状态时，无法确定它是成功还是失败；3. 如果不设置回调函数，promise内部的错误不会反应到外部；4. then实际也是返回一个promise，多次调用耗性能
+ 2. `Promise` 一旦创建它就会立即执行，无法中途取消。
 
-- `Promise`的基本用法
+ 3. 当 Promise 处于 pending 状态时，无法确定它是成功还是失败。
 
-  语法：new Promise( function(resolve, reject) {...} /* executor */  );
+ 4. 如果不设置回调函数，Promise 内部的错误就不会反映到外部
 
-```javascript
-new MyPromise((resolve, reject) => {//同步
-    resolve(1); //如果这里是异步setTimeout 只会拿到value为undefined
-})
-.then((res) => {//异步
-   console.log(res); //1
-}, () => {})//这是then的第二个参数，一般不用可不加
-```
-
-`Promise`构造函数接受一个函数作为参数，函数的参数为`resolve`,`reject`，这里我写的是箭头函数，函数名省略。
-
-这两个参数也是函数由JavaScript引擎提供。
-
-- `resolve`函数的作用：将`Promise`对象的状态从“未完成”到“成功” (`pending`  ->  `resolved`)，异步成功时调用，并将异步的结果，作为参数传递出去。
-
-- `reject`函数的作用：将`Promise`对象的状态从“未完成”到“失败” (`pending`  ->  `rejected`)，异步失败时调用，并将异步报出的错误，作为参数传递出去。
-
-### then()方法
-
-> Promise.prototype.then()：
->
->  `then() `方法返回一个 [`Promise`](https://developer.mozilla.org/zh-CN/docs/Web/API/Promise)。它最多需要有两个参数：Promise 的成功(`onFulfilled`接受)和失败(`onRejected`拒绝)情况的回调函数。
-
-`then`方法的第一个参数是`resolved`状态的回调函数，第二个参数（可选）`是rejected`状态的回调函数。
-
-**then方法返回一个新的Promise** ，而不是返回this
-
-提前预热：理解一下同步和异步的`Promise`的实现过程
-
-```javascript
-function Promise(fn) {
-   function resolve(a) {
-      console.log(a);
-   }
-   fn(resolve)
-}
-Promise((resolve) => {
-   resolve(3333)
-})
-```
-
-### 手写Promise
-
-#### 实现同步的Promise
-
-实现的思想：
-
-1. 构造一个函数的实例 MyPromise，
-
-2.  构造函数MyPromise传入的参数，也是构造函数fn,
-
-3.  fn里面依然是接收两个函数 resolve,reject 就把它们定义在外面
-
-4.  resolve构造函数里面 拿到正确的信息， resolve的值vlaue只能在内部拿到
-
-5.  then 把resolve成功的结果, 放到 onFulfilled()里面
-
-```javascript
-//同步的Promise
-function MyPromise(fn)	{
-    this.value = undefined;
-    let self = this; //self永远指向this
-    function resolve(value) { //拿到正确的信息
-        self.value = value;
-        console.log(value);
-    }
-    function reject() {} //拿到错误的信息
-    fn(resolve, reject);  //回调 立即调用 拿到值
-}
-MyPromise.prototype.then = function(onFulfilled, onRejected) {
-    onFulfilled(this.value); //resolve的结果
-}
-
-//测试
-new MyPromise((resolve, reject) => {
-    reslove(1);
-})
-.then((res) => {
-    console.log(res);
-},() => {})
-```
-
-#### 实现异步的Promise
-
-如果在上面同步的测试代码中放一个`  setTimeout `就拿不到`resolve`的值，会输出`undefined`，因为并没有被立即调用。因此要实现 状态变为成功的时候，就可以拿到值再调用。因此在同步的基础上写一个异步的`promise`版本，需要加三个状态`pending`、 `fulfilled` 、`rejected`来更改状态。
-
-```javascript
-//异步的Promise 36分钟
-//初始化状态 并且是唯一值
-const PENDING = Symbol('PENDING');
-const FULFILLED = Symbol('FULFILLED');
-const REJECTED = Symbol('REJECTED');
-function MyPromise(fn)	{
-    this.value = undefined;
-    this.status = PENDING;//默认状态 PENDING
-    let self = this; 
-    function resolve(value) { 
-        self.value = value;
-        self.status = FULFILLED;
-        console.log(value);
-        self.onFulfilled(value);
-    }
-    function reject() {} //拿到错误的信息
-    fn(resolve, reject);  //回调 立即调用 拿到值
-}
-MyPromise.prototype.then = function(onFulfilled, onRejected) {
-    if(this.status === FULFILLED) {
-        onFulfilled(this.value);
-    }
-    else if(this.status === PENDING) {
-        this.onFulfilled = onFulfilled;
-    }
-    else{}
-}
-
-//执行
-new MyPromise((resolve, reject) => {
-    setTimeout(() => {
-            resolve(1); //如果这里是异步setTimeout 只会拿到value为undefined
-    },2000)
-})
-// 拿到结果
-.then((res) => {
-    console.log(res);
- },() => {})
-```
-
-### 手写Promise.all()
-
-手写实现一个 Promise.all，**接收一个 promise对象的数组作为参数**，重点在于`count`成功的数量是不是数组的个数，是否promise全部执行完毕。
-
-```javascript
-	//手写实现 Promise.all
-    // 接收一个 promise对象的数组作为参数, 有一个失败 则失败
-    let p1 = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(1);
-        }, 1000);
+    ```js
+    let promise = new Promise(() => {
+        throw new Error('error')
     });
-    let p2 = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(2);
-        }, 2000);
-    });
-    let p3 = new Promise((resolve, reject) => {
-        setTimeout(() => {
-            resolve(3);
-        }, 3000);
-    });
-    //Promise.myAll 接收 数组作为参数
-    Promise.myAll = function (promiseArr) {
-        return new Promise((resolve, reject) => {
-            //什么时候都结束
-            let count = 0; //完成了几个 count = promiseArr.length 长度相等 说明结束
-            let res = []; //填充数组
-            for (let i = 0; i < promiseArr.length; i++) {
-                let p = promiseArr[i];
-                p.then((r) => {
-                    //结束
-                    count++;
-                    res[i] = r;
-                    if (count === promiseArr.length) {
-                        //所有的 promise 都成功 resolve成功的结果
-                        resolve(res);
-                    }
-                })
-                .catch(reject);
-            }
+    console.log(2333333);
+    ```
+
+    通常称为 '吃掉错误'。
+
+### 约定
+
+- 在本轮事件循环运行完成之前， 回调函数是不会被调用的。
+- 即使异步操作已经完成 (成功或失败)， 在这之后通过 then() 添加的回调函数也会被调用
+- 通过多次调用 then() 可以添加多个回调函数，它们会按照顺序执行。
+
+### 链式调用
+
+then() 函数会返回一个和原来不同的新的Promise
+
+### 组合
+
+Promise.resolve() 和 Promise.reject() 是手动创建一个已经 resolve 或者 reject 的 Promise 快捷方法。
+
+Promise.all() 和 Promise.race() 是并行运行两个异步操作的两个组合式工具
+
+### 手写 Promise
+
+```js
+    // 三种状态：PENDING、FULFILLED、REJECTED
+    const PENDING = Symbol('PENDING')
+    const FULFILLED = Symbol('FULFILLED')
+    const REJECTED = Symbol('REJECTED')
+
+    function MyPromise(fn) {
+        this.value = undefined; // 传递 resolve 完成的结果 放在 this 上以便于 其他函数 都能访问到
+        this.status = PENDING // 默认状态
+        this.onFulfilled = () => {}; // 成功时候的回调
+        let self = this; // 防止 this 丢失
+
+        function resolve(value) {
+            self.value = value;
+            self.status = FULFILLED; // 调用 resolve 表明成功
+            self.onFulfilled(value); // 跑到这里来调用 onFulfilled
+            // console.log(value);
+        }
+
+        function reject(value) {}
+        fn(resolve, reject)
+    }
+    MyPromise.prototype.then = function (onFulfilled, onRejected) {
+        // onFulfilled( resolve 的结果) 这里是立即调用的 没有等待 resolve 调用 就执行 所以为 undefined
+        if (this.status === FULFILLED) onFulfilled(this.value)
+        else if (this.status === PENDING) {
+            this.onFulfilled = onFulfilled; // onFulfilled 赋给 构造函数成功时的回调
+        } else onRejected()
+    }
+
+    // 测试
+    new MyPromise((resolve, reject) => {
+            setTimeout(() => {
+                resolve(1) // this 指向哪 看在哪里调用 普通调用 指向 window
+            }, 2000)
         })
-    }
-    Promise.myAll([p1, p2, p3])
-        .then(console.log)
+        .then((res) => {
+            console.log(res)
+        }, () => {})
 ```
-
-
-
-### 用Promise对象实现的 Ajax
-
-![](C:\Users\Lenovo\Desktop\ajax.png)
-
-```javascript
-   // 手写一个 ajax 函数
-    function ajax({ url, method, data, timeout }) {
-        return new Promise((resolve, reject) => {
-            let xhr = new XMLHttpRequest();
-            xhr.timeout = timeout;
-            xhr.open(method, url, true);
-            // xhr.send();
-            xhr.ontimeout = function() {
-                reject('timeout');
-            }
-
-            //每当 readyState 改变时，就会触发 onreadystatechange 事件。
-            // onreadystatechange 服务器响应已做好被处理的准备
-            xhr.onreadystatechange = function() {
-                // 当 readyState 等于 4 且状态为 200 时，表示响应已就绪：
-                if(xhr.readyState === 4) {
-                    if((xhr.status >= 200 && xhr.status < 300) || xhr.status === 304) {
-                        resolve(xhr.response);
-                    }
-                }
-                else{
-                    reject('response error');
-                }
-            }
-            // xhr.onload
-            // 数据
-            // GET 数据拼接到 url 后面
-            // POST 要看 Content-type
-            
-            // 思考：Content-type 常见的类型有哪些，每个类型对数据的要求格式是怎么样的
-            //Content-type: application/json 符号json(key-value) {a:1,b:2}
-            //Content-type:  application/x-www-form-url-encode a=1&b=2
-            //Content-type: text/plain 字符串 a=1,b=2
-            //Content-type: form-data 文件(包含大量的非ASCII字符)
-            xhr.send(JSON.stringify(data));
-        })
-    }
-    ajax({
-        method:'get',
-        url:'http://neteasecloudmusicapi.zhaoboy.com/search?keywords=%E6%B5%B7%E9%98%94%E5%A4%A9%E7%A9%BA',
-        timeout:5000
-    }).then(console.log).catch(console.log)
-```
-
-
-
-### 参考文档
-
-史上最易读懂的 Promise/A+ 完全实现:https://zhuanlan.zhihu.com/p/21834559
-
-ES6:https://es6.ruanyifeng.com/#docs/promise
-

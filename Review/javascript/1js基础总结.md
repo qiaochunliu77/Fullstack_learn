@@ -8,7 +8,7 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 - 防抖 文本框输入 n秒只会执行一次 每次触发事件会重新计时
   
   节流 滚动事件监听 规定事件内再次触发事件 时间间隔内执行
-     
+  
   
   立即执行/非立即执行   时间戳/定时器
   
@@ -23,8 +23,6 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 
 ## es6
 
-- Promise
-
 - let const var的区别
 
     - var 是函数作用域，let/const 块级作用域，比如 for循环，var定义i，在for外部也能使用，let只能在for内部。
@@ -34,15 +32,32 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
     - let 值可以修改， const 不可以修改。
     - 但若const 为引用类型 ，若为引用数据类型，保存的是对象的指针，给对象增加属性并不影响；
     - var、let 和 const 区别的实现原理是什么？ var会预先分配内存空间，等到执行时再存储变量。let / const 不会预先分配，而是在栈内存找是否已经存在这个变量。
-    - 解答：https://github.com/Advanced-Frontend/Daily-Interview-Question/issues/133
+
+      
 
 - 箭头函数与普通函数的区别
 
-    1.  箭头函数更加简洁
-    2. 每个执行期上下文中都有一个this，箭头函数不会创建自身的执行期上下文，也就没有自身的this，它的this，取决于定义时所在的对象（也就是函数外层第一个普通函数的this），而不是使用时所在的对象。
-    3.  不能作为构造函数被new，因为没有prototype原型对象，也没有自己的this，call、apply无法改变箭头函数指向
+    1. 箭头函数更加简洁
+
+    2. 每个函数 执行期上下文中都有一个this，箭头函数不会创建自身的执行期上下文，也就没有自身的this，它的this，取决于定义时所在的对象（也就是函数外层第一个普通函数的this），而不是使用时所在的对象。
+
+       也就是 this是固定的，而普通函数是可变的
+
+    3. 不能作为构造函数被new，因为没有prototype原型对象，也没有自己的this，call、apply无法改变箭头函数指向
+
     4. 没有arguements对象，可用rest参数替代
+
     5. 不能用作`Generator`函数，不可以使用yield关键字
+
+    **不能使用箭头函数的场景**
+
+    箭头函数使this 从 动态变为静态，下面场合不能使用：
+
+    - 用来定义对象的方法，且这个方法要用到this
+    - 需要动态this的时候
+    - 如果函数体很复杂，有许多行，或者函数内部有大量读写操作，也不应该使用箭头函数，而是使用普通函数，提高代码可读性。
+
+    
 
 -  `async` 声明一个函数是异步的 会返回一个**立即resolve**的promise对象,return返回的值，会成为then回调的参数，若无返回值则为undefined。
 
@@ -74,16 +89,6 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
     // 你好， 王二麻子
     ```
 
-    
-
-    
-
--  
-
-
-
-
-
 ## Promise
 
 回调函数的问题：
@@ -98,7 +103,7 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 
 			2. 只能有一个完成值，解决：数组解构
    			3. 一旦创建，无法取消
-            			4. 无法得知pendding的状态
+                	4. 无法得知pendding的状态
 
 promise内部 同步
 
@@ -106,99 +111,35 @@ then 异步
 
 all(全部执行成功才resolve)，race（有一个就resolve), 限流（优化，只能同时进行？个）
 
-## webpack
+## 冒泡 
+ event.currentTarget事件绑定给谁指向谁
+ event.target鼠标点中哪个元素指向谁
 
-使用create-react-app脚手架内置的webpack配置，再用npm run build打包。若要修改，则用npm run eject(删除.git | 代码提交)暴露配置文件，再进行修改。
+## Link引入的css和import引入的css有啥区别
+link html标签 
+@import './a.css' css 语法
+1. link引入的css可以同时加载，
+@import 必须在页面加载完再加载 页面都加载完了又进css 页面会发生抖动
+2. link是html 标签， 没有兼容性问题
+@import是css2之后的 
+3. js可以通过dom操作link 不能操作import 
 
-**## webpack优化**
+## async defer
 
-去npm官网搜，按照提示做。
+script标签上的 async 
+1.<script src="script.js"></script>
+立即加载
+2.<script async src="script.js"></script>
+异步
+3.<script defer src="myscript.js"></script>
+延迟
 
-**### 上线时候的优化**
+##  link a 
 
-\1. 项目体积较大，可以将第三方库(react/react-dom)等独立出来单独加载，这样就不用每次打开的时候都重新加载，提高首屏加载速度。
-
-externals
-
- // externals: {
-
- //  react: 'React'
-
- // },
-
-https://webpack.js.org/configuration/externals/#root
-
-\2. webpack将多个模块打包之后的代码集合称为chunk，为了将一些很少变化的库(react,redux,lodash)与业务代码分开，或者是一些在不同入口公共使用的公共模块，我们用splitChunk将他们分开打包。
-
-webpack4之后
-
-optimization.splitChunks: {
-
-   chunks: 'all',  // all 所有的 import // async import() 
-
-   cacheGroups: {
-
-​    vendors: {
-
-​     test: /[\\/]node_modules[\\/]/,
-
-​    },
-
-   }
-
-  }
-
-\3. style.loader 让css被包在style标签中插入到js中，js和css混在一起，这样会导致js没加载完，页面也没有css样式。
-
-每个js文件中的css独立打包，防止样式命名冲突。
-
-优点：按需加载，独立打包。
-
-webpack4之后 MiniCssExtractPlugin.loader 防止命名冲突
-
-https://www.npmjs.com/package/mini-css-extract-plugin
-
-\4. 图片压缩 imagemin plugin for webpack
-
-new ImageminPlugin({ test: /\.(jpe?g|png|gif|svg)$/i })
-
-**### 提升打包速度** 
-
-并行打包HappyPack。 
-
-webpack是node写的工具，但是node是单线程的。不能并发处理，只能一个个处理。在我自己写的小demo中没有得到检验，反而打包好像更慢了。适用于大型项目。
-
-HappyPack的基本原理是将这部分任务分解到多个子进程中去并行处理，子进程处理完成后把结果发送到主进程中。
-
-https://www.npmjs.com/package/happypack
+<a href = '' onClick={}>
+Link === a
+link没有默认跳转 转成historyapi上面的  无刷新的 
 
 
 
-**### DLL**
-
-预先把动态链接库打包一次，每次只需要引入。
-
-这样可以把第三方基础库分离，即每次只打包项目自身的业务代码。
-
-新建webpack.dll.config.js
-
-package.json "dll":"webpack --config webpack.dll.js"
-
-先运行npm run dll
-
-
-
-## react
-
-fiber
-
-hooks
-
-redux
-
-
-
-
-
-## 12
 
