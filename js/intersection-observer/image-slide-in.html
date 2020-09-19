@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!-- <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -66,7 +66,7 @@
             quod quas laborum nam! Fuga ad tempora in aspernatur pariatur fugit quibusdam dolores sunt esse magni, ut,
             dignissimos.</p>
 
-        <img src="https://yanxuan-item.nosdn.127.net/9f0b1f040c8094c5d8df15dbc7deed89.png?imageView&thumbnail=260x260&quality=95"
+        <img src='' data-origin="https://yanxuan-item.nosdn.127.net/9f0b1f040c8094c5d8df15dbc7deed89.png?imageView&thumbnail=260x260&quality=95"
             class="align-left slide-in">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptates, deserunt facilis et iste corrupti omnis
@@ -83,7 +83,7 @@
             dolorum
             expedita quam, nesciunt</p>
 
-        <img src="https://yanxuan-item.nosdn.127.net/2cc7095eacc2c0a36f38c2cb0e1aabf8.png?imageView&amp;thumbnail=260x260&amp;quality=95"
+        <img src='' data-origin="https://yanxuan-item.nosdn.127.net/2cc7095eacc2c0a36f38c2cb0e1aabf8.png?imageView&amp;thumbnail=260x260&amp;quality=95"
             class="align-right slide-in">
 
         <p> at provident praesentium atque quas rerum optio dignissimos repudiandae ullam illum quibusdam. Vel ad error
@@ -122,14 +122,14 @@
             tenetur, voluptate doloremque officiis dicta quaerat voluptatem rerum natus magni. Eum amet autem dolor
             ullam.</p>
 
-        <img src="https://yanxuan-item.nosdn.127.net/2974c63cc07d3c9a8a65cf5743526ff1.png?imageView&amp;thumbnail=260x260&amp;quality=95"
+        <img src='' data-origin="https://yanxuan-item.nosdn.127.net/2974c63cc07d3c9a8a65cf5743526ff1.png?imageView&amp;thumbnail=260x260&amp;quality=95"
             class="align-left slide-in">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae
             dolor
             vero placeat esse sit! Quibusdam saepe aperiam explicabo placeat optio, consequuntur nihil voluptatibus
             expedita
-            quia vero perferendis, deserunt et incidunt eveniet <img src="http://unsplash.it/200/200"
+            quia vero perferendis, deserunt et incidunt eveniet <img src='' data-origin="http://unsplash.it/200/200"
                 class="align-right slide-in"> temporibus doloremque possimus facilis. Possimus labore, officia dolore!
             Eaque
             ratione saepe, alias harum laboriosam deserunt laudantium blanditiis eum explicabo placeat reiciendis labore
@@ -167,7 +167,7 @@
             eos
             veritatis neque.</p>
 
-        <img src="https://yanxuan-item.nosdn.127.net/e9ef2e929a875693e9d36f85cb1f20ee.png?imageView&amp;thumbnail=260x260&amp;quality=95"
+        <img src='' data-origin="https://yanxuan-item.nosdn.127.net/e9ef2e929a875693e9d36f85cb1f20ee.png?imageView&amp;thumbnail=260x260&amp;quality=95"
             class="align-right slide-in">
 
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Distinctio maiores adipisci quibusdam repudiandae
@@ -256,21 +256,93 @@
             if(img.isIntersecting){
                  //加active类名
                  const target= img.target;
-                 target.classList.add('active')
-                //  console.log(img)
+                // target.classList.add('active')
+                target.src = img.target.dataset.origin;
+                 console.log(img)
                 observer.unobserve(target);
             }
-            // else{
-            //     const target= img.target;
-            //      target.classList.remove('active')
-            // }
         })
+    },{
+        rootMargin:'0px 0px 100px 0px',
+        // root: document.querySelector('.site-wrap')
     })
     const allimages = document.querySelectorAll('img')
-    allimages.forEach(function (image){
-        observer.observe(image)
-    })
+    allimages.forEach((image) =>observer.observe(image))
 </script>
 </body>
 
+</html> -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .imgWarp {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1000px;
+    }
+    .lazyload {
+      margin-top: 30px;
+      display: inline-block;
+      width: 120px;
+      height: 120px;
+      position: relative;
+    }
+    .lazyload:after {
+      position: absolute;
+      content: "";
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: block;
+      background-color: #ccc;
+    }
+  
+</style>
+<body>
+    <div class="imgWarp">
+      <img alt="加载"
+           class="lazyload"
+           src=""
+           data-origin="https://ss0.bdstatic.com/94oJfD_bAAcT8t7mm9GUKT-xh_/timg?image&quality=100&size=b4000_4000&sec=1567391611&di=25036e46ab595855036662439ff9aeff&src=http://b-ssl.duitang.com/uploads/blog/201312/14/20131214145220_QQANN.jpeg">
+      <img alt="加载"
+           class="lazyload"
+           src=""
+           data-origin="https://ss0.bdstatic.com/70cFuHSh_Q1YnxGkpoWK1HF6hhy/it/u=3617103641,169754897&fm=26&gp=0.jpg">
+      <img alt="加载"
+           class="lazyload"
+           src=""
+           data-origin="https://ss3.bdstatic.com/70cFv8Sh_Q1YnxGkpoWK1HF6hhy/it/u=2942419345,2278127334&fm=26&gp=0.jpg">
+    </div>
+
+<script>
+
+
+function Observer () {
+      let images = document.querySelectorAll(".lazyload");
+      let observer = new IntersectionObserver(entries => {
+        entries.forEach(item => {
+          if (item.isIntersecting) {
+            item.target.src = item.target.dataset.origin; // 开始加载图片,把data-origin的值放到src
+            observer.unobserve(item.target); // 停止监听已开始加载的图片
+          }
+        });
+      },
+        {
+          rootMargin: "0px 0px -100px 0px" // 交叉过视图的100，才开始派发事件
+        }
+      );
+      images.forEach(item => observer.observe(item));
+    }
+    Observer()
+</script>
+
+
+</body>
 </html>
