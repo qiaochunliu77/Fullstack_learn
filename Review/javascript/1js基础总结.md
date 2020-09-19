@@ -23,6 +23,10 @@ String Number symbol Boolean null undefined bignum Object 基本 引用
 
 ## es6
 
+for of  
+
+
+
 - let const var的区别
 
     - var 是函数作用域，let/const 块级作用域，比如 for循环，var定义i，在for外部也能使用，let只能在for内部。
