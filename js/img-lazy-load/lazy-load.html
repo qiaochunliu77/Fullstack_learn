@@ -31,10 +31,13 @@
     function lazyLoad() {
       const allImages = document.querySelectorAll("img[lazyload]");
       let viewHeight = window.innerHeight;
+      console.log(viewHeight,'vewHeight')
       console.log('需要判断懒加载的图片数量', allImages.length);
       for (let img of allImages) {
         // 有没有 出现
         let size = img.getBoundingClientRect();
+        // getBoundingClientRect.top 相对于视口的位置 
+        console.log(size,'size')
         // 限制超出视窗之下内容  && 限制超出视窗之上的内容 
         if (size.top < viewHeight && size.bottom > 0) {
           // 出现在视窗范围之内
@@ -47,8 +50,8 @@
           // 知道加载完
           imgObj.onload = function() {
             img.src = originalSrc;
-            // 已经加载过的图片不用管它了，之后的滚动都不考虑这些元素
-            img.removeAttribute('lazyload')
+            58/ 已经加载过的图片不用管它了，之后的滚动都不考虑这些元素
+            \img.removeAttribute('lazyload')
           }
         }
       }
