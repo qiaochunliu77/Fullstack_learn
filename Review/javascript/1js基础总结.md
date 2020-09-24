@@ -1,7 +1,4 @@
-## js数据类型
 
-js八种数据类型分别是
-String Number symbol Boolean null undefined bignum Object 基本 引用
 
 ## js手写基础
 
