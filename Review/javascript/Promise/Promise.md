@@ -81,7 +81,7 @@ Promise.all() 和 Promise.race() 是并行运行两个异步操作的两个组�
         }
 
         function reject(value) {}
-        fn(resolve, reject)
+        fn(resolve, reject)// 立即执行
     }
     MyPromise.prototype.then = function (onFulfilled, onRejected) {
         // onFulfilled( resolve 的结果) 这里是立即调用的 没有等待 resolve 调用 就执行 所以为 undefined

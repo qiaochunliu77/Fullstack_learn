@@ -1,0 +1,24 @@
+<script>
+    // 事件触发后 等待n秒执行 如果在这n秒 重新触发 那么会重新计时
+    function dedounce(func, wait){
+        let time ;
+        return function (...args) {
+            if(time) clearTimeout(time)
+            time = setTimeout(() => {
+                func.apply(this,args)
+            },wait)
+        }
+    }
+
+    // 在一定时间内 只会触发一次 如果在这段事件 多次触发了只有一次生效 
+    function  throtteld(func, wait) {
+        let pre = 0;
+        return function (...args) {
+            var now = new Date().getTime();
+            if((now - pre) > wait) {
+                func.apply(this,args)
+                pre = now
+            }
+        }
+    }
+</script>

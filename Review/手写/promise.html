@@ -1,0 +1,24 @@
+<script>
+    function promise(fn) {
+        this.value = undefined;
+        this.onfillfulled = () => {}
+        this.status = 'PENDING'
+        
+        let self = this;
+        function resolve(value) {
+            self.status = 'FULLFILEED';
+            self.value = value;
+            self.onfillfulled(value)
+        }
+        function reject() {}
+        fn(resolve,reject)
+    }
+
+    promise.prototype.then = function (onfillfulled,onRejected) {
+        if(this.status === 'FULLFILEED'){
+            this.onfillfulled(this.value)
+        }else if(this.status === 'PENDING'){
+            this.onfillfulled = onfillfulled
+        }else if(this.status === 'REJECTED'){}
+    }
+</script>
