@@ -1,3 +1,15 @@
+### 语义化标签 搜索引擎优化
+
+```
+简单来说，就是让机器可以读懂你网页的内容。让爬虫对你网站的内容更快的进行分析处理，所以要用到html语义化标签。
+
+<h>,<title>网页seo的标题
+meta name="description" content="网站描述"
+a href="链接地址" title="链接说明"
+img src="图片链接地址" alt="图片说明"
+nav,header,footer,article,section,
+```
+
 ## css
 
 1. css属性名和属性值不区分大小写
@@ -17,6 +29,27 @@
    百分比
 
    calc
+
+### 选择器 及权重
+
+```
+ 内联>style>link
+!import>行内样式id>类名，属性，伪类>标签，伪元素>通配符选择器
+```
+
+### 块级 行内元素
+
+```
+块级元素：
+独占一行，宽度自动填满父容器的宽度；
+可以设置width，height；margin，padding；
+对应display：block
+行内元素、内联元素：
+宽度随内容变化，在父容器内排列，排列不下，才会换行。
+width，height设置无效；
+只有mr，ml，pr，pl起作用，其他边距无效；
+对应display：inline；
+```
 
 
 
@@ -130,5 +163,17 @@ flex 给父元素设置 display:flex  jc ai
    top：50% left:50%     
 
    transform: translate(-50%, -50%)
+
+### 吸顶
+
+1. 要吸顶的元素： position：sticky 兼容性不好
+2. **obj.getBoundingClientRect().top**获得某个元素相对于视窗的位置
+3. **offsetTop**获得元素到父级的距离
+4. 重绘次数过多，性能下降：IntersectionObserver +throttle 
+
+
+
+
+
 
 

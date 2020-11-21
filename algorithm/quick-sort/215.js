@@ -1,3 +1,5 @@
+// 找出第k大的数
+
 var fundKthLarge = function(nums, k){
     let i = 0, j = nums.length - 1;
     let index = partition (nums,i,j);
@@ -27,7 +29,7 @@ function partition (nums, left, right) {
       // 1: 右边扫描，比基准值小数，如果这个数比基准值大，一直往前走
       while(left < right && nums[right] >= provit) right --;
       nums[left] = nums[right];
-      // 2: 左边扫描 比基准值大数
+      // 2: 左边扫描 
       while(left < right && nums[left] <= provit) left ++;
       nums[right] = nums[left];
     }

@@ -1,4 +1,8 @@
 <script>
+        // promise 接受一个函数  ：立即执行  resolve的时候：status成功，保存value
+    // then的时候，通过回调取到value
+    // resolve函数的作用是，将Promise对象的状态从“未完成”变为“成功”（即从 pending 变为 resolved），
+
     function promise(fn) {
         this.value = undefined;
         this.onfillfulled = () => {}
@@ -21,4 +25,25 @@
             this.onfillfulled = onfillfulled
         }else if(this.status === 'REJECTED'){}
     }
+    // 错误
+    promise.prototype.finally = function(onfillfulled) {
+        let P = this.constructor;
+        return this.then(
+            value  => P.resolve(onfillfulled()).then(() => value),
+            reason => P.resolve(onfillfulled()).then(() => { throw reason })
+        );
+    }
+    let p = new promise((resolve,reject) => {
+        setTimeout(() => {
+            resolve(2)
+        },2000)
+    })
+    p.then((value) => {
+        console.log(value)
+    })
+    // p.finally((value) => {
+    //     console.log('---')
+    // })
+
+
 </script>

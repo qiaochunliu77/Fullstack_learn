@@ -8,6 +8,9 @@ String Number symbol Boolean null undefined bignum Object
 即 原始类型的赋值会完整复制变量值，而引用类型的赋值是复制引用地址。
 
 ## 浅拷贝
+
+只复制引用的地址
+
 - Object.assign(target, source);(合并， 克隆)
 ```js
     let obj = {a:1,b:{m:3}}
@@ -15,6 +18,9 @@ String Number symbol Boolean null undefined bignum Object
     console.log(obj===obj1) //false
 ```
 ## 深拷贝
+
+完全拷贝了一份
+
 1. JSON.parse(JSON.stringify）
 ```js
     let w = { a: 1, b: { b: 2 } }
