@@ -1,5 +1,26 @@
-js 是弱类型语言 var a； 类型未定义 Undefined
-数据类型:
-boolean number string object(arr,function,object()) undefined null
+### 时间复杂度
 
-第一次修改
+1. o(1) 没有循环
+2. o(n) 一层 for 循环
+3. o(n^2) 两层循环嵌套
+4. o(logN) 对数阶 while
+5. o(NlogN) 线性对数阶 循环里面嵌套 while
+
+### 空间复杂度
+
+1. o(1) 申明的都是栈空间的变量
+2. o(n) 申明了一个数组... 堆空间变量
+3.
+
+### 链表
+next val 只要不为null就不断next后指
+优点：内存灵活，不需要连续的空间
+缺点：
+题目：
+1. 链表中倒数第k个节点： 快慢双指针，快指针先移动k，快慢指针再同时移动，截取
+k。
+
+### 二叉树
+先序遍历：根左右
+中序遍历：左根右
+后序遍历：左右跟
