@@ -118,7 +118,7 @@ Set 存储任何类型的唯一值。Set中的元素是唯一的。
 用法：
 let myset = new Set()
 myset.add(1);
-myset.has(1)
+myset.has(1) 
 ```
 
 ```

@@ -1,0 +1,20 @@
+
+<script src="https://cdn.bootcdn.net/ajax/libs/axios/0.19.2/axios.min.js"></script>
+<script>
+  document.cookie = 'abc=123'; // 只在域名domain下面生效
+  // 真实请求： post
+  // 1. 预检请求preflight，试探一下跨域是否通过 2.post
+  axios({
+    withCredentials: true, // 前端设置可携带cookie
+    url: 'http://localhost:9090', // 向9090请求数据
+    method: 'POST',
+    data: {
+      username: '123',
+      pwd: 789,
+    }
+  })
+  .then(res => {
+    console.log(res)
+  })
+  const 
+</script>

@@ -4,7 +4,7 @@ http.createServer((req, res) => {
         // origin
         'Content-Type': 'application/json',  //前端拿到响应头 
         'Access-Control-Expose-Headers': 'Access-Control-Allow-Methods', //想让前端拿到的东西 可以是下面的任意一个
-        'Access-Control-Allow-Origin': 'http://localhost:5500',
+        'Access-Control-Allow-Origin': 'http://127.0.0.1:5500',
         'Access-Control-Allow-Methods': '*', //允许所有访问
         'Access-Control-Allow-Headers': 'content-type, X-Requested-With', //用于预检请求的响应
         'Access-Control-Max-Age': -1,    // preflight 预检请求结果缓存的时间  -1 禁用缓存

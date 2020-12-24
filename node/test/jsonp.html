@@ -12,7 +12,7 @@
   // 1. 定义一个callback
   // 2. 后端 callbackName (数据)
   function onResponse(posts) {
-    console.log(posts)
+    console.log(posts,'post')
   }
 </script>
 <!-- 请求完毕得到
@@ -28,7 +28,7 @@
   $.ajax('http://localhost:9090/api',{
     dataType:'jsonp',
     success:(data) => {
-      console.log(data)
+      console.log(data,'data')
     }
   })
 </script>
